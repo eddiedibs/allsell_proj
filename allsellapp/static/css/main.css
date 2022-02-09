@@ -53,7 +53,8 @@
     --ff-mont: 'Montserrat', serif;
     --yellow-color: #FFFC31;
     --sec-color: #42ff00;
-    --nav-color: #3D518C;
+    /* --nav-color: #3D518C; */
+    --nav-color: #0c2032;
     --bckgrnd-color: rgb(3, 3, 3);
 
 
@@ -103,7 +104,7 @@
     z-index: 2;
     position: fixed;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
     background-color: var(--nav-color);
     align-items: center;
     width: 100%;
@@ -120,12 +121,27 @@
 }
 
 
-.nav-bar-links a {
+
+#nav-bar-dropdown a{
     font-family: var(--ff-mont);
     color: white;
     text-decoration: none;
 }
 
+
+#nav-bar-dropdown{
+    z-index: 2;
+    top:12vh;
+    position: fixed;
+    background-color: var(--nav-color);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    min-height: 6vh;
+    font-size: 15px;
+    border-top: 1px solid rgb(46, 46, 46);
+}
 
 /* 
 =========================
@@ -169,6 +185,11 @@
     outline: none;
 }
 
+#nav-bar-dropdown a:first-child{
+    display: flex;
+    justify-items: center;
+}
+
 
 /* 
 =========================
@@ -195,6 +216,21 @@
 }
 
 
+#dropdown-arrow{
+    margin-left: 5%;
+    width:20px;
+    height:20px;
+}
+
+
+.dropdown-line-color{
+    fill:none;
+    stroke-linecap:round;
+    stroke-width:.62917;
+    stroke:rgb(255, 255, 255);
+
+}
+
 
 
 
@@ -210,10 +246,12 @@
 /* 
 =========================================
 
-/// 7.1  Wrapper Home Classes  ///
+/// 7.1  Wrapper Base Classes  ///
 
 =========================================
 */
+
+
 
 #search-bar-container{
     padding-top: .2vh;
