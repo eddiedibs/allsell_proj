@@ -1,0 +1,244 @@
+
+/* 
+=====================================================
+                      
+                       Table of
+                       Contents
+
+=====================================================
+
+
+1.  Root Variables
+
+2.  Global Styles
+
+3.  navBar Classes
+    2.1 First navBar Classes
+
+4.  Button Classes 
+    4.1 First navBar Button classes 
+
+5.  Image  Classes 
+    5.1 Icon Classes
+
+
+
+6.  Typography Classes
+    6.1 Home Page Section
+
+
+7.  Wrapper Classes
+    7.1  Wrapper Home Classes
+
+
+8.  Active Classes
+9.  Media  Screen
+
+
+
+=========================================================
+*/
+
+/* 
+=========================
+
+   1.  Root Variables
+
+=========================
+*/
+
+
+:root{
+
+    --ff-mont: 'Montserrat', serif;
+    --yellow-color: #FFFC31;
+    --sec-color: #42ff00;
+    --nav-color: #3D518C;
+    --bckgrnd-color: rgb(3, 3, 3);
+
+
+}
+
+
+
+
+
+
+/* 
+======================
+
+   2. Global Styles
+
+======================
+*/
+
+
+
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+
+/* 
+=========================
+
+   3. NavBar Classes
+
+=========================
+*/
+
+/* 
+================================
+
+/// 3.1 First navBar Classes ///
+
+================================
+*/
+
+#nav-bar{
+    z-index: 2;
+    position: fixed;
+    display: flex;
+    justify-content: space-around;
+    background-color: var(--nav-color);
+    align-items: center;
+    width: 100%;
+    min-height: 12vh;
+    font-size: 15px;
+
+}
+
+
+.search-bar{
+    font-family: var(--ff-mont);
+    height: 5vh;
+    width: 40vw;
+}
+
+
+.nav-bar-links a {
+    font-family: var(--ff-mont);
+    color: white;
+    text-decoration: none;
+}
+
+
+/* 
+=========================
+
+   4.  Button Classes
+
+=========================
+*/
+
+/* 
+=========================================
+
+/// 4.1 First navBar Button classes  ///
+
+=========================================
+*/
+
+
+.search-bar-send-btn{
+    position: absolute;
+    height: 75%;
+    width: 7%;
+    cursor: pointer;
+    border: none;
+    top: 10%;
+    right: 1%;
+    border-left: .2px solid rgb(161, 161, 161);
+    background-color: transparent;
+
+}
+
+.search-bar-send-btn:hover{
+    background-color: none;
+}
+
+
+.search-bar{
+    border: none;
+    border-color: transparent;
+    text-decoration: none;
+    outline: none;
+}
+
+
+/* 
+=========================
+
+   5.  Image  Classes 
+
+=========================
+*/
+
+/* 
+=============================
+
+/// 5.1 Icon Classes  ///
+
+=============================
+*/
+
+.search-bar-send-icon{
+    fill: gray;
+    width: 3vw;
+    height: 3vh;
+
+
+}
+
+
+
+
+
+
+/* 
+=========================
+
+   7.  Wrapper Classes
+
+=========================
+*/
+
+/* 
+=========================================
+
+/// 7.1  Wrapper Home Classes  ///
+
+=========================================
+*/
+
+#search-bar-container{
+    padding-top: .2vh;
+    position: relative;
+    height: 6vh;
+    width: 45vw;
+    background-color: white;
+    padding-left: 1%;
+}
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
