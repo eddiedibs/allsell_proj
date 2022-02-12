@@ -24,15 +24,15 @@
 
 
 6.  Typography Classes
-    6.1 Home Page Section
-
+    6.1 navBar Section
+    6.2 Home Page Section
 
 7.  Wrapper Classes
     7.1  Wrapper Home Classes
 
 
 8.  Active Classes
-9.  Media  Screen
+
 
 
 
@@ -56,7 +56,8 @@
     /* --nav-color: #3D518C; */
     --nav-color: #0c2032;
     --bckgrnd-color: rgb(3, 3, 3);
-
+    --drop-down-bc-color: rgb(75, 74, 74);
+    --drop-down-bc-color--active: rgb(74, 179, 240);
 
 }
 
@@ -102,7 +103,6 @@
 
 #nav-bar{
     z-index: 2;
-    position: fixed;
     display: flex;
     justify-content: space-evenly;
     background-color: var(--nav-color);
@@ -132,7 +132,6 @@
 #nav-bar-dropdown{
     z-index: 2;
     top:12vh;
-    position: fixed;
     background-color: var(--nav-color);
     display: flex;
     justify-content: space-around;
@@ -142,6 +141,22 @@
     font-size: 15px;
     border-top: 1px solid rgb(46, 46, 46);
 }
+
+
+
+#category-dropdown-list a{
+    font-family: var(--ff-mont);
+    text-decoration: none;
+    list-style: none;
+}
+
+#category-dropdown-list {
+    background-color: var(--drop-down-bc-color);
+    width: 20%;
+    border-bottom-right-radius: 10px;
+}
+
+
 
 /* 
 =========================
@@ -185,9 +200,40 @@
     outline: none;
 }
 
+
 #nav-bar-dropdown a:first-child{
     display: flex;
     justify-items: center;
+}
+
+#category-dropdown-list div:first-child{
+    height: 20px;
+    width: 100%;
+}
+
+#category-dropdown-list div:last-child{
+    height: 20px;
+    width: 100%;
+}
+
+
+#category-dropdown-list li{
+    background-color: none;
+    padding-top: 3%;
+    padding-left: 5%;
+    height: 50px;
+    font-family: var(--ff-mont);
+    font-weight: 600;
+    color: white;
+    transition-duration: 100ms;
+
+
+}
+
+#category-dropdown-list li:hover{
+    background-color: var(--drop-down-bc-color--active);
+
+
 }
 
 
@@ -232,6 +278,41 @@
 }
 
 
+/* 
+=====================================
+
+
+        6.  Typography Classes
+
+
+=====================================
+*/
+
+
+/* 
+==================================
+
+/// 6.1 navBar Section  ///
+
+==================================
+*/
+
+
+
+
+/* 
+==================================
+
+/// 6.2 Home Page Section  ///
+
+==================================
+*/
+
+
+
+
+
+
 
 
 
@@ -252,7 +333,6 @@
 */
 
 
-
 #search-bar-container{
     padding-top: .2vh;
     position: relative;
@@ -266,8 +346,13 @@
 
 
 
+/* 
+=========================
 
+   8.  Active Classes
 
+=========================
+*/
 
 
 

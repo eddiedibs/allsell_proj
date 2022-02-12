@@ -24,7 +24,7 @@
     
 </head>
 <body>
-    <section id='nav-section'>
+    <div id='nav-section'>
         <nav id='nav-bar'>
             <a href="#"><img src="{% static 'svgs/logo.svg' %}" alt=""></a>
             <div id='search-bar-container'>
@@ -46,15 +46,26 @@
                 </g>
                </svg>
                </a>
+            
             <a href="#">Product</a>
             <a href="#">Models</a>
             <a href="#">Contact</a>
         </nav>
-    </section>
-
+        <div id='category-dropdown-list-container' hidden>
+            <ul id='category-dropdown-list'>
+                <div></div>
+                <a href="#"><li>Cars</li></a>
+                <a href="#"><li>Technology</li></a>
+                <a href="#"><li>Decoration</li></a>
+                <div></div>
+            </ul>
+        </div>
+    
+    </div>
 
 
 
     {% block content %} {% endblock content %}
+    <script src="{% static 'js/main.js' %}"></script>
 </body>
 </html>
