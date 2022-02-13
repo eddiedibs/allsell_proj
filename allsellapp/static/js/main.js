@@ -121,7 +121,7 @@ function bannerMotion(){
           };
           let CONSTANTS = {
             ACTIVE_CLASS_NAME: "active",
-            TIMER: 4000,
+            TIMER: 5000,
             TRANSITION: "all .6s ease-out"
           };
           function addConstant(key, value) {
@@ -184,8 +184,10 @@ function bannerMotion(){
         const controller = (function (modal, view, helpers) {
           const DOMSelectors = view.DOMSelectors;
           const DOMElements = helpers.getDOMElements(DOMSelectors);
+          
           function initApp() {
             const imageSize = DOMElements.carouselInnerSlider.clientWidth;
+            console.log(imageSize)
             const imagesCount =
               [...document.querySelectorAll(DOMSelectors.carouselImages)].length - 1;
             modal.addConstant("IMAGE_SIZE", imageSize);

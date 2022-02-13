@@ -33,7 +33,10 @@
     7.1  Wrapper Home Classes
 
 
-8.  Active Classes
+8.  Media Queries
+
+
+9.  Active Classes
 
 
 
@@ -57,10 +60,13 @@
     --sec-color: none;
     /* --nav-color: #3D518C; */
     --nav-color: #0c2032;
+    --navbar-font-color--active: white;
     --bckgrnd-color: rgb(3, 3, 3);
     --drop-down-bc-color: rgba(22, 22, 22, 0.945);
     --drop-down-bc-color--active: rgb(74, 179, 240);
-    --drop-down-links-color: rgb(212, 212, 212);
+    --nav-bar-links-color: rgb(212, 212, 212);
+    
+
 }
 
 
@@ -126,13 +132,13 @@
 
 #nav-bar-dropdown a{
     font-family: var(--ff-mont);
-    color: var(--drop-down-links-color);
+    color: var(--nav-bar-links-color);
     text-decoration: none;
     transition-duration: 200ms;
 }
 
 #nav-bar-dropdown a:hover{
-    color: white;
+    color: var(--navbar-font-color--active);
 }
 
 
@@ -211,6 +217,21 @@
 }
 
 
+
+.nav-bar-login a{
+    margin-right: 10px;
+    font-family: var(--ff-mont);
+    text-decoration: none;
+    color: var(--nav-bar-links-color);
+    transition-duration: 100ms;
+}
+
+
+.nav-bar-login a:hover{
+    color: var(--navbar-font-color--active);
+}
+
+
 #nav-bar-dropdown a:first-child{
     display: flex;
     justify-items: center;
@@ -234,7 +255,7 @@
     height: 50px;
     font-family: var(--ff-mont);
     font-weight: 600;
-    color: white;
+    color: var(--navbar-font-color--active);
     transition-duration: 100ms;
 
 
@@ -387,10 +408,11 @@
 /* 
 =============================
 
-/// 5.2 Banner Classes  ///
+/// 5.2 Banner Image Classes  ///
 
 =============================
 */
+
 
 .banner-img-slide img{
     width:100vw;
@@ -489,10 +511,106 @@
     position: relative;
 }
 
+
+
+
+/* 
+=====================================================================================================
+
+                                        8.  Media Queries
+
+=====================================================================================================
+*/
+
+
+/* 
+=========================================
+
+/// 8.1    ///
+
+=========================================
+*/
+
+
+@media screen and (min-width: 1615px) {
+
+    .banner-img-slide img{
+        margin: 0 1.1vw;
+
+    }
+
+
+}
+@media screen and (min-width: 1800px) {
+
+    .banner-img-slide img{
+        margin: 0 7.3vw;
+
+    }
+
+
+}
+
+@media screen and (min-width: 2000px) {
+
+    .banner-img-slide img{
+        margin: 0 13.3vw;
+
+    }
+
+
+}
+
+
+@media screen and (min-width: 2500px) {
+
+    .banner-img-slide img{
+        margin: 0 19.4vw;
+
+    }
+
+
+}
+
+
+
+
+@media screen and (min-width: 3000px) {
+
+    .banner-img-slide img{
+        margin: 0 25.4vw;
+
+    }
+
+
+}
+
+
+
+
+
+@media screen and (min-width: 4000px) {
+
+    .banner-img-slide img{
+        margin: 0 31.6vw;
+
+    }
+
+
+}
+
+
+
+
+
+
+
+
+
 /* 
 =========================
 
-   8.  Active Classes
+   9.  Active Classes
 
 =========================
 */
