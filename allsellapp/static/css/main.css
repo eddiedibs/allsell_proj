@@ -17,10 +17,12 @@
 
 4.  Button Classes 
     4.1 First navBar Button classes 
+    4.2 Banner Button classes
+
 
 5.  Image  Classes 
     5.1 Icon Classes
-
+    5.2 Banner Classes 
 
 
 6.  Typography Classes
@@ -51,14 +53,14 @@
 :root{
 
     --ff-mont: 'Montserrat', serif;
-    --yellow-color: #FFFC31;
-    --sec-color: #42ff00;
+    --yellow-color: none;
+    --sec-color: none;
     /* --nav-color: #3D518C; */
     --nav-color: #0c2032;
     --bckgrnd-color: rgb(3, 3, 3);
-    --drop-down-bc-color: rgb(75, 74, 74);
+    --drop-down-bc-color: rgba(22, 22, 22, 0.945);
     --drop-down-bc-color--active: rgb(74, 179, 240);
-
+    --drop-down-links-color: rgb(212, 212, 212);
 }
 
 
@@ -124,9 +126,15 @@
 
 #nav-bar-dropdown a{
     font-family: var(--ff-mont);
-    color: white;
+    color: var(--drop-down-links-color);
     text-decoration: none;
+    transition-duration: 200ms;
 }
+
+#nav-bar-dropdown a:hover{
+    color: white;
+}
+
 
 
 #nav-bar-dropdown{
@@ -151,6 +159,8 @@
 }
 
 #category-dropdown-list {
+    z-index: 3;
+    position: absolute;
     background-color: var(--drop-down-bc-color);
     width: 20%;
     border-bottom-right-radius: 10px;
@@ -238,6 +248,86 @@
 
 
 /* 
+=========================================
+
+/// 4.2 Banner Button classes  ///
+
+=========================================
+*/
+
+.prev_button, .next_button{
+    top: 34%;
+    position: absolute;
+    background-color: white;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+
+.prev_button{
+    z-index: 2;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+
+}
+
+.next_button{
+    right: 0;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+ 
+}
+
+
+.arrow{
+    fill:none;
+    stroke: black;
+    stroke-linecap:round;
+    stroke-linejoin:round;
+    stroke-width:190px;
+
+
+}
+
+.dots {
+    position:  absolute;
+    display: flex;
+    margin: 1rem 0;
+    left: 50%;
+    bottom: 37%;
+  }
+  
+  .dot {
+    width: 10px;
+    height: 10px;
+    border: 1px solid white;
+    border-radius: 50%;
+    margin: 0 5px;
+    cursor: pointer;
+    list-style: none;
+
+  }
+
+  
+  .banner-form {
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+  }
+
+  .banner-form label{
+      font-family: var(--ff-mont);
+  }
+
+  
+  .auto_slide {
+  }
+  
+
+/* 
 =========================
 
    5.  Image  Classes 
@@ -276,6 +366,27 @@
     stroke:rgb(255, 255, 255);
 
 }
+
+
+/* 
+=============================
+
+/// 5.2 Banner Classes  ///
+
+=============================
+*/
+
+.banner-img-container img{
+    width:100vw;
+    height: 50%;
+
+}
+
+
+.banner-img-container{
+    display: flex;
+}
+
 
 
 /* 
@@ -342,9 +453,20 @@
     padding-left: 1%;
 }
 
-    
 
+/* 
+=========================================
 
+/// 7.2  Wrapper Banner Classes  ///
+
+=========================================
+*/
+
+#banner-data{
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+}
 
 /* 
 =========================
