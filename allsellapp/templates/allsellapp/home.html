@@ -6,33 +6,45 @@
 
 <section id='banner-section'>
     <div id='banner-data'>
-        <div class='prev_button'>
-            <svg id="svg-arrow-container" width='50' height='20' data-name="Capa 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 936 1682"><defs></defs>
-                <polyline class="arrow" points="841 1587 95 841 841 95"/></svg>
-
-        </div>
 
         <div class='banner-img-container'>
-            <img src="{% static 'images/banners/banner-nike.png' %}" alt="">
-            <img src="{% static 'images/banners/banner-headphones.png' %}" alt="">
-            <img src="{% static 'images/banners/banner-watch.png' %}" alt="">
-        </div>
+            <div class='banner-btn-container'>
+                <div class='prev_button'>
+                    <svg id="svg-arrow-container" width='50' height='20' data-name="Capa 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 936 1682"><defs></defs>
+                        <polyline class="arrow" points="841 1587 95 841 841 95"/></svg>
+        
+                </div>
+            </div>
+            <div class='banner-img-slide'>
+                <img src="{% static 'images/banners/banner-nike.png' %}" alt="">
+                <img src="{% static 'images/banners/banner-headphones.png' %}" alt="">
+                <img src="{% static 'images/banners/banner-watch.png' %}" alt="">
+            </div>
 
-        <div class='next_button'>
-            <svg version="1.1" id="svg-arrow-container" width='50' height='20' xmlns="http://www.w3.org/2000/svg" 
-            viewBox="0 0 936 1682"  xml:space="preserve">
+            <div class='banner-btn-container'>
+
+                <div class='next_button'>
+                    <svg version="1.1" id="svg-arrow-container" width='50' height='20' xmlns="http://www.w3.org/2000/svg" 
+                    viewBox="0 0 936 1682"  xml:space="preserve">
+            
+                        <polyline class="arrow" points="95,95 841,841 95,1587 "/></svg>
+                </div>
+            
     
-                <polyline class="arrow" points="95,95 841,841 95,1587 "/></svg>
+            </div>
         </div>
-       
 
+        
+
+        <div class='dot-container'>
+            <ul class="dots">
+                <li class="dot" value="0"></li>
+                <li class="dot" value="1"></li>
+                <li class="dot" value="2"></li>
+            </ul>
+        </div>
     </div>
-    <ul class="dots">
-        <li class="dot" value="0"></li>
-        <li class="dot" value="1"></li>
-        <li class="dot" value="2"></li>
-      </ul>
-
+    
 
 
 </section>

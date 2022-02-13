@@ -55,6 +55,47 @@ function navMotion(){
 */
 
 function bannerMotion(){
+
+
+    // Banner button opacity function
+    function btnOpacity(){
+        const btnLeft = document.querySelector('.prev_button');
+        const btnRight = document.querySelector('.next_button');
+        const banner = document.querySelector('.banner-img-container');
+        const btns = [btnLeft, btnRight];
+
+        banner.addEventListener('mouseenter', btnOpacityMouseEnter);
+        banner.addEventListener('mouseleave', btnOpacityMouseLeave);
+
+        function btnOpacityMouseEnter(event) {
+            if (event.isTrusted == true){
+                btns[0].classList.add('btn-active');
+                btns[1].classList.add('btn-active');
+
+            }
+
+        }
+
+        function btnOpacityMouseLeave(event) {
+            if (event.isTrusted == true){
+                btns[0].classList.remove('btn-active');
+                btns[1].classList.remove('btn-active');
+
+            }
+
+
+        }
+            // console.log("FIRED")
+
+
+
+
+    }
+
+    btnOpacity()
+
+
+    // Banner slide function
     window.onload = function () {
         const helpers = (function () {
           function getDOMElements(DOMSelectors) {
@@ -96,12 +137,12 @@ function bannerMotion(){
       
         const view = (function (helpers) {
           const DOMSelectors = {
-            carouselInnerSlider: ".banner-img-container",
+            carouselInnerSlider: ".banner-img-slide",
             dots: ".dots",
             slide: "#slide",
             prevButton: ".prev_button",
             nextButton: ".next_button",
-            carouselImages: ".banner-img-container > img",
+            carouselImages: ".banner-img-slide > img",
             dot: ".dot"
           };
           const DOMElements = helpers.getDOMElements(DOMSelectors);

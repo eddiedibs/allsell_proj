@@ -255,15 +255,34 @@
 =========================================
 */
 
-.prev_button, .next_button{
-    top: 34%;
+.banner-btn-container{
+    top:0;
     position: absolute;
+    height: 100%;
+    width: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;  
+}
+
+.banner-btn-container:last-child{
+    right:0;
+}
+
+
+
+.prev_button, .next_button{
+    opacity: 0;
     background-color: white;
     height: 60px;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
+}
+
+.prev_button:hover, .next_button:hover{
+    opacity: 1;
 }
 
 
@@ -292,12 +311,19 @@
 
 }
 
-.dots {
-    position:  absolute;
+
+.dot-container{
+    position: relative;
     display: flex;
-    margin: 1rem 0;
-    left: 50%;
-    bottom: 37%;
+    justify-content: center;
+    align-items: center;
+}
+
+.dots {
+    display: flex;
+    position: absolute;
+    bottom: 100%;
+    margin-bottom: 5px;
   }
   
   .dot {
@@ -311,17 +337,7 @@
 
   }
 
-  
-  .banner-form {
-    display: flex;
-    align-items: center;
-    font-size: 1rem;
-  }
-
-  .banner-form label{
-      font-family: var(--ff-mont);
-  }
-
+ 
   
   .auto_slide {
   }
@@ -376,14 +392,15 @@
 =============================
 */
 
-.banner-img-container img{
+.banner-img-slide img{
     width:100vw;
-    height: 50%;
+    height: 100%;
+    cursor: pointer;
 
 }
 
 
-.banner-img-container{
+.banner-img-slide{
     display: flex;
 }
 
@@ -468,6 +485,10 @@
     flex-direction: column;
 }
 
+.banner-img-container{
+    position: relative;
+}
+
 /* 
 =========================
 
@@ -478,6 +499,10 @@
 
 
 
+
+.btn-active{
+    opacity: 1;
+}
 
 
 
