@@ -1,5 +1,5 @@
 import re
 from django.contrib import admin
-from .models import registration_model
+from .models import Product_model
 
-admin.site.register(registration_model)
+admin.site.register(Product_model)

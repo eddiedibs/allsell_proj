@@ -537,7 +537,8 @@
 }
 
 .form-container{
-    border: 3px solid black;
+    border: 3px solid rgb(136, 136, 136);
+    border-radius: 3px;
     width: 50%;
     margin: auto;
 }

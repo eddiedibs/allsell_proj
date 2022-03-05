@@ -15,8 +15,8 @@ def registration(request):
         form = UserRegistrationForm(request.POST)
         if form.is_valid():
             form.save()
-            firstName = form.cleaned_data.get('firstName')
-            messages.success(request, f'Account created for {firstName}!')
+            username = form.cleaned_data.get('username')
+            messages.success(request, f'Account created for {username}!')
             return redirect('register_success_view')
 
 
