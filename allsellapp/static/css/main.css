@@ -34,7 +34,7 @@
 
 
 8.  Media Queries
-
+    8.1  Banner margin media Queries
 
 9.  Active Classes
 
@@ -364,6 +364,46 @@
   }
   
 
+
+  .btn{
+    display: inline-block;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    background-color: transparent;
+    border: 1px solid transparent;
+      border-top-color: transparent;
+      border-right-color: transparent;
+      border-bottom-color: transparent;
+      border-left-color: transparent;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    border-radius: .25rem;
+    transition-duration: 50ms;
+  }
+  
+  .btn-register{
+    color: #0dcaf0;
+    border-color: #0dcaf0;
+    font-family: var(--ff-mont);
+
+  }
+
+  .btn:hover{
+    background-color: #0cbadd;
+    border-color: #0dcaf0;
+    color: white;
+
+  }
+
+
 /* 
 =========================
 
@@ -438,11 +478,26 @@
 =====================================
 */
 
+/* 
+==================================
+
+/// 6.1 Reusable classes  ///
+
+==================================
+*/
+.main-heading{
+    font-family: var(--ff-mont);
+    font-size: 2rem;
+
+
+
+}
+
 
 /* 
 ==================================
 
-/// 6.1 navBar Section  ///
+/// 6.2 navBar Section  ///
 
 ==================================
 */
@@ -453,18 +508,46 @@
 /* 
 ==================================
 
-/// 6.2 Home Page Section  ///
+/// 6.3 Home Page Section  ///
 
 ==================================
 */
 
 
+/* 
+==================================
+
+/// 6.4 Register Page Section  ///
+
+==================================
+*/
 
 
+.register-heading{
+    text-align: center;
 
 
+}
 
+.btn-register-container{
+    margin-top: 1%;
+    display: flex;
+    justify-content: center;
 
+}
+
+.form-container{
+    border: 3px solid black;
+    width: 50%;
+    margin: auto;
+}
+
+.form-container *{
+    display: flex;
+    flex-direction: column;
+    font-family: var(--ff-mont);
+
+}
 
 /* 
 =========================
@@ -511,8 +594,23 @@
     position: relative;
 }
 
+/* 
+=========================================
+
+/// 7.3  Wrapper Registration Styles  ///
+
+=========================================
+*/
+
+#registration-section{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
 
 
+}
 
 /* 
 =====================================================================================================
@@ -526,10 +624,42 @@
 /* 
 =========================================
 
-/// 8.1    ///
+/// 8.1  Banner margin media Queries   ///
 
 =========================================
 */
+
+
+@media screen and (min-width: 1500px) {
+
+    .banner-img-slide img{
+        margin: 0 0.8vw;
+
+    }
+
+
+}
+
+@media screen and (min-width: 1550px) {
+
+    .banner-img-slide img{
+        margin: 0 0.1vw;
+
+    }
+
+
+}
+
+
+@media screen and (min-width: 1600px) {
+
+    .banner-img-slide img{
+        margin: 0 0.95vw;
+
+    }
+
+
+}
 
 
 @media screen and (min-width: 1615px) {
@@ -541,51 +671,153 @@
 
 
 }
+
+@media screen and (min-width: 1650px) {
+
+    .banner-img-slide img{
+        margin: 0 2.6vw;
+    }
+}
+
+
+
+
+
+@media screen and (min-width: 1700px) {
+
+    .banner-img-slide img{
+        margin: 0 3.5vw;
+    }
+}
+
+
+@media screen and (min-width: 1750px) {
+
+    .banner-img-slide img{
+        margin: 0 4.8vw;
+    }
+}
+
+
+@media screen and (min-width: 1790px) {
+
+    .banner-img-slide img{
+        margin: 0 5.9vw;
+    }
+}
+
+
+
+
 @media screen and (min-width: 1800px) {
 
     .banner-img-slide img{
-        margin: 0 7.3vw;
-
+        margin: 0 6.3vw;
     }
-
-
 }
+
+@media screen and (min-width: 1850px) {
+
+    .banner-img-slide img{
+        margin: 0 7.3vw;
+    }
+}
+
+@media screen and (min-width: 1900px) {
+
+    .banner-img-slide img{
+        margin: 0 8.9vw;
+    }
+}
+
+
+@media screen and (min-width: 1950px) {
+
+    .banner-img-slide img{
+        margin: 0 9.46vw;
+    }
+}
+
+
+
+
+
 
 @media screen and (min-width: 2000px) {
 
     .banner-img-slide img{
-        margin: 0 13.3vw;
-
+        margin: 0 10.6vw;
     }
+}
 
+@media screen and (min-width: 2050px) {
 
+    .banner-img-slide img{
+        margin: 0 11.4vw;
+    }
+}
+
+@media screen and (min-width: 2100px) {
+
+    .banner-img-slide img{
+        margin: 0 13vw;
+    }
+}
+
+@media screen and (min-width: 2300px) {
+
+    .banner-img-slide img{
+        margin: 0 16vw;
+    }
 }
 
 
 @media screen and (min-width: 2500px) {
 
     .banner-img-slide img{
-        margin: 0 19.4vw;
-
+        margin: 0 18.4vw;
     }
-
-
 }
 
+@media screen and (min-width: 2600px) {
 
+    .banner-img-slide img{
+        margin: 0 19.6vw;
+    }
+}
 
+@media screen and (min-width: 2800px) {
+
+    .banner-img-slide img{
+        margin: 0 21.8vw;
+    }
+}
 
 @media screen and (min-width: 3000px) {
 
     .banner-img-slide img{
-        margin: 0 25.4vw;
+        margin: 0 23.8vw;
 
     }
+}
 
+@media screen and (min-width: 3200px) {
 
+    .banner-img-slide img{
+        margin: 0 25.3vw;
+
+    }
 }
 
 
+
+@media screen and (min-width: 3500px) {
+
+    .banner-img-slide img{
+        margin: 0 29.9vw;
+
+    }
+}
 
 
 
@@ -595,10 +827,16 @@
         margin: 0 31.6vw;
 
     }
-
-
 }
 
+
+@media screen and (min-width: 4500px) {
+
+    .banner-img-slide img{
+        margin: 0 31.6vw;
+
+    }
+}
 
 
 

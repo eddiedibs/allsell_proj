@@ -16,7 +16,7 @@
    version="1.1"
    id="svg8"
    inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)"
-   sodipodi:docname="logo.svg">
+   sodipodi:docname="logo_bluebckgr.svg">
   <defs
      id="defs2">
     <linearGradient
@@ -561,11 +561,11 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="3.959798"
-     inkscape:cx="96.967034"
-     inkscape:cy="43.346258"
+     inkscape:zoom="5.6"
+     inkscape:cx="87.478563"
+     inkscape:cy="24.931419"
      inkscape:document-units="mm"
-     inkscape:current-layer="layer3"
+     inkscape:current-layer="layer2"
      showgrid="false"
      inkscape:showpageshadow="false"
      units="px"
@@ -584,7 +584,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -600,17 +600,18 @@
        x="-1.0394346"
        y="-1.842634" />
     <rect
-       style="fill:#f5f5f5;fill-opacity:1;stroke:none;stroke-width:0.61923045;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:fill markers stroke"
+       style="fill:#0c2032;fill-opacity:1;stroke:none;stroke-width:0.61115128;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:fill markers stroke"
        id="rect972"
-       width="27.285954"
-       height="13.905458"
-       x="-0.37636679"
-       y="-0.23825638" />
+       width="26.937073"
+       height="13.720406"
+       x="-0.17830321"
+       y="-0.19297633" />
   </g>
   <g
      inkscape:groupmode="layer"
      id="layer3"
-     inkscape:label="Layer 3">
+     inkscape:label="Layer 3"
+     sodipodi:insensitive="true">
     <g
        id="g2580"
        style="fill:#3165d3;fill-opacity:1;stroke:url(#linearGradient2588);stroke-opacity:1"
@@ -960,7 +961,7 @@
     </g>
     <text
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:4.2347784px;line-height:1.25;font-family:'Roboto Mono Light for Powerline';-inkscape-font-specification:'Roboto Mono Light for Powerline, Light';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#222222;fill-opacity:1;stroke:none;stroke-width:0.22686312;"
+       style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:4.2347784px;line-height:1.25;font-family:'Roboto Mono Light for Powerline';-inkscape-font-specification:'Roboto Mono Light for Powerline, Light';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.22686312"
        x="8.5233059"
        y="8.3504381"
        id="text3349"><tspan
@@ -968,6 +969,6 @@
          id="tspan3347"
          x="8.5233059"
          y="8.3504381"
-         style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:4.2347784px;font-family:'Roboto Mono Light for Powerline';-inkscape-font-specification:'Roboto Mono Light for Powerline, Light';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#222222;stroke-width:0.22686312;fill-opacity:1;">All$ell</tspan></text>
+         style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:4.2347784px;font-family:'Roboto Mono Light for Powerline';-inkscape-font-specification:'Roboto Mono Light for Powerline, Light';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#ffffff;stroke-width:0.22686312">All$ell</tspan></text>
   </g>
 </svg>

@@ -1,0 +1,23 @@
+{% extends 'allsellapp/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<section id='registration-section'>
+    <h1 class='main-heading register-heading'>Create Account</h1>
+    <div class='form-container'>
+        <form method="POST">
+            <div>
+                {% csrf_token %}
+                {{ form }}
+            </div>
+            
+            <div class='btn-register-container'>
+                <button class='btn btn-register'>Sign in</button>
+            </div>
+        </form>
+    </div>
+    
+</section>
+
+{% endblock content %}

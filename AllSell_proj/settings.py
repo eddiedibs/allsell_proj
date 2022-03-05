@@ -25,13 +25,15 @@ SECRET_KEY = 'django-insecure-=gcv$fk2#*$6l4@88lth1_a9$h-5f+x4&2)og_&vdmo1!%$n$h
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', '192.168.0.105']
+ALLOWED_HOSTS = ['127.0.0.1', '192.168.0.107', 'beb6-186-14-65-43.ngrok.io']
 
+CSRF_TRUSTED_ORIGINS = ['http://127.0.0.1','http://192.168.0.107','https://dcbe-186-14-65-43.ngrok.io']
 
 # Application definition
 
 INSTALLED_APPS = [
     'allsellapp.apps.AllsellappConfig',
+    'users_allsell.apps.UsersAllsellConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

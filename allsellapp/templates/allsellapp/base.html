@@ -25,7 +25,7 @@
 <body>
     <section id='nav-section'>
         <nav id='nav-bar'>
-            <a href="#"><img src="{% static 'svgs/logo.svg' %}" alt=""></a>
+            <a href="{% url 'home_view' %}"><img src="{% static 'svgs/logo_transparent.svg' %}" alt=""></a>
             <div id='search-bar-container'>
                 <input class='search-bar' placeholder="Search for products, brands, and more..." type="text" autofocus='' autocomplete="off">
                 <button class='search-bar-send-btn' type='submit'>
@@ -34,7 +34,7 @@
                 </button>
             </div>
             <ul class='nav-bar-login'>
-                <a href="#">Register</a>
+                <a href="{% url 'register_view' %}">Register</a>
                 <a href="#">Log in</a>
 
             </ul>

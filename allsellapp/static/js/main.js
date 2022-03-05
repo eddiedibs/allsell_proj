@@ -142,8 +142,8 @@ function bannerMotion(){
             slide: "#slide",
             prevButton: ".prev_button",
             nextButton: ".next_button",
-            carouselImages: ".banner-img-slide > img",
-            dot: ".dot"
+            carouselImages: ".banner-img-slide img",
+            dot: ".dot",
           };
           const DOMElements = helpers.getDOMElements(DOMSelectors);
           const CAROUSEL_IMAGES = [
@@ -187,7 +187,7 @@ function bannerMotion(){
           
           function initApp() {
             const imageSize = DOMElements.carouselInnerSlider.clientWidth;
-            console.log(imageSize)
+            // DOMElements.carouselImages.style.margin = `${1.1 + 6}`;
             const imagesCount =
               [...document.querySelectorAll(DOMSelectors.carouselImages)].length - 1;
             modal.addConstant("IMAGE_SIZE", imageSize);
