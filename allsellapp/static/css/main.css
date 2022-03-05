@@ -61,6 +61,9 @@
     /* --nav-color: #3D518C; */
     --nav-color: #0c2032;
     --navbar-font-color--active: white;
+    --btn-color: #0cbadd;
+    --success-msg-text-color: #81A48C;
+    --success-msg-backgrd-color: #CDEBD6;
     --bckgrnd-color: rgb(3, 3, 3);
     --drop-down-bc-color: rgba(22, 22, 22, 0.945);
     --drop-down-bc-color--active: rgb(74, 179, 240);
@@ -92,6 +95,10 @@
 }
 
 
+html{
+    overflow-x: hidden;
+}
+
 
 /* 
 =========================
@@ -110,7 +117,7 @@
 */
 
 #nav-bar{
-    z-index: 2;
+    z-index: 3;
     display: flex;
     justify-content: space-evenly;
     background-color: var(--nav-color);
@@ -397,7 +404,7 @@
   }
 
   .btn:hover{
-    background-color: #0cbadd;
+    background-color: var(--btn-color);
     border-color: #0dcaf0;
     color: white;
 
@@ -493,6 +500,11 @@
 
 }
 
+.message-success{
+    font-family: var(--ff-mont);
+    color: var(--success-msg-text-color);
+} 
+
 
 /* 
 ==================================
@@ -529,23 +541,13 @@
 
 }
 
-.btn-register-container{
-    margin-top: 1%;
-    display: flex;
-    justify-content: center;
 
-}
 
-.form-container{
-    border: 3px solid rgb(136, 136, 136);
-    border-radius: 3px;
-    width: 50%;
-    margin: auto;
-}
 
 .form-container *{
     display: flex;
     flex-direction: column;
+    gap: 5px;
     font-family: var(--ff-mont);
 
 }
@@ -561,7 +563,31 @@
 /* 
 =========================================
 
-/// 7.1  Wrapper Base Classes  ///
+/// 7.1  Reusable Box Classes  ///
+
+=========================================
+*/
+
+.shadow-container{
+    padding: 1%;
+    background-color: white;
+    box-shadow: 2px 4px 15px rgb(179, 179, 179);
+    border-radius: 3px;
+    width: 50%;
+    margin: auto;
+}
+
+
+.message-container{
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+/* 
+=========================================
+
+/// 7.2  Wrapper Base Classes  ///
 
 =========================================
 */
@@ -580,7 +606,7 @@
 /* 
 =========================================
 
-/// 7.2  Wrapper Banner Classes  ///
+/// 7.3  Wrapper Banner Classes  ///
 
 =========================================
 */
@@ -598,7 +624,7 @@
 /* 
 =========================================
 
-/// 7.3  Wrapper Registration Styles  ///
+/// 7.4  Wrapper Registration Styles  ///
 
 =========================================
 */
@@ -609,8 +635,41 @@
     flex-direction: column;
     align-content: center;
     justify-content: center;
+    background-color: #F7F7F7;
+    height: fit-content;
 
 
+}
+
+.btn-register-container{
+    margin-top: 1%;
+    display: flex;
+    justify-content: center;
+
+}
+
+
+.have-account-small{
+    text-align: center;
+
+}
+
+.have-account-small a{
+    text-decoration: none;
+    font-family: var(--ff-mont);
+}
+
+
+
+
+.message-success-container{
+    z-index: 1;
+    opacity: 1;
+    position: absolute;
+    transform: translateX(160%);
+    transition-duration: 1000ms;
+    box-shadow: 2px 2px 15px rgb(80, 80, 80);
+    background-color: var(--success-msg-backgrd-color);
 }
 
 /* 
@@ -853,6 +912,53 @@
 
 =========================
 */
+
+
+
+@keyframes successMessageMotion{
+    0%{
+        transform: translateX(160%);
+
+
+    }
+
+    50%{
+        transform: translateX(-10%);
+
+    }
+
+
+
+    100%{
+        transform: translateX(0%);
+
+    }
+
+}
+
+
+@keyframes successMessageMotionDisappear{
+    0%{
+        transform: translateX(0%);
+
+
+    }
+
+
+
+    100%{
+        transform: translateX(160%);
+
+    }
+
+}
+
+
+.message-success--active{
+    opacity: 0;
+
+
+}
 
 
 

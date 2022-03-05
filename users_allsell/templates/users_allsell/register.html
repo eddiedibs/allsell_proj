@@ -6,7 +6,7 @@
 
 <section id='registration-section'>
     <h1 class='main-heading register-heading'>Create Account</h1>
-    <div class='form-container'>
+    <div class='shadow-container form-container'>
         <form method="POST">
             <div>
                 {% csrf_token %}
@@ -14,9 +14,12 @@
             </div>
             
             <div class='btn-register-container'>
-                <button class='btn btn-register'>Sign in</button>
+                <button class='btn btn-register'>Sign up</button>
             </div>
         </form>
+        <small class='have-account-small'>
+            Already have an account? <a href="#">Sign in</a>
+        </small>
     </div>
     
 </section>

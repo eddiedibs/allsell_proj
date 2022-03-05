@@ -12,9 +12,7 @@
 
 3. arrowMotion: Function that allows arrows in main page to slide among images (PC).
 
-4. arrowMotion2: Function that allows arrows in about page to slide among images MADE WITH JQUERY
-
-5. serviceActive: Function that allows service section to disappear typography and to show logo MADE WITH JQUERY
+4. messageMotion: Function that animates Success Messages
 
 6. mainApp: Function that activates all of them in one main function.
 
@@ -290,6 +288,49 @@ function bannerMotion(){
 
 /*
 ===============================================================
+                        4. messageMotion
+
+            Function that animates Success Messages
+
+===============================================================
+*/
+
+function messageMotion (){
+  const successMessage = document.querySelector('.message-success-container');
+
+  document.addEventListener('DOMContentLoaded', () => {
+    successMessage.style.animation = `successMessageMotion 1s ease forwards`;
+
+  });
+
+  function messageDisappear(){
+    successMessage.style.animation = `successMessageMotionDisappear 1s`
+  }
+
+
+  function messageOpacityZero(){
+    successMessage.classList.add('message-success--active')
+    setTimeout(messageDisappear, 1500)
+    
+
+  }
+  setTimeout(messageOpacityZero, 5000);
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+/*
+===============================================================
                         6. mainApp 
 
     Function that activates all of them in one main function
@@ -298,9 +339,9 @@ function bannerMotion(){
 ===============================================================
 */
 function mainApp(){
-    navMotion()
-    bannerMotion()
-    
+    navMotion();
+    bannerMotion();
+    messageMotion();
 
 
 }
