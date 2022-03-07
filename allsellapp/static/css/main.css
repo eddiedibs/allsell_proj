@@ -64,7 +64,7 @@
     --btn-color: #0cbadd;
     --success-msg-text-color: #81A48C;
     --success-msg-backgrd-color: #CDEBD6;
-    --bckgrnd-color: rgb(3, 3, 3);
+    --bckgrnd-color: #F7F7F7;
     --drop-down-bc-color: rgba(22, 22, 22, 0.945);
     --drop-down-bc-color--active: rgb(74, 179, 240);
     --nav-bar-links-color: rgb(212, 212, 212);
@@ -99,7 +99,10 @@ html{
     overflow-x: hidden;
 }
 
+body{
+    background-color: var(--bckgrnd-color);
 
+}
 /* 
 =========================
 
@@ -495,6 +498,9 @@ html{
 .main-heading{
     font-family: var(--ff-mont);
     font-size: 2rem;
+    margin: 20px 20px;
+    text-align: center;
+
 
 
 
@@ -535,22 +541,44 @@ html{
 */
 
 
-.register-heading{
-    text-align: center;
-
-
-}
-
-
-
-
 .form-container *{
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
     font-family: var(--ff-mont);
 
 }
+
+
+
+.have-account a{
+    text-decoration: none;
+    font-family: var(--ff-mont);
+}
+
+
+.form-container li{
+    list-style: none;
+}
+
+.form-container input{
+    height: 40px;
+    width: 100%;
+    outline: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 2px solid rgb(150, 150, 150);
+}
+
+
+
+
+
+
+.asteriskField{
+    color: rgb(216, 0, 0);
+}
+
+
+
 
 /* 
 =========================
@@ -569,7 +597,7 @@ html{
 */
 
 .shadow-container{
-    padding: 1%;
+    padding: 2%;
     background-color: white;
     box-shadow: 2px 4px 15px rgb(179, 179, 179);
     border-radius: 3px;
@@ -635,29 +663,35 @@ html{
     flex-direction: column;
     align-content: center;
     justify-content: center;
-    background-color: #F7F7F7;
+    background-color: var(--bckgrnd-color);
     height: fit-content;
 
 
 }
-
-.btn-register-container{
-    margin-top: 1%;
+.form-container div{
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    gap: 15px;
+    font-family: var(--ff-mont);
 
 }
 
 
-.have-account-small{
+.btn-register-container{
+    margin-top: 1%;
+    margin-bottom: 1%;
+    display: flex;
+    justify-content: center;
+    
+}
+
+
+.have-account{
     text-align: center;
 
 }
 
-.have-account-small a{
-    text-decoration: none;
-    font-family: var(--ff-mont);
-}
+
 
 
 
@@ -960,7 +994,10 @@ html{
 
 }
 
-
+.form-active{
+    width: 100%;
+    border-bottom: 3px solid var(--btn-color);
+}
 
 
 .btn-active{

@@ -2,19 +2,7 @@
 {% load static %}
 
 {% block content %}
-{% if messages %}
-    <div class='message-container'>
-        <div class='shadow-container message-success-container'>
-        
-            {% for message in messages %}
-            <div class='message-success registration-message'>
-                {{ message }}
-            </div>
-            {% endfor %}
 
-        </div>
-    </div>
-{% endif %}
 
 <section id='banner-section'>
     <div id='banner-data'>

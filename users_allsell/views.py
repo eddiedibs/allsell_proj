@@ -16,8 +16,8 @@ def registration(request):
         if form.is_valid():
             form.save()
             username = form.cleaned_data.get('username')
-            messages.success(request, f'Account created for {username}!')
-            return redirect('home_view')
+            messages.success(request, 'Your account has successfuly been created! Now you can log in!')
+            return redirect('login_view')
 
 
     else: 
@@ -29,6 +29,3 @@ def registration(request):
     return render(request, 'users_allsell/register.html', context)
 
 
-
-def register_success_view(request):
-    return render(request, 'users_allsell/register_success.html')

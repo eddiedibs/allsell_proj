@@ -1,0 +1,39 @@
+{% extends 'allsellapp/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+{% if messages %}
+    <div class='message-container'>
+        <div class='shadow-container message-success-container'>
+        
+            {% for message in messages %}
+            <div class='message-success registration-message'>
+                {{ message }}
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+{% endif %}
+<section id='registration-section'>
+    <h1 class='main-heading login-heading'>Log in</h1>
+    <div class='shadow-container form-container'>
+        <form method="POST">
+            <div>
+                {% csrf_token %}
+                {{ form|crispy }}
+            </div>
+            
+            <div class='btn-register-container'>
+                <button class='btn btn-register'>Sign in</button>
+            </div>
+        </form>
+        <small class='have-account'>
+            Need an account? <a href="{% url 'register_view' %}">Sign Up Now</a>
+        </small>
+    </div>
+    
+</section>
+
+{% endblock content %}
