@@ -226,10 +226,24 @@ body{
     outline: none;
 }
 
+.nav-bar-login{
+    width: 15%;
+    display: flex;
+    justify-content: space-evenly;
+    align-content: center;
+    align-items: center;
+}
+
+
+
+
+.profile-link-container{
+    width: max-content;
+    display: flex;
+}
 
 
 .nav-bar-login a{
-    margin-right: 10px;
     font-family: var(--ff-mont);
     text-decoration: none;
     color: var(--nav-bar-links-color);

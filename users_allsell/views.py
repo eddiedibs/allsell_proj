@@ -1,8 +1,8 @@
-from multiprocessing import context
 from django.shortcuts import render, redirect
 # from django.contrib.auth.forms import UserCreationForm
 from allsellapp.forms import UserRegistrationForm
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 
 
@@ -29,3 +29,6 @@ def registration(request):
     return render(request, 'users_allsell/register.html', context)
 
 
+@login_required
+def profile(request):
+    return render(request, 'users_allsell/profile.html')
