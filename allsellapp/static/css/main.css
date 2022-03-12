@@ -97,6 +97,7 @@
 
 html{
     overflow-x: hidden;
+
 }
 
 body{
@@ -227,7 +228,7 @@ body{
 }
 
 .nav-bar-login{
-    width: 15%;
+    width: 25%;
     display: flex;
     justify-content: space-evenly;
     align-content: center;
@@ -493,6 +494,24 @@ body{
 
 
 /* 
+=============================
+
+/// 5.3 Profile Image Classes  ///
+
+=============================
+*/
+
+
+
+.user-profile{
+    border-radius: 50%;
+    width: 150px;
+    margin-bottom: 20px;
+}
+
+
+
+/* 
 =====================================
 
 
@@ -514,11 +533,24 @@ body{
     font-size: 2rem;
     margin: 20px 20px;
     text-align: center;
+    font-weight: 400;
+
 
 
 
 
 }
+
+.main-paragraph{
+    font-family: var(--ff-mont);
+    font-size: 1rem;
+    margin: 20px 20px;
+    font-weight: 300;
+
+
+}
+
+
 
 .message-success{
     font-family: var(--ff-mont);
@@ -590,6 +622,38 @@ body{
 .asteriskField{
     color: rgb(216, 0, 0);
 }
+
+
+
+.alert {
+    position: relative;
+    padding: 1rem 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+      border-top-color: transparent;
+      border-right-color: transparent;
+      border-bottom-color: transparent;
+      border-left-color: transparent;
+    border-radius: .25rem;
+  }
+
+  .alert-danger {
+    color: #842029;
+    background-color: #f8d7da;
+    border-color: #f5c2c7;
+  }
+
+
+
+
+.user-title{
+    display: inline;
+}
+
+
+
+
+
 
 
 
@@ -719,6 +783,28 @@ body{
     box-shadow: 2px 2px 15px rgb(80, 80, 80);
     background-color: var(--success-msg-backgrd-color);
 }
+
+
+.user-profile-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+
+
+
+}
+
+
+.user-profile-pic-container{
+    margin: 40px 40px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+
+
 
 /* 
 =====================================================================================================

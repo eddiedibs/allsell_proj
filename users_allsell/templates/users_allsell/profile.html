@@ -3,7 +3,20 @@
 
 {% block content %}
 <section id='profile-section'>
-    <h1 class='main-heading'>{{ user.username }}</h1>
+    <div class='user-profile-container'>
+        <div class='shadow-container user-profile-pic-container'>
+            <img class='user-profile' src="{{ user.profile.img.url }}" alt="">
+            <div class='user-profile-info-container'>
+                <h2 class='main-heading user-title'>{{ user.username }}</h1>
+                <p class='main-paragraph user-email'>{{ user.email }}</p>
+
+            </div>
+
+        </div>
+        <div class='shadow-container'>
+            <h3>HEYTHERE</h3>
+        </div>
+    </div>
 </section>
 
 {% endblock content %}
