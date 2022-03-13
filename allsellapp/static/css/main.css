@@ -12,26 +12,33 @@
 
 2.  Global Styles
 
-3.  navBar Classes
-    2.1 First navBar Classes
+3.  navBar Styles
+    2.1 First navBar Styles
 
-4.  Button Classes 
-    4.1 First navBar Button classes 
-    4.2 Banner Button classes
-
-
-5.  Image  Classes 
-    5.1 Icon Classes
-    5.2 Banner Classes 
+4.  Button Styles 
+    4.1 First navBar Button Styles 
+    4.2 Banner Button Styles
 
 
-6.  Typography Classes
-    6.1 navBar Section
-    6.2 Home Page Section
-    6.5 login Page Section
+5.  Image  Styles 
+    5.1 Icon Styles
+    5.2 Banner Styles 
+    5.3 Profile Image Styles
 
-7.  Wrapper Classes
-    7.1  Wrapper Home Classes
+
+6.  Typography Styles
+    6.1 Reusable Typography classes
+    6.2 navBar Typography
+    6.3 Home Page Typography
+    6.4 Register Page Typography
+    6.5 login Page Typography
+
+7.  Wrapper Styles
+    7.1  Reusable Box Classes
+    7.2  Wrapper nav Styles
+    7.3  Wrapper Banner Styles
+    7.4  Wrapper Registration Styles
+    7.5  Wrapper User-profile Styles
 
 
 8.  Media Queries
@@ -108,7 +115,7 @@ body{
 /* 
 =========================
 
-   3. NavBar Classes
+   3. NavBar Styles
 
 =========================
 */
@@ -116,7 +123,7 @@ body{
 /* 
 ================================
 
-/// 3.1 First navBar Classes ///
+/// 3.1 First navBar Styles ///
 
 ================================
 */
@@ -189,7 +196,7 @@ body{
 /* 
 =========================
 
-   4.  Button Classes
+   4.  Button Styles
 
 =========================
 */
@@ -197,7 +204,7 @@ body{
 /* 
 =========================================
 
-/// 4.1 First navBar Button classes  ///
+/// 4.1 First navBar Button Styles  ///
 
 =========================================
 */
@@ -297,7 +304,7 @@ body{
 /* 
 =========================================
 
-/// 4.2 Banner Button classes  ///
+/// 4.2 Banner Button Styles  ///
 
 =========================================
 */
@@ -386,8 +393,6 @@ body{
 
  
   
-  .auto_slide {
-  }
   
 
 
@@ -433,7 +438,7 @@ body{
 /* 
 =========================
 
-   5.  Image  Classes 
+   5.  Image  Styles 
 
 =========================
 */
@@ -441,7 +446,7 @@ body{
 /* 
 =============================
 
-/// 5.1 Icon Classes  ///
+/// 5.1 Icon Styles  ///
 
 =============================
 */
@@ -474,7 +479,7 @@ body{
 /* 
 =============================
 
-/// 5.2 Banner Image Classes  ///
+/// 5.2 Banner Image Styles  ///
 
 =============================
 */
@@ -497,14 +502,14 @@ body{
 /* 
 =============================
 
-/// 5.3 Profile Image Classes  ///
+/// 5.3 Profile Image Styles  ///
 
 =============================
 */
 
 
 
-.user-profile{
+.user-profile-img{
     border-radius: 50%;
     width: 150px;
     margin-bottom: 20px;
@@ -525,7 +530,7 @@ body{
 /* 
 ==================================
 
-/// 6.1 Reusable classes  ///
+/// 6.1 Reusable Typography classes  ///
 
 ==================================
 */
@@ -584,7 +589,7 @@ body{
 /* 
 ==================================
 
-/// 6.2 navBar Section  ///
+/// 6.2 navBar Typography  ///
 
 ==================================
 */
@@ -595,7 +600,7 @@ body{
 /* 
 ==================================
 
-/// 6.3 Home Page Section  ///
+/// 6.3 Home Page Typography  ///
 
 ==================================
 */
@@ -604,7 +609,7 @@ body{
 /* 
 ==================================
 
-/// 6.4 Register Page Section  ///
+/// 6.4 Register Page Typography  ///
 
 ==================================
 */
@@ -651,7 +656,7 @@ body{
 /* 
 ==================================
 
-/// 6.5 login Page Section  ///
+/// 6.5 login Page Typography  ///
 
 ==================================
 */
@@ -671,7 +676,7 @@ body{
 /* 
 =========================
 
-   7.  Wrapper Classes
+   7.  Wrapper Styles
 
 =========================
 */
@@ -684,6 +689,8 @@ body{
 =========================================
 */
 
+
+
 .shadow-container{
     padding: 2%;
     background-color: white;
@@ -694,18 +701,37 @@ body{
 }
 
 
+.regular-section{
+    border: 1px solid rgb(24, 24, 24);
+    border-radius: 3px;
+
+}
+
+
+
+
+
+
 .message-container{
     position: relative;
     display: flex;
     justify-content: center;
 }
 
-.regular-section{
-    border: 1px solid rgb(24, 24, 24);
-    border-radius: 3px;
 
-
+.message-success-container{
+    z-index: 1;
+    opacity: 1;
+    position: absolute;
+    transform: translateX(160%);
+    transition-duration: 1000ms;
+    box-shadow: 2px 2px 15px rgb(80, 80, 80);
+    background-color: var(--success-msg-backgrd-color);
 }
+
+
+
+
 
 .regular-section-flex-container{
     display: flex;
@@ -729,7 +755,7 @@ body{
 /* 
 =========================================
 
-/// 7.2  Wrapper Base Classes  ///
+/// 7.2  Wrapper nav Styles  ///
 
 =========================================
 */
@@ -748,7 +774,7 @@ body{
 /* 
 =========================================
 
-/// 7.3  Wrapper Banner Classes  ///
+/// 7.3  Wrapper Banner Styles  ///
 
 =========================================
 */
@@ -809,17 +835,13 @@ body{
 
 
 
+/* 
+=========================================
 
-.message-success-container{
-    z-index: 1;
-    opacity: 1;
-    position: absolute;
-    transform: translateX(160%);
-    transition-duration: 1000ms;
-    box-shadow: 2px 2px 15px rgb(80, 80, 80);
-    background-color: var(--success-msg-backgrd-color);
-}
+/// 7.5  Wrapper User-profile Styles  ///
 
+=========================================
+*/
 
 
 

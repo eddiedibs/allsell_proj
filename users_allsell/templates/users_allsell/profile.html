@@ -1,12 +1,14 @@
 {% extends 'allsellapp/base.html' %}
 {% load static %}
+{% load crispy_forms_tags %}
+
 
 {% block content %}
 <section id='profile-section'>
     <div class='user-profile-container-flex'>
         <div class='shadow-container user-profile-container'>
             <div class='user-profile-pic-container'>
-                <img class='user-profile' src="{{ user.profile.img.url }}" alt="">
+                <img class='user-profile-img' src="{{ user.profile.img.url }}" alt="">
             </div>
             <div class='user-profile-info-container'>
                 <h2 class='main-heading username-title'>{{ user.username }}</h1>
@@ -14,7 +16,7 @@
 
                     <div class='regular-flex-section'>
                         <div class='field-value'>
-                            <p class='main-paragraph'>first name</p>
+                            <p class='main-paragraph'>First name</p>
                         </div>
                         <div class='field-value'>
                             <p class='main-paragraph user-f_name'>{{ user.first_name }}</p>
@@ -23,7 +25,7 @@
 
                     <div class='regular-flex-section'>
                         <div class='field-value'>
-                            <p class='main-paragraph'>last name</p>
+                            <p class='main-paragraph'>Last name</p>
                         </div>
                         <div class='field-value'>
                             <p class='main-paragraph user-l_name'>{{ user.last_name }}</p>
@@ -32,7 +34,7 @@
 
                     <div class='regular-flex-section'>
                         <div class='field-value'>
-                            <p class='main-paragraph'>email</p>
+                            <p class='main-paragraph'>Email Address</p>
                         </div>
                         <div class='field-value'>
                             <p class='main-paragraph user-email'>{{ user.email }}</p>
@@ -45,8 +47,18 @@
             
         </div>
     </div>
-    <div class='shadow-container'>
-        <h3>HEYTHERE</h3>
+    <div class='shadow-container form-container'>
+        <form method="POST" enctype="multipart/form-data">
+            <div>
+                {% csrf_token %}
+                {{ user_update_form|crispy }}
+                {{ profile_update_form|crispy }}
+            </div>
+            
+            <div class='btn-register-container'>
+                <button class='btn btn-register' type="submit">Update</button>
+            </div>
+        </form>
     </div>
 </section>
 

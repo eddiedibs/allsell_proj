@@ -3,19 +3,7 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-{% if messages %}
-    <div class='message-container'>
-        <div class='shadow-container message-success-container'>
-        
-            {% for message in messages %}
-            <div class='message-success registration-message'>
-                {{ message }}
-            </div>
-            {% endfor %}
 
-        </div>
-    </div>
-{% endif %}
 <section id='registration-section'>
     <h1 class='main-heading login-heading'>Log in</h1>
     <div class='shadow-container form-container'>
