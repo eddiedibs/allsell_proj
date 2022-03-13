@@ -38,15 +38,24 @@ function navMotion(){
     
 
 
+    
+
     categoryDropdownButton.addEventListener('click', function() {
         categoryDropdownListContainer.toggleAttribute('hidden');    
         
       });
 
+
+      if (profileBtn == null){
+        return;
+      }
     
-      profileBtn.addEventListener('click', function() {
-        profileDropdownListContainer.toggleAttribute('hidden');    
-  });
+      else{
+        profileBtn.addEventListener('click', function() {
+          profileDropdownListContainer.toggleAttribute('hidden');    
+        });
+      }
+     
 
 
 

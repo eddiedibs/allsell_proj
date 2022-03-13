@@ -968,11 +968,17 @@ body{
 =========================================
 */
 
+#products-list-section{
+    height: 100vh;
 
+
+
+}
 
 
 
 .products-flex-container{
+    width: 100vw;
     display: flex;
     justify-content: center;
     gap: 30px;
@@ -1016,6 +1022,21 @@ body{
 */
 
 
+@media screen and (max-width: 1200px) {
+
+    
+    .product-item-img-container img{
+        width: 200px;
+        height: 200px;
+    }
+    
+    
+    
+
+
+}
+
+
 /* 
 =========================================
 
@@ -1031,6 +1052,9 @@ body{
         margin: 0 0.8vw;
 
     }
+
+    
+    
 
 
 }
