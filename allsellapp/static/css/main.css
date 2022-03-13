@@ -28,6 +28,7 @@
 6.  Typography Classes
     6.1 navBar Section
     6.2 Home Page Section
+    6.5 login Page Section
 
 7.  Wrapper Classes
     7.1  Wrapper Home Classes
@@ -558,6 +559,28 @@ body{
 } 
 
 
+
+.alert {
+    position: relative;
+    padding: 1rem 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+      border-top-color: transparent;
+      border-right-color: transparent;
+      border-bottom-color: transparent;
+      border-left-color: transparent;
+    border-radius: .25rem;
+  }
+
+  .alert-danger {
+    color: #842029;
+    background-color: #f8d7da;
+    border-color: #f5c2c7;
+  }
+
+
+
+
 /* 
 ==================================
 
@@ -625,29 +648,16 @@ body{
 
 
 
-.alert {
-    position: relative;
-    padding: 1rem 1rem;
-    margin-bottom: 1rem;
-    border: 1px solid transparent;
-      border-top-color: transparent;
-      border-right-color: transparent;
-      border-bottom-color: transparent;
-      border-left-color: transparent;
-    border-radius: .25rem;
-  }
+/* 
+==================================
 
-  .alert-danger {
-    color: #842029;
-    background-color: #f8d7da;
-    border-color: #f5c2c7;
-  }
+/// 6.5 login Page Section  ///
 
+==================================
+*/
 
-
-
-.user-title{
-    display: inline;
+.username-title{
+    display: block;
 }
 
 
@@ -689,6 +699,32 @@ body{
     display: flex;
     justify-content: center;
 }
+
+.regular-section{
+    border: 1px solid rgb(24, 24, 24);
+    border-radius: 3px;
+
+
+}
+
+.regular-section-flex-container{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+
+}
+
+
+.regular-flex-section{
+    display: flex;
+    flex-direction: row;
+}
+
+
+.field-value{
+    width: 80%;
+}
+
 
 /* 
 =========================================
@@ -785,25 +821,28 @@ body{
 }
 
 
+
+
+
+.user-profile-container-flex{
+    position: relative;
+    margin: 40px 40px;
+}
+
 .user-profile-container{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-
+    overflow-wrap: break-word;
 
 
 }
-
 
 .user-profile-pic-container{
-    margin: 40px 40px;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
 }
 
-
+.user-profile-info-container{
+    width: 100%;
+}
 
 
 /* 
