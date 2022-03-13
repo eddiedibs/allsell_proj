@@ -13,11 +13,14 @@
 2.  Global Styles
 
 3.  navBar Styles
-    2.1 First navBar Styles
+    3.1 Reusable navBar Styles
+    3.2 First navBar Styles
+    3.3 Second navBar Styles
 
 4.  Button Styles 
-    4.1 First navBar Button Styles 
-    4.2 Banner Button Styles
+    4.1 First navBar Reusable Button Styles
+    4.2 First navBar Button Styles 
+    4.3 Banner Button Styles
 
 
 5.  Image  Styles 
@@ -39,6 +42,7 @@
     7.3  Wrapper Banner Styles
     7.4  Wrapper Registration Styles
     7.5  Wrapper User-profile Styles
+    7.6  Wrapper products Styles
 
 
 8.  Media Queries
@@ -123,7 +127,40 @@ body{
 /* 
 ================================
 
-/// 3.1 First navBar Styles ///
+/// 3.1 Reusable navBar Styles ///
+
+================================
+*/
+
+.dropdown-list a{
+    font-family: var(--ff-mont);
+    text-decoration: none;
+    list-style: none;
+}
+
+.dropdown-list {
+    z-index: 3;
+    position: absolute;
+    background-color: var(--drop-down-bc-color);
+    width: 20%;
+    border-bottom-right-radius: 10px;
+}
+
+
+
+.profile-dropdown{
+    background-color: white;
+    border-bottom-left-radius: 10px;
+    
+
+}
+
+
+
+/* 
+================================
+
+/// 3.2 First navBar Styles ///
 
 ================================
 */
@@ -147,6 +184,14 @@ body{
     width: 40vw;
 }
 
+
+/* 
+================================
+
+/// 3.3 Second navBar Styles ///
+
+================================
+*/
 
 
 #nav-bar-dropdown a{
@@ -177,19 +222,6 @@ body{
 
 
 
-#category-dropdown-list a{
-    font-family: var(--ff-mont);
-    text-decoration: none;
-    list-style: none;
-}
-
-#category-dropdown-list {
-    z-index: 3;
-    position: absolute;
-    background-color: var(--drop-down-bc-color);
-    width: 20%;
-    border-bottom-right-radius: 10px;
-}
 
 
 
@@ -202,9 +234,48 @@ body{
 */
 
 /* 
+==================================================
+
+/// 4.1 First navBar Reusable Button Styles  ///
+
+==================================================
+*/
+
+.dropdown-list div:first-child{
+    height: 20px;
+    width: 100%;
+}
+
+.dropdown-list div:last-child{
+    height: 20px;
+    width: 100%;
+}
+
+
+.dropdown-list li{
+    background-color: none;
+    padding-top: 3%;
+    padding-left: 5%;
+    height: 50px;
+    font-family: var(--ff-mont);
+    font-weight: 600;
+    color: var(--navbar-font-color--active);
+    transition-duration: 100ms;
+
+
+}
+
+.dropdown-list li:hover{
+    background-color: var(--drop-down-bc-color--active);
+
+
+}
+
+
+/* 
 =========================================
 
-/// 4.1 First navBar Button Styles  ///
+/// 4.2 First navBar Button Styles  ///
 
 =========================================
 */
@@ -246,9 +317,20 @@ body{
 
 
 
-.profile-link-container{
+.profile-link{
     width: max-content;
     display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.profile-link p{
+    width: max-content;
+}
+
+.profile-link-text-container{
+    display: flex;
+    justify-content: center;
 }
 
 
@@ -270,32 +352,9 @@ body{
     justify-items: center;
 }
 
-#category-dropdown-list div:first-child{
-    height: 20px;
-    width: 100%;
-}
-
-#category-dropdown-list div:last-child{
-    height: 20px;
-    width: 100%;
-}
-
-
-#category-dropdown-list li{
-    background-color: none;
-    padding-top: 3%;
-    padding-left: 5%;
-    height: 50px;
-    font-family: var(--ff-mont);
-    font-weight: 600;
-    color: var(--navbar-font-color--active);
-    transition-duration: 100ms;
-
-
-}
-
-#category-dropdown-list li:hover{
-    background-color: var(--drop-down-bc-color--active);
+.profile-dropdown li{
+    font-weight: 300;    
+    color: rgb(17, 17, 17);
 
 
 }
@@ -304,7 +363,7 @@ body{
 /* 
 =========================================
 
-/// 4.2 Banner Button Styles  ///
+/// 4.3 Banner Button Styles  ///
 
 =========================================
 */
@@ -460,7 +519,7 @@ body{
 }
 
 
-#dropdown-arrow{
+.dropdown-arrow{
     margin-left: 5%;
     width:20px;
     height:20px;
@@ -514,6 +573,21 @@ body{
     width: 150px;
     margin-bottom: 20px;
 }
+
+
+
+
+.product-item-img-container{
+    margin: 10px;
+}
+
+.product-item-img-container img{
+    width: 300px;
+    height: 300px;
+}
+
+
+
 
 
 
@@ -581,6 +655,14 @@ body{
     color: #842029;
     background-color: #f8d7da;
     border-color: #f5c2c7;
+  }
+
+
+
+  .a-links{
+    color: rgb(31, 31, 31);
+    font-family: var(--ff-mont);
+    text-decoration: none;
   }
 
 
@@ -701,6 +783,16 @@ body{
 }
 
 
+.product-shadow-container{
+    padding: 2%;
+    background-color: white;
+    box-shadow: 2px 4px 15px rgb(223, 223, 223);
+    border-radius: 3px;
+    width: 50%;
+    margin: auto;
+}
+
+
 .regular-section{
     border: 1px solid rgb(24, 24, 24);
     border-radius: 3px;
@@ -780,6 +872,7 @@ body{
 */
 
 #banner-data{
+    width: 100vw;
     overflow-x: hidden;
     display: flex;
     flex-direction: column;
@@ -864,6 +957,53 @@ body{
 
 .user-profile-info-container{
     width: 100%;
+}
+
+
+/* 
+=========================================
+
+/// 7.6  Wrapper products Styles  ///
+
+=========================================
+*/
+
+
+
+
+
+.products-flex-container{
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-direction: row;
+}
+
+
+.product-item{
+    width: max-content;
+
+}
+
+
+.product-link{
+
+}
+
+
+
+.product-shadow-container{
+    transition-duration: 300ms;
+
+
+
+}
+
+
+.product-shadow-container:hover{
+    transform: scale(1.1);
+    box-shadow: 2px 4px 15px rgb(179, 179, 179);
+
 }
 
 
@@ -1163,6 +1303,11 @@ body{
 
 .btn-active{
     opacity: 1;
+}
+
+
+.product-item-animation{
+    transform: scale(1.2);
 }
 
 

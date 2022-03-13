@@ -32,13 +32,33 @@
 
 function navMotion(){
     const categoryDropdownButton = document.querySelector('#nav-bar-dropdown a:first-child');
+    const profileBtn = document.querySelector('.profile-link-container');
     const categoryDropdownListContainer = document.querySelector('#category-dropdown-list-container');
+    const profileDropdownListContainer = document.querySelector('#profile-dropdown-list-container');
     
 
 
     categoryDropdownButton.addEventListener('click', function() {
         categoryDropdownListContainer.toggleAttribute('hidden');    
+        
       });
+
+    
+      profileBtn.addEventListener('click', function() {
+        profileDropdownListContainer.toggleAttribute('hidden');    
+  });
+
+
+
+
+
+
+
+
+
+
+
+
 
 }
 
@@ -341,7 +361,8 @@ function messageMotion (){
 }
 
 
-  
+
+
 
 
 
