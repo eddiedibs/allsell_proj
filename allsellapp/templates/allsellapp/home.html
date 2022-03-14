@@ -16,11 +16,29 @@
                 </div>
             </div>
             <div class='banner-img-slide'>
-                <img src="{% static 'images/banners/banner-nike.png' %}" alt="">
-                <img src="{% static 'images/banners/banner-headphones.png' %}" alt="">
-                <img src="{% static 'images/banners/banner-watch.png' %}" alt="">
-                <img src="{% static 'images/banners/banner-car.png' %}" alt="">
-                <img src="{% static 'images/banners/banner-nike2.png' %}" alt="">
+                <div class='banner-img-flex-slide'>
+                    <img src="{% static 'images/banners/banner-nike.png' %}" alt="">
+
+                </div>
+                <div class='banner-img-flex-slide'>
+                    <img src="{% static 'images/banners/banner-headphones.png' %}" alt="">
+
+                </div>
+                <div class='banner-img-flex-slide'>
+                    <img src="{% static 'images/banners/banner-watch.png' %}" alt="">
+
+                </div>
+                <div class='banner-img-flex-slide'>
+                    <img src="{% static 'images/banners/banner-car.png' %}" alt="">
+
+                </div>
+                <div class='banner-img-flex-slide'>
+                    <img src="{% static 'images/banners/banner-nike2.png' %}" alt="">
+
+                </div>
+
+                
+                
             </div>
 
             <div class='banner-btn-container'>
@@ -56,45 +74,25 @@
 <section id='products-list-section'>
     <h3 class='main-heading'>This week's offers</h3>
     <div class='products-flex-container'>
+        
+        {% for product in products %}
         <a class='a-links product-link' href="#">
             <div class='product-item  product-shadow-container'>
                 <div class='product-item-img-container'>
-                    <img src="{% static 'images/products/test.jpg' %}" alt="">
+                    <img src="{{ product.prod_img.url }}" alt="">
                 </div>
                 
                 <div class='product-item-info-container'>
-                    <span class='main-heading product-item-price'> 30$</span>
-                    <p class='main-paragraph product-description'> product description</p>
+                    <h4 class='product-item-title'> {{ product.prod_name }}</h4>
+                    <span class='main-heading product-item-price'> {{ product.prod_price }}{{ product.currency }}</span>
+                    <p class='main-paragraph product-description'> {{ product.prod_desc }} </p>
                 </div>
 
             </div>
         </a>
-        <a class='a-links product-link' href="#">
-            <div class='product-item  product-shadow-container'>
-                <div class='product-item-img-container'>
-                    <img src="{% static 'images/products/test.jpg' %}" alt="">
-                </div>
-                
-                <div class='product-item-info-container'>
-                    <span class='main-heading product-item-price'> 30$</span>
-                    <p class='main-paragraph product-description'> product description</p>
-                </div>
+        {% endfor %}
 
-            </div>
-        </a>
-        <a class='a-links product-link' href="#">
-            <div class='product-item  product-shadow-container'>
-                <div class='product-item-img-container'>
-                    <img src="{% static 'images/products/test.jpg' %}" alt="">
-                </div>
-                
-                <div class='product-item-info-container'>
-                    <span class='main-heading product-item-price'> 30$</span>
-                    <p class='main-paragraph product-description'> product description</p>
-                </div>
-
-            </div>
-        </a>
+        
     </div>
 
 

@@ -35,6 +35,7 @@
     6.3 Home Page Typography
     6.4 Register Page Typography
     6.5 login Page Typography
+    6.6 Products Page Typography
 
 7.  Wrapper Styles
     7.1  Reusable Box Classes
@@ -544,6 +545,11 @@ body{
 */
 
 
+.banner-img-flex-slide{
+    display: flex;
+    justify-content: center;
+}
+
 .banner-img-slide img{
     width:100vw;
     height: 100%;
@@ -748,10 +754,26 @@ body{
 }
 
 
+/* 
+==================================
+
+/// 6.6 Products Page Typography  ///
+
+==================================
+*/
 
 
 
 
+.product-item-title{
+    font-family: var(--ff-mont);
+    font-size: 1.2rem;
+    margin: 20px 10px;
+    text-align: center;
+    font-weight: 400;
+
+
+}
 
 
 
@@ -987,7 +1009,7 @@ body{
 
 
 .product-item{
-    width: max-content;
+    width: min-content;
 
 }
 
@@ -1025,239 +1047,16 @@ body{
 @media screen and (max-width: 1200px) {
 
     
-    .product-item-img-container img{
+    /* .product-item-img-container img{
         width: 200px;
         height: 200px;
     }
     
-    
-    
-
-
-}
-
-
-/* 
-=========================================
-
-/// 8.1  Banner margin media Queries   ///
-
-=========================================
-*/
-
-
-@media screen and (min-width: 1500px) {
-
-    .banner-img-slide img{
-        margin: 0 0.8vw;
-
-    }
-
-    
+     */
     
 
 
 }
-
-@media screen and (min-width: 1550px) {
-
-    .banner-img-slide img{
-        margin: 0 0.1vw;
-
-    }
-
-
-}
-
-
-@media screen and (min-width: 1600px) {
-
-    .banner-img-slide img{
-        margin: 0 0.95vw;
-
-    }
-
-
-}
-
-
-@media screen and (min-width: 1615px) {
-
-    .banner-img-slide img{
-        margin: 0 1.1vw;
-
-    }
-
-
-}
-
-@media screen and (min-width: 1650px) {
-
-    .banner-img-slide img{
-        margin: 0 2.6vw;
-    }
-}
-
-
-
-
-
-@media screen and (min-width: 1700px) {
-
-    .banner-img-slide img{
-        margin: 0 3.5vw;
-    }
-}
-
-
-@media screen and (min-width: 1750px) {
-
-    .banner-img-slide img{
-        margin: 0 4.8vw;
-    }
-}
-
-
-@media screen and (min-width: 1790px) {
-
-    .banner-img-slide img{
-        margin: 0 5.9vw;
-    }
-}
-
-
-
-
-@media screen and (min-width: 1800px) {
-
-    .banner-img-slide img{
-        margin: 0 6.3vw;
-    }
-}
-
-@media screen and (min-width: 1850px) {
-
-    .banner-img-slide img{
-        margin: 0 7.3vw;
-    }
-}
-
-@media screen and (min-width: 1900px) {
-
-    .banner-img-slide img{
-        margin: 0 8.9vw;
-    }
-}
-
-
-@media screen and (min-width: 1950px) {
-
-    .banner-img-slide img{
-        margin: 0 9.46vw;
-    }
-}
-
-
-
-
-
-
-@media screen and (min-width: 2000px) {
-
-    .banner-img-slide img{
-        margin: 0 10.6vw;
-    }
-}
-
-@media screen and (min-width: 2050px) {
-
-    .banner-img-slide img{
-        margin: 0 11.4vw;
-    }
-}
-
-@media screen and (min-width: 2100px) {
-
-    .banner-img-slide img{
-        margin: 0 13vw;
-    }
-}
-
-@media screen and (min-width: 2300px) {
-
-    .banner-img-slide img{
-        margin: 0 16vw;
-    }
-}
-
-
-@media screen and (min-width: 2500px) {
-
-    .banner-img-slide img{
-        margin: 0 18.4vw;
-    }
-}
-
-@media screen and (min-width: 2600px) {
-
-    .banner-img-slide img{
-        margin: 0 19.6vw;
-    }
-}
-
-@media screen and (min-width: 2800px) {
-
-    .banner-img-slide img{
-        margin: 0 21.8vw;
-    }
-}
-
-@media screen and (min-width: 3000px) {
-
-    .banner-img-slide img{
-        margin: 0 23.8vw;
-
-    }
-}
-
-@media screen and (min-width: 3200px) {
-
-    .banner-img-slide img{
-        margin: 0 25.3vw;
-
-    }
-}
-
-
-
-@media screen and (min-width: 3500px) {
-
-    .banner-img-slide img{
-        margin: 0 29.9vw;
-
-    }
-}
-
-
-
-@media screen and (min-width: 4000px) {
-
-    .banner-img-slide img{
-        margin: 0 31.6vw;
-
-    }
-}
-
-
-@media screen and (min-width: 4500px) {
-
-    .banner-img-slide img{
-        margin: 0 31.6vw;
-
-    }
-}
-
-
 
 
 
