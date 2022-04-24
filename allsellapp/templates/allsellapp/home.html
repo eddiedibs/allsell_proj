@@ -76,7 +76,7 @@
     <div class='products-flex-container'>
         
         {% for product in products %}
-        <a class='a-links product-link' href="#">
+        <a class='a-links product-link' href="{% url 'product_view' product.pk %}">
             <div class='product-item  product-shadow-container'>
                 <div class='product-item-img-container'>
                     <img src="{{ product.prod_img.url }}" alt="">

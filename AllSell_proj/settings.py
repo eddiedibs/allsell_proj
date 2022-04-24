@@ -12,6 +12,10 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from pathlib import Path
 import os
+import environ
+# Initialise environment variables
+env = environ.Env()
+environ.Env.read_env()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -26,7 +30,7 @@ SECRET_KEY = 'django-insecure-=gcv$fk2#*$6l4@88lth1_a9$h-5f+x4&2)og_&vdmo1!%$n$h
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', '192.168.0.107', 'beb6-186-14-65-43.ngrok.io']
+ALLOWED_HOSTS = ['127.0.0.1', '192.168.0.108', 'beb6-186-14-65-43.ngrok.io']
 
 CSRF_TRUSTED_ORIGINS = ['http://127.0.0.1','http://192.168.0.107','https://dcbe-186-14-65-43.ngrok.io']
 
@@ -35,6 +39,7 @@ CSRF_TRUSTED_ORIGINS = ['http://127.0.0.1','http://192.168.0.107','https://dcbe-
 INSTALLED_APPS = [
     'allsellapp.apps.AllsellappConfig',
     'users_allsell.apps.UsersAllsellConfig',
+    'products.apps.ProductsConfig',
     'crispy_forms',
     'django.contrib.admin',
     'django.contrib.auth',

@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Product_model
+from products.models import Product_model
 
 
 
@@ -12,4 +12,3 @@ def home(request):
 
     return render(request, 'allsellapp/home.html', context)
 
-# Create your views here.
