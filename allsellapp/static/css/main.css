@@ -135,7 +135,6 @@ body{
 
 .dropdown-list a{
     font-family: var(--ff-mont);
-    text-decoration: none;
     list-style: none;
 }
 
@@ -482,7 +481,7 @@ body{
   
   .btn-register{
     color: #0dcaf0;
-    border-color: #0dcaf0;
+    border-color: #0dcaf0 !important;
     font-family: var(--ff-mont);
 
   }
@@ -616,7 +615,7 @@ body{
 */
 .main-heading{
     font-family: var(--ff-mont);
-    font-size: 2rem;
+    font-size: 3rem;
     margin: 20px 20px;
     text-align: center;
     font-weight: 400;
@@ -629,11 +628,19 @@ body{
 
 .main-paragraph{
     font-family: var(--ff-mont);
-    font-size: 1rem;
+    font-size: 2rem;
     margin: 20px 20px;
     font-weight: 300;
 
 
+}
+
+.sec-heading{
+    font-family: var(--ff-mont);
+    font-size: 2rem;
+    margin: 20px 20px;
+    text-align: center;
+    font-weight: 400;
 }
 
 
@@ -665,7 +672,7 @@ body{
 
 
 
-  .a-links{
+  .anchor-links{
     color: rgb(31, 31, 31);
     font-family: var(--ff-mont);
     text-decoration: none;
@@ -704,7 +711,8 @@ body{
 
 
 .form-container *{
-    font-family: var(--ff-mont);
+    font-family: var(--ff-mont) !important;
+    font-weight: 500 !important;
 
 }
 
@@ -766,17 +774,15 @@ body{
 
 
 .product-item-title{
-    font-family: var(--ff-mont);
-    font-size: 1.2rem;
+}
+.product-item-price{
+    display: block;
     margin: 20px 10px;
-    text-align: center;
-    font-weight: 400;
-
-
 }
 
-
-
+.product-description{
+    text-align: center;
+}
 /* 
 =========================
 
@@ -874,6 +880,10 @@ body{
 =========================================
 */
 
+#nav-section a{
+    text-decoration: none;
+
+}
 
 #search-bar-container{
     padding-top: .2vh;
@@ -1015,6 +1025,7 @@ body{
 
 
 .product-link{
+    text-decoration: none !important;
 
 }
 
