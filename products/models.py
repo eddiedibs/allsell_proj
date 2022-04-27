@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.shortcuts import reverse
 from PIL import Image
 
 class Product_model(models.Model):
@@ -15,11 +16,16 @@ class Product_model(models.Model):
     prod_price = models.DecimalField(default=0.0, max_digits=10, decimal_places=2)
     prod_img = models.ImageField(default='product_default.jpg', upload_to='product_pics')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    
+    slug = models.SlugField()
 
     def __str__(self):
             return f'{self.prod_name} by {self.user.username}'
 
+
+    def get_absolute_url(self):
+        return reverse("products:product_view", kwargs={
+            'slug': self.slug
+        })
 
         
     def save(self):

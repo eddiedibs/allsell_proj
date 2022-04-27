@@ -76,16 +76,16 @@
     <div class='products-flex-container'>
         
         {% for product in products %}
-        <a class='anchor-links product-link' href="{% url 'product_view' product.pk %}">
+        <a class='anchor-links product-link' href="{% url 'product_view' product.slug %}">
             <div class='product-item  product-shadow-container'>
                 <div class='product-item-img-container'>
                     <img src="{{ product.prod_img.url }}" alt="">
                 </div>
                 
                 <div class='product-item-info-container'>
-                    <h4 class='sec-heading product-item-title'> {{ product.prod_name }}</h4>
-                    <span class='main-heading product-item-price'> {{ product.prod_price }}{{ product.currency }}</span>
-                    <p class='sec-paragraph product-description'> {{ product.prod_desc }} </p>
+                    <h4 class='main-heading product-item-title'> {{ product.prod_name }}</h4>
+                    <span class='sec-heading product-item-price'> {{ product.prod_price }}{{ product.currency }}</span>
+                    <p class='sec-paragraph product-description'> {{ product.prod_desc }}</p>
                 </div>
 
             </div>

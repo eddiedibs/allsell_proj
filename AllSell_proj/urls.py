@@ -28,7 +28,7 @@ urlpatterns = [
     path('profile/', user_views.profile, name='profile_view'),
     path('login/', auth_views.LoginView.as_view(template_name='users_allsell/login.html'), name='login_view'),
     path('logout/', auth_views.LogoutView.as_view(template_name='users_allsell/logout.html'), name='logout_view'),
-    path('product/<int:pk>/', product_views.ProdDetailView.as_view(template_name='products/product.html'), name='product_view'),
+    path('product/<slug>/', product_views.ProdDetailView.as_view(template_name='products/product.html'), name='product_view'),
     path('', include('allsellapp.urls')),
 ]
 
