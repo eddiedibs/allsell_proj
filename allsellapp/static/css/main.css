@@ -783,6 +783,7 @@ body{
     margin: 20px 10px;
 }
 
+.product-item-title,
 .product-description{
     text-align: center;
     display: -webkit-box;
