@@ -17,6 +17,7 @@ class Product_model(models.Model):
     prod_img = models.ImageField(default='product_default.jpg', upload_to='product_pics')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     slug = models.SlugField()
+    img_quantity = models.IntegerField(default=0)
 
     def __str__(self):
             return f'{self.prod_name} by {self.user.username}'
@@ -27,13 +28,33 @@ class Product_model(models.Model):
             'slug': self.slug
         })
 
-        
-    def save(self):
-        super().save()
 
-        imgs = Image.open(self.prod_img.path)
+    def img_indicators(self):
+        ind_list = []
+        for i in range(self.img_quantity):
+            ind_list.append(i)
+            
 
-        if imgs.height > 300 or imgs.width > 300:
-            output_size = (300, 300)
-            imgs.thumbnail(output_size)
-            imgs.save(self.prod_img.path)
+        return ind_list
+
+class Product_imgs(models.Model):
+    prod_img_title = models.CharField(max_length=40)
+    prod_img = models.ImageField(default='product_default.jpg', upload_to='product_pics')
+    is_carousel_active = models.CharField(max_length=10)
+    item = models.ForeignKey(Product_model, null=True, blank=True, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f'{self.prod_img_title} from {self.item}'
+
+
+    
+
+    # def save(self):
+    #     super().save()
+
+    #     imgs = Image.open(self.prod_img.path)
+
+    #     if imgs.height > 300 or imgs.width > 300:
+    #         output_size = (300, 300)
+    #         imgs.thumbnail(output_size)
+    #         imgs.save(self.prod_img.path)

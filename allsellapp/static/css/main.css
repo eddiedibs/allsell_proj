@@ -589,9 +589,19 @@ body{
 }
 
 .product-item-img-container img{
-    width: 300px;
+    object-fit: cover;
     height: 300px;
+    overflow: hidden;
+    
 }
+
+.carousel-item img{
+    object-fit: cover;
+    height: 350px !important;
+    overflow: hidden;
+    
+}
+
 
 
 
@@ -882,6 +892,8 @@ body{
 }
 
 
+
+
 /* 
 =========================================
 
@@ -1057,6 +1069,20 @@ body{
 }
 
 
+.product-item-detail{
+    position: static;
+    width: 420px;
+    word-wrap: break-word;
+
+}
+
+.product-item-detail-container{
+    display: flex;
+    justify-content: space-around;
+
+}
+
+
 /* 
 =====================================================================================================
 
@@ -1082,6 +1108,11 @@ body{
 
 
 
+@media screen and (max-width: 768px){
+    .product-item-detail-container{
+        display: block;
+    }
+}
 
 
 
