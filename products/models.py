@@ -3,6 +3,37 @@ from django.contrib.auth.models import User
 from django.shortcuts import reverse
 from PIL import Image
 
+
+class Product_category(models.Model):
+    categories = [
+        ('Clothes & Accesories', "clothes and accesories"),
+        ('Computers, Tablets and IT Accessories', "PC, Tablets and stuff"),
+        ('Toys & Games', "Toys and Games"),
+        ('Bikes and Automobiles', "Cars and bikes"),
+    ]
+
+    color_tags = [
+        ('pink-paradise', "pink"),
+        ('dark-pastel-green', "pastel green"),
+        ('navy-blue', "Navy blue"),
+        ('jasmine', "Jasmine"),
+    ]
+
+
+
+
+    category = models.CharField(max_length=225, choices=categories, default='Category_test')
+    color_tag = models.CharField(max_length=225, choices=color_tags, default='color_test')
+    slug = models.SlugField(unique=True, blank=True, null=True)
+
+    def __str__(self):
+        return self.category
+
+    # def get_absolute_url(self):
+    #     return reverse('category_detail', kwargs={'slug': self.slug})
+
+
+
 class Product_model(models.Model):
     currencies = [
     ('$', "US Dollars ($)"), 
@@ -16,8 +47,9 @@ class Product_model(models.Model):
     prod_price = models.DecimalField(default=0.0, max_digits=10, decimal_places=2)
     prod_img = models.ImageField(default='product_default.jpg', upload_to='product_pics')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    slug = models.SlugField()
     img_quantity = models.IntegerField(default=0)
+    slug = models.SlugField()
+    categories = models.ForeignKey(Product_category, related_name='Category', blank=True, null=True, default=None, on_delete=models.CASCADE) #this
 
     def __str__(self):
             return f'{self.prod_name} by {self.user.username}'

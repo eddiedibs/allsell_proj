@@ -117,6 +117,17 @@ body{
     background-color: var(--bckgrnd-color);
 
 }
+
+p {
+    margin-top: 0;
+    margin-bottom: 0 !important;
+}
+
+ol, ul {
+    padding-left: 0 !important;
+}
+
+
 /* 
 =========================
 
@@ -821,6 +832,16 @@ body{
 
 
 
+
+
+
+
+
+
+
+
+
+
 .shadow-container{
     padding: 2%;
     background-color: white;
@@ -890,6 +911,36 @@ body{
 .field-value{
     width: 80%;
 }
+
+
+/* 
+=========================================
+
+       /// BACKGROUND COLORS  ///
+
+=========================================
+*/
+
+
+.bg-pink-paradise{
+    background-color: #E4455E;
+}
+
+.bg-dark-pastel-green{
+    background-color: #339933;
+}
+
+.bg-navy-blue{
+    background-color: #333366;
+}
+
+.bg-jasmine{
+    background-color: #F7DD72;
+    color: black;
+    font-weight: 300;
+}
+
+
 
 
 
@@ -1031,14 +1082,13 @@ body{
 
 
 
-.products-flex-container{
-    width: 100vw;
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    flex-direction: row;
-}
 
+.products-gridbox-container{
+    padding: 3px;
+    display: grid;
+    grid-gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
 
 .product-item{
     width: 350px;

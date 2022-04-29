@@ -73,7 +73,7 @@
 
 <section id='products-list-section'>
     <h3 class='main-heading'>This week's offers</h3>
-    <div class='products-flex-container'>
+    <div class='products-gridbox-container'>
         
         {% for product in products %}
         <a class='anchor-links product-link' href="{% url 'product_view' product.slug %}">
