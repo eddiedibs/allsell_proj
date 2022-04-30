@@ -2,25 +2,10 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.shortcuts import reverse
 from PIL import Image
+from .categories_and_colortags import categories, color_tags
 
 
 class Product_category(models.Model):
-    categories = [
-        ('Clothes & Accesories', "clothes and accesories"),
-        ('Computers, Tablets and IT Accessories', "PC, Tablets and stuff"),
-        ('Toys & Games', "Toys and Games"),
-        ('Bikes and Automobiles', "Cars and bikes"),
-    ]
-
-    color_tags = [
-        ('pink-paradise', "pink"),
-        ('dark-pastel-green', "pastel green"),
-        ('navy-blue', "Navy blue"),
-        ('jasmine', "Jasmine"),
-    ]
-
-
-
 
     category = models.CharField(max_length=225, choices=categories, default='Category_test')
     color_tag = models.CharField(max_length=225, choices=color_tags, default='color_test')
@@ -42,7 +27,7 @@ class Product_model(models.Model):
 
 
     prod_name = models.CharField(max_length=40)
-    prod_desc = models.CharField(max_length=100)
+    prod_desc = models.TextField(max_length=500)
     currency = models.CharField(max_length=5, choices=currencies, default="$")
     prod_price = models.DecimalField(default=0.0, max_digits=10, decimal_places=2)
     prod_img = models.ImageField(default='product_default.jpg', upload_to='product_pics')
@@ -69,7 +54,12 @@ class Product_model(models.Model):
 
         return ind_list
 
-class Product_imgs(models.Model):
+
+
+
+
+
+class Product_img(models.Model):
     prod_img_title = models.CharField(max_length=40)
     prod_img = models.ImageField(default='product_default.jpg', upload_to='product_pics')
     is_carousel_active = models.CharField(max_length=10)
@@ -78,8 +68,6 @@ class Product_imgs(models.Model):
     def __str__(self):
         return f'{self.prod_img_title} from {self.item}'
 
-
-    
 
     # def save(self):
     #     super().save()

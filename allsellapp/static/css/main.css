@@ -927,7 +927,7 @@ ol, ul {
 }
 
 .bg-dark-pastel-green{
-    background-color: #339933;
+    background-color: #04f14c;
 }
 
 .bg-navy-blue{
@@ -1086,8 +1086,8 @@ ol, ul {
 .products-gridbox-container{
     padding: 3px;
     display: grid;
-    grid-gap: 1rem;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    grid-gap: 1rem !important;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
 }
 
 .product-item{

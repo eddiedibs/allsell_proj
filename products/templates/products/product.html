@@ -14,17 +14,18 @@
           
           
           <div id="carouselExampleIndicators" class="col-md-6 mb-4 carousel slide" data-bs-ride="carousel">
-            <div class="carousel-indicators">
-              {% for indicator in products.img_indicators  %}
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ indicator }}" class="active" aria-current="true" aria-label="Slide {{ indicator }}"></button>
-              {% endfor  %}
-            </div>
+            
             <div class="carousel-inner">
-              {% for product_img in products.product_imgs_set.all  %}
+              {% for product_img in products.product_img_set.all  %}
                 <div class="carousel-item {{ product_img.is_carousel_active }}">
                   <img src="{{ product_img.prod_img.url }}" class="d-block w-100" alt="...">
                 </div>
               {% endfor  %}
+              <div class="carousel-indicators">
+                {% for indicator in products.img_indicators  %}
+                  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ indicator }}" class="active" aria-current="true" aria-label="Slide {{ indicator }}"></button>
+                {% endfor  %}
+              </div>
               
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
               <span class="carousel-control-prev-icon" aria-hidden="true"></span>
