@@ -120,11 +120,11 @@ body{
 
 p {
     margin-top: 0;
-    margin-bottom: 0 !important;
 }
 
 ol, ul {
     padding-left: 0 !important;
+    margin-bottom: 0 !important;
 }
 
 
@@ -585,9 +585,10 @@ ol, ul {
 
 
 .user-profile-img{
+    margin-bottom: 20px;
     border-radius: 50%;
     width: 150px;
-    margin-bottom: 20px;
+    height: 150px;
 }
 
 
@@ -659,7 +660,7 @@ ol, ul {
 
 
 .main-paragraph{
-    font-size: 2rem;
+    font-size: 1rem;
     font-weight: 300;
 
 
