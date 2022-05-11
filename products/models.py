@@ -37,7 +37,7 @@ class Product_model(models.Model):
     categories = models.ForeignKey(Product_category, related_name='Category', blank=True, null=True, default=None, on_delete=models.CASCADE) #this
 
     def __str__(self):
-            return f'{self.prod_name} by {self.user.username}'
+        return f'{self.prod_name} by {self.user.username}'
 
 
     def get_absolute_url(self):
@@ -69,12 +69,41 @@ class Product_img(models.Model):
         return f'{self.prod_img_title} from {self.item}'
 
 
-    # def save(self):
-    #     super().save()
 
-    #     imgs = Image.open(self.prod_img.path)
 
-    #     if imgs.height > 300 or imgs.width > 300:
-    #         output_size = (300, 300)
-    #         imgs.thumbnail(output_size)
-    #         imgs.save(self.prod_img.path)
+class Home_banner(models.Model):
+
+    time_periods = [
+        ('January', 'January_banners'),
+        ('February', 'February_banners'),
+        ('March', 'March_banners'),
+        ('May', 'May_banners'),
+        ('June', 'June_banners'),
+        ('July', 'July_banners'),
+        ('August', 'August_banners'),
+        ('September', 'September_banners'),
+        ('November', 'November_banners'),
+        ('December', 'December_banners'),
+    ]
+
+
+    banner_title = models.CharField(max_length=40)
+    banner_list_date = models.CharField(max_length=30, choices=time_periods, default="Test_period")
+
+    def __str__(self):
+        return f"Home Banner {self.banner_title}"
+
+
+
+
+class Banner_imgs(models.Model):
+    prod_img = models.ImageField(default='product_default.jpg', upload_to='product_pics')
+    banner_item = models.ForeignKey(Home_banner, null=True, blank=True, on_delete=models.CASCADE)
+    
+
+    def __str__(self):
+        return f"Home Banner {self.prod_img.file.name.split('/')[-1]}"
+
+
+
+

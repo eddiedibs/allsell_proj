@@ -16,29 +16,13 @@
                 </div>
             </div>
             <div class='banner-img-slide'>
-                <div class='banner-img-flex-slide'>
-                    <img src="{% static 'images/banners/banner-nike.png' %}" alt="">
 
-                </div>
-                <div class='banner-img-flex-slide'>
-                    <img src="{% static 'images/banners/banner-headphones.png' %}" alt="">
+                {% for banner in banners.banner_imgs_set.all %}
+                    <div class='banner-img-flex-slide'>
+                        <img src="{{ banner.prod_img.url }}" alt="">
 
-                </div>
-                <div class='banner-img-flex-slide'>
-                    <img src="{% static 'images/banners/banner-watch.png' %}" alt="">
-
-                </div>
-                <div class='banner-img-flex-slide'>
-                    <img src="{% static 'images/banners/banner-car.png' %}" alt="">
-
-                </div>
-                <div class='banner-img-flex-slide'>
-                    <img src="{% static 'images/banners/banner-nike2.png' %}" alt="">
-
-                </div>
-
-                
-                
+                    </div>
+                {% endfor %}
             </div>
 
             <div class='banner-btn-container'>

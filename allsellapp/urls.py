@@ -4,5 +4,7 @@ from . import views
 from users_allsell import views as user_views
 
 urlpatterns = [
-    path('', views.home, name='home_view'),
+    # path('', views.home, name='home_view'),
+    path('', views.HomeListView.as_view(template_name='allsellapp/home.html'), name='home_view'),
+
 ]

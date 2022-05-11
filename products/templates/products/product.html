@@ -22,7 +22,7 @@
                 </div>
               {% endfor  %}
               <div class="carousel-indicators">
-                {% for indicator in products.img_indicators  %}
+                {% for indicator in products.product_img_set.all|length %}
                   <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ indicator }}" class="active" aria-current="true" aria-label="Slide {{ indicator }}"></button>
                 {% endfor  %}
               </div>
