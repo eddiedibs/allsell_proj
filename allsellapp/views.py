@@ -11,13 +11,12 @@ class HomeListView(ListView):
 
     def get_context_data(self, **kwargs):
 
-        Products = self.model[0].objects.all()
-        Banners = self.model[1].objects.all().filter(banner_title='Clothing and Automobile Promo').first()
-
+        products = self.model[0].objects.all()
+        banners = self.model[1].objects.all().filter(banner_title='Clothing and Automobile Promo').first()
 
         all_data = {
-            'products': Products,
-            'banners': Banners,
+            'products': products,
+            'banners': banners,
         }
 
         return all_data

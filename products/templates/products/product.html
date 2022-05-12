@@ -1,5 +1,6 @@
 {% extends 'allsellapp/base.html' %}
 {% load static %}
+{% load custom_filters %}
 
 {% block content %}
 
@@ -22,9 +23,21 @@
                 </div>
               {% endfor  %}
               <div class="carousel-indicators">
-                {% for indicator in products.product_img_set.all|length %}
-                  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ indicator }}" class="active" aria-current="true" aria-label="Slide {{ indicator }}"></button>
-                {% endfor  %}
+
+                {% with indicator_quantity=products.product_img_set.all|length %}
+                  {% with ''|center:indicator_quantity as range %}
+                    {% for _ in range %}
+                      {% if forloop.counter == 1 %}
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ forloop.counter|add:"-1" }}" class="active" aria-current="true" aria-label="Slide {{ forloop.counter|add:"-1" }}"></button>
+                      {% else %}
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ forloop.counter|add:"-1" }}" class="" aria-current="true" aria-label="Slide {{ forloop.counter|add:"-1" }}"></button>
+                        
+                      {% endif %}
+                    {% endfor %}
+                  {% endwith %}
+                {% endwith %}     
+                
+              
               </div>
               
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
