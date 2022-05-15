@@ -1,0 +1,18 @@
+BEGIN;
+DELETE FROM "products_home_banner";
+DELETE FROM "auth_group";
+DELETE FROM "auth_user_groups";
+DELETE FROM "products_product_model";
+DELETE FROM "django_content_type";
+DELETE FROM "django_session";
+DELETE FROM "auth_permission";
+DELETE FROM "users_allsell_profile";
+DELETE FROM "products_product_img";
+DELETE FROM "products_product_category";
+DELETE FROM "auth_group_permissions";
+DELETE FROM "auth_user_user_permissions";
+DELETE FROM "django_admin_log";
+DELETE FROM "products_banner_imgs";
+DELETE FROM "auth_user";
+UPDATE "sqlite_sequence" SET "seq" = 0 WHERE "name" IN ('products_home_banner', 'auth_group', 'auth_user_groups', 'products_product_model', 'django_content_type', 'django_session', 'auth_permission', 'users_allsell_profile', 'products_product_img', 'products_product_category', 'auth_group_permissions', 'auth_user_user_permissions', 'django_admin_log', 'products_banner_imgs', 'auth_user');
+COMMIT;

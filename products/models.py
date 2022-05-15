@@ -32,7 +32,6 @@ class Product_model(models.Model):
     prod_price = models.DecimalField(default=0.0, max_digits=10, decimal_places=2)
     prod_img = models.ImageField(default='product_default.jpg', upload_to='product_pics')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    img_quantity = models.IntegerField(default=0)
     slug = models.SlugField()
     categories = models.ForeignKey(Product_category, related_name='Category', blank=True, null=True, default=None, on_delete=models.CASCADE) #this
 
@@ -44,15 +43,6 @@ class Product_model(models.Model):
         return reverse("products:product_view", kwargs={
             'slug': self.slug
         })
-
-
-    def img_indicators(self):
-        ind_list = []
-        for i in range(self.img_quantity):
-            ind_list.append(i)
-            
-
-        return ind_list
 
 
 
