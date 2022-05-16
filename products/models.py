@@ -26,13 +26,14 @@ class Product_model(models.Model):
 
 
 
+    slug = models.SlugField(unique=True)
     prod_name = models.CharField(max_length=40)
     prod_desc = models.TextField(max_length=500)
     currency = models.CharField(max_length=5, choices=currencies, default="$")
     prod_price = models.DecimalField(default=0.0, max_digits=10, decimal_places=2)
+    prod_discount_price = models.FloatField(blank=True, null=True)
     prod_img = models.ImageField(default='product_default.jpg', upload_to='product_pics')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    slug = models.SlugField()
     categories = models.ForeignKey(Product_category, related_name='Category', blank=True, null=True, default=None, on_delete=models.CASCADE) #this
 
     def __str__(self):
@@ -40,7 +41,7 @@ class Product_model(models.Model):
 
 
     def get_absolute_url(self):
-        return reverse("products:product_view", kwargs={
+        return reverse("product_view", kwargs={
             'slug': self.slug
         })
 
