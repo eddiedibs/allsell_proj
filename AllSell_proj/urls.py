@@ -30,7 +30,8 @@ urlpatterns = [
     path('login/', auth_views.LoginView.as_view(template_name='users_allsell/login.html'), name='login_view'),
     path('logout/', auth_views.LogoutView.as_view(template_name='users_allsell/logout.html'), name='logout_view'),
     path('', include('allsellapp.urls')),
-    path('', include('products.urls'))
+    path('', include('products.urls')),
+    path('', include('cart.urls')),
 ]
 
 if settings.DEBUG:

@@ -71,7 +71,11 @@
                 
                 <div class='product-item-info-container'>
                     <h4 class='main-heading product-item-title'> {{ product.prod_name }}</h4>
-                    <span class='sec-heading product-item-price'> {{ product.prod_price }}{{ product.currency }}</span>
+                    {% if product.prod_discount_price %}
+                        <span class="sec-heading product-item-price">{{ product.prod_discount_price }}{{ product.currency }}</span>
+                    {% else %}
+                        <span class="sec-heading product-item-price">{{ product.prod_price }}{{ product.currency }}</span>
+                    {% endif %}
                     <p class='sec-paragraph product-description'> {{ product.prod_desc }}</p>
                 </div>
 

@@ -6,7 +6,17 @@
 
   <main class="mt-5 pt-4">
     <div class="container dark-grey-text mt-5">
-
+      <div class="bg-light py-3">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 mb-0">
+                    <a href="{% url 'home_view' %}">Home</a>
+                    <span class="mx-2 mb-0">/</span>
+                    <a href='{{ products.get_absolute_url }}' class="text-black">{{products.slug}}</a>
+                </div>
+            </div>
+        </div>
+      </div>
       <!--Grid row-->
       <div class="row wow fadeIn">
 
@@ -67,14 +77,15 @@
             </div>
 
             <p class="lead">
-              {% if object.discount_price %}
-              <span class="mr-1">
-                <del>${{ object.price }}</del>
-              </span>
-              <span>${{ object.discount_price }}</span>
+              {% if products.prod_discount_price %}
+                  <span class="mr-1">
+                    <del>${{ products.prod_price }}</del>
+                  </span>
+                <span>${{ products.prod_discount_price }}</span>
               {% else %}
-              <h6>{{ products.prod_name }}</h6>
-              <h4 class="fw-bold">{{ products.prod_price }}{{ products.currency }}</h4>
+
+                <h6>{{ products.prod_name }}</h6>
+                <h4 class="fw-bold">{{ products.prod_price }}{{ products.currency }}</h4>
               {% endif %}
             </p>
 

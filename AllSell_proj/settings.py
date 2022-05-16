@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'users_allsell.apps.UsersAllsellConfig',
     'products.apps.ProductsConfig',
     'custom_filters.apps.CustomFiltersConfig',
+    'cart.apps.CartConfig',
     'crispy_forms',
     'django.contrib.admin',
     'django.contrib.auth',
