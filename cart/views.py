@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.views.generic import DetailView, ListView, TemplateView
-from products.models import Product_model, Home_banner
+from products.models import ProductModel
+from allsellapp.models import HomeBanner
+
 
 
 
@@ -28,7 +30,7 @@ class CartTemplateView(TemplateView):
 
 # def home(request):
 #     context = {
-#         'products': Product_model.objects.all(),
+#         'products': ProductModel.objects.all(),
 #         'banners': Home_banner.objects.all().filter(banner_title='Clothing and Automobile Promo').first(),
 #     }
 

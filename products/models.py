@@ -5,7 +5,32 @@ from PIL import Image
 from .categories_and_colortags import categories, color_tags
 
 
-class Product_category(models.Model):
+
+
+class Address(models.Model):
+    ADDRESS_CHOICES = (
+        ('B', 'Billing'),
+        ('S', 'Shipping'),
+    )
+
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    address_line_1 = models.CharField(max_length=150)
+    address_line_2 = models.CharField(max_length=150)
+    city = models.CharField(max_length=100)
+    zip_code = models.CharField(max_length=20)
+    address_type = models.CharField(max_length=1, choices=ADDRESS_CHOICES)
+    default = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f"{self.address_line_1}, {self.address_line_2}, {self.city}, {self.zip_code}"
+
+    class Meta:
+        verbose_name_plural = 'Addresses'
+
+
+
+
+class ProductCategory(models.Model):
 
     category = models.CharField(max_length=225, choices=categories, default='Category_test')
     color_tag = models.CharField(max_length=225, choices=color_tags, default='color_test')
@@ -19,7 +44,7 @@ class Product_category(models.Model):
 
 
 
-class Product_model(models.Model):
+class ProductModel(models.Model):
     currencies = [
     ('$', "US Dollars ($)"), 
     ]
@@ -34,7 +59,7 @@ class Product_model(models.Model):
     prod_discount_price = models.FloatField(blank=True, null=True)
     prod_img = models.ImageField(default='product_default.jpg', upload_to='product_pics')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    categories = models.ForeignKey(Product_category, related_name='Category', blank=True, null=True, default=None, on_delete=models.CASCADE) #this
+    categories = models.ForeignKey(ProductCategory, related_name='Category', blank=True, null=True, default=None, on_delete=models.CASCADE) #this
 
     def __str__(self):
         return f'{self.prod_name} by {self.user.username}'
@@ -50,11 +75,11 @@ class Product_model(models.Model):
 
 
 
-class Product_img(models.Model):
+class ProductImg(models.Model):
     prod_img_title = models.CharField(max_length=40)
     prod_img = models.ImageField(default='product_default.jpg', upload_to='product_pics')
     is_carousel_active = models.CharField(max_length=10)
-    item = models.ForeignKey(Product_model, null=True, blank=True, on_delete=models.CASCADE)
+    item = models.ForeignKey(ProductModel, null=True, blank=True, on_delete=models.CASCADE)
 
     def __str__(self):
         return f'{self.prod_img_title} from {self.item}'
@@ -62,39 +87,53 @@ class Product_img(models.Model):
 
 
 
-class Home_banner(models.Model):
-
-    time_periods = [
-        ('January', 'January_banners'),
-        ('February', 'February_banners'),
-        ('March', 'March_banners'),
-        ('May', 'May_banners'),
-        ('June', 'June_banners'),
-        ('July', 'July_banners'),
-        ('August', 'August_banners'),
-        ('September', 'September_banners'),
-        ('November', 'November_banners'),
-        ('December', 'December_banners'),
-    ]
 
 
-    banner_title = models.CharField(max_length=40)
-    banner_list_date = models.CharField(max_length=30, choices=time_periods, default="Test_period")
+
+
+class OrderProduct(models.Model):
+    item = models.ForeignKey(ProductModel, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"Home Banner {self.banner_title}"
+        return self.prod_name
 
 
 
+class Order(models.Model):
+    user = models.ForeignKey(User, blank=True, null=True, on_delete=models.CASCADE)
+    start_date = models.DateTimeField(auto_now_add=True)
+    ordered_date = models.DateTimeField(blank=True, null=True)
+    ordered = models.BooleanField(default=False)
 
-class Banner_imgs(models.Model):
-    prod_img = models.ImageField(default='product_default.jpg', upload_to='product_pics')
-    banner_item = models.ForeignKey(Home_banner, null=True, blank=True, on_delete=models.CASCADE)
-    
+    billing_address = models.ForeignKey(
+        Address, related_name='billing_address', blank=True, null=True, on_delete=models.SET_NULL)
+    shipping_address = models.ForeignKey(
+        Address, related_name='shipping_address', blank=True, null=True, on_delete=models.SET_NULL)
 
     def __str__(self):
-        return f"Home Banner {self.prod_img.file.name.split('/')[-1]}"
+        return self.reference_number
 
+    @property
+    def reference_number(self):
+        return f"ORDER-{self.pk}"
 
+    # def get_raw_subtotal(self):
+    #     total = 0
+    #     for order_item in self.items.all():
+    #         total += order_item.get_raw_total_item_price()
+    #     return total
 
+    # def get_subtotal(self):
+    #     subtotal = self.get_raw_subtotal()
+    #     return "{:.2f}".format(subtotal / 100)
+
+    # def get_raw_total(self):
+    #     subtotal = self.get_raw_subtotal()
+    #     # add tax, add delivery, subtract discounts
+    #     # total = subtotal - discounts + tax + delivery
+    #     return subtotal
+
+    # def get_total(self):
+    #     total = self.get_raw_total()
+    #     return "{:.2f}".format(total / 100)
 

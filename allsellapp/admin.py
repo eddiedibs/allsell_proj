@@ -1,32 +1,33 @@
 import re
 from django.contrib import admin
-from products.models import Product_model, Product_img, Product_category, Home_banner, Banner_imgs
+from allsellapp.models import HomeBanner, BannerImgs
+from products.models import ProductModel, ProductImg, ProductCategory
 
-# admin.site.register(Product_model)
-# admin.site.register(Product_img)
-admin.site.register(Product_category)
+# admin.site.register(ProductModel)
+# admin.site.register(ProductImg)
+admin.site.register(ProductCategory)
 
 class BannerImageAdmin(admin.StackedInline):
-    model = Banner_imgs
+    model = BannerImgs
 
 class ProductImageAdmin(admin.StackedInline):
-    model = Product_img
+    model = ProductImg
  
-@admin.register(Product_model)
+@admin.register(ProductModel)
 class ProductAdmin(admin.ModelAdmin):
     inlines = [ProductImageAdmin]
  
     class Meta:
-       model = Product_model
+       model = ProductModel
  
-@admin.register(Product_img)
+@admin.register(ProductImg)
 class ProductImageAdmin(admin.ModelAdmin):
     pass
 
 
-@admin.register(Home_banner)
+@admin.register(HomeBanner)
 class BannerAdmin(admin.ModelAdmin):
     inlines = [BannerImageAdmin]
     
     class Meta:
-        model = Home_banner
+        model = HomeBanner

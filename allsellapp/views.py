@@ -1,12 +1,13 @@
 from django.shortcuts import render
 from django.views.generic import DetailView, ListView, TemplateView
-from products.models import Product_model, Home_banner
+from products.models import ProductModel
+from allsellapp.models import HomeBanner
 
 
 
 
 class HomeListView(ListView):
-    model = Product_model, Home_banner
+    model = ProductModel, HomeBanner
     template_name = 'home.html'
 
     def get_context_data(self, **kwargs):
@@ -29,8 +30,8 @@ class HomeListView(ListView):
 
 # def home(request):
 #     context = {
-#         'products': Product_model.objects.all(),
-#         'banners': Home_banner.objects.all().filter(banner_title='Clothing and Automobile Promo').first(),
+#         'products': ProductModel.objects.all(),
+#         'banners': HomeBanner.objects.all().filter(banner_title='Clothing and Automobile Promo').first(),
 #     }
 
 

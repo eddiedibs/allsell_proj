@@ -18,7 +18,7 @@
             </div>
             <div class='banner-img-slide'>
 
-                {% for banner in banners.banner_imgs_set.all %}
+                {% for banner in banners.bannerimgs_set.all %}
                     <div class='banner-img-flex-slide'>
                         <img src="{{ banner.prod_img.url }}" alt="">
 
@@ -43,7 +43,7 @@
 
         <div class='dot-container'>
             <ul class="dots">
-            {% with indicator_quantity=banners.banner_imgs_set.all|length %}
+            {% with indicator_quantity=banners.bannerimgs_set.all|length %}
                 {% with ''|center:indicator_quantity as range %}
                     {% for _ in range %}
                         <li class="dot" value="{{ forloop.counter|add:"-1" }}"></li>
