@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.shortcuts import reverse
 from PIL import Image
 from .categories_and_colortags import categories, color_tags
+from django.utils.text import slugify
 
 
 
@@ -51,7 +52,7 @@ class ProductModel(models.Model):
 
 
 
-    slug = models.SlugField(unique=True)
+    slug = models.SlugField(unique=True, blank=True, default=None)
     prod_name = models.CharField(max_length=40)
     prod_desc = models.TextField(max_length=500)
     currency = models.CharField(max_length=5, choices=currencies, default="$")
@@ -60,9 +61,23 @@ class ProductModel(models.Model):
     prod_img = models.ImageField(default='product_default.jpg', upload_to='product_pics')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     categories = models.ForeignKey(ProductCategory, related_name='Category', blank=True, null=True, default=None, on_delete=models.CASCADE) #this
+    stock = models.IntegerField(default=0)
+
 
     def __str__(self):
         return f'{self.prod_name} by {self.user.username}'
+
+    @property
+    def in_stock(self):
+        return self.stock > 0
+
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.prod_name)
+        return super().save(*args, **kwargs)
+
+
 
 
     def get_absolute_url(self):
