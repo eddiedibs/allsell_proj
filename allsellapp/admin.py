@@ -1,11 +1,12 @@
 import re
 from django.contrib import admin
 from allsellapp.models import HomeBanner, BannerImgs
-from products.models import ProductModel, ProductImg, ProductCategory
+from products.models import ProductModel, ProductImg, ProductCategory, Order
 
 # admin.site.register(ProductModel)
 # admin.site.register(ProductImg)
 admin.site.register(ProductCategory)
+admin.site.register(Order)
 
 class BannerImageAdmin(admin.StackedInline):
     model = BannerImgs
