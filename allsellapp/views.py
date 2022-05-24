@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views.generic import DetailView, ListView, TemplateView
-from products.models import ProductModel
+from products.models import ProductModel, Order
 from allsellapp.models import HomeBanner
 
 
@@ -26,6 +26,7 @@ class HomeListView(ListView):
     def get(self, request):
         
         return render(request, self.template_name, context=self.get_context_data())
+
 
 
 # def home(request):
