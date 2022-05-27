@@ -11,7 +11,7 @@ class ProdDetailView(DetailView):
      # form_class = AddToCartForm
 
     def get_object(self):
-        return get_object_or_404(Product, slug=self.kwargs["slug"])
+        return get_object_or_404(ProductModel, slug=self.kwargs["slug"])
 
     # def get_success_url(self):
     #     return reverse("cart:summary")
