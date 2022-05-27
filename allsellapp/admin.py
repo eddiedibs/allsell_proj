@@ -1,13 +1,17 @@
 import re
 from django.contrib import admin
 from allsellapp.models import HomeBanner, BannerImgs
-from products.models import ProductModel, ProductImg, ProductCategory, Order, Address
+from products.models import (ProductModel, ProductImg, ProductCategory, 
+Order, Address, OrderItem, ColourVariation, SizeVariation)
 
 # admin.site.register(ProductModel)
 # admin.site.register(ProductImg)
 admin.site.register(ProductCategory)
 admin.site.register(Order)
 admin.site.register(Address)
+admin.site.register(OrderItem)
+admin.site.register(ColourVariation)
+admin.site.register(SizeVariation)
 
 
 

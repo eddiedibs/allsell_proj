@@ -6,6 +6,19 @@ from .categories_and_colortags import categories, color_tags
 from django.utils.text import slugify
 
 
+class ColourVariation(models.Model):
+    name = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.name
+
+
+class SizeVariation(models.Model):
+    name = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.name
+
 
 
 class Address(models.Model):
@@ -21,6 +34,7 @@ class Address(models.Model):
     zip_code = models.CharField(max_length=20)
     address_type = models.CharField(max_length=1, choices=ADDRESS_CHOICES)
     default = models.BooleanField(default=False)
+    
 
     def __str__(self):
         return f"{self.address_line_1}, {self.address_line_2}, {self.city}, {self.zip_code}"
@@ -60,6 +74,11 @@ class ProductModel(models.Model):
     prod_discount_price = models.FloatField(blank=True, null=True)
     prod_img = models.ImageField(default='product_default.jpg', upload_to='product_pics')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+    active = models.BooleanField(default=False)
+    available_colours = models.ManyToManyField(ColourVariation)
+    available_sizes = models.ManyToManyField(SizeVariation)
     categories = models.ForeignKey(ProductCategory, related_name='Category', blank=True, null=True, default=None, on_delete=models.CASCADE) #this
     stock = models.IntegerField(default=0)
 
@@ -106,11 +125,23 @@ class ProductImg(models.Model):
 
 
 
-class OrderProduct(models.Model):
-    item = models.ForeignKey(ProductModel, on_delete=models.CASCADE)
+class OrderItem(models.Model):
+    order = models.ForeignKey(
+        "Order", related_name='items', on_delete=models.CASCADE)
+    product = models.ForeignKey(ProductModel, on_delete=models.CASCADE)
+    quantity = models.PositiveIntegerField(default=1)
+    colour = models.ForeignKey(ColourVariation, on_delete=models.CASCADE)
+    size = models.ForeignKey(SizeVariation, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.prod_name
+        return f"{self.quantity} x {self.product.title}"
+
+    def get_raw_total_item_price(self):
+        return self.quantity * self.product.price
+
+    def get_total_item_price(self):
+        price = self.get_raw_total_item_price()  # 1000
+        return "{:.2f}".format(price / 100)
 
 
 

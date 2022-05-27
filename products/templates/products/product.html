@@ -1,6 +1,7 @@
 {% extends 'allsellapp/base.html' %}
 {% load static %}
 {% load custom_filters %}
+{% load crispy_forms_tags %}
 
 {% block content %}
 
@@ -78,14 +79,16 @@
 
             <p class="lead">
               {% if products.prod_discount_price %}
-                  <span class="mr-1">
+                <h6>{{ products.prod_name }}</h6>
+                  <span class="mr-1 ">
+
                     <del>${{ products.prod_price }}</del>
                   </span>
-                <span>${{ products.prod_discount_price }}</span>
+                <h4 class="fw-bold d-inline">${{ products.prod_discount_price }}</h4>
               {% else %}
 
                 <h6>{{ products.prod_name }}</h6>
-                <h4 class="fw-bold">{{ products.prod_price }}{{ products.currency }}</h4>
+                <h4 class="fw-bold d-inline">{{ products.prod_price }}{{ products.currency }}</h4>
               {% endif %}
             </p>
 
@@ -93,22 +96,33 @@
 
             <p>{{ products.prod_desc }} Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit tenetur deleniti rem modi reiciendis provident libero sint quam sit et possimus incidunt voluptas assumenda, repellendus laborum dolorem recusandae. Commodi, aut.</p>
 
-            {% comment %} <form class="d-flex justify-content-left">
+            <form class="d-flex justify-content-left" method="POST">
+              {% csrf_token %}
+              {{ form|crispy }}
+              <button type='submit' class="btn btn-sm btn-primary buy-now">Add to cart</button>
+            </form>
+
+            {% comment %}
+            <form class="d-flex justify-content-left">
               <!-- Default input -->
-              <input type="number" value="1" aria-label="Search" class="form-control" style="width: 100px">
+              <input type="number" min="1" value="1" aria-label="Search" class="form-control" style="width: 100px; margin-right: 10px;">
               <button class="btn btn-primary btn-md my-0 p" type="submit">
                 Add to cart
                 <i class="fas fa-shopping-cart ml-1"></i>
               </button>
 
-            </form> {% endcomment %}
+            </form>
+            {% endcomment %}
+
+            {% comment %}
             <a href="{{ object.get_add_to_cart_url }}" class="btn btn-primary btn-md my-0 p">
               Add to cart
               <i class="fas fa-shopping-cart ml-1"></i>
             </a>
             <a href="{{ object.get_remove_from_cart_url }}" class="btn btn-danger btn-md my-0 p">
               Remove from cart
-            </a>
+            </a> 
+            {% endcomment %}
 
           </div>
           <!--Content-->
