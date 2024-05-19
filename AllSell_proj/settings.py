@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 from pathlib import Path
 import os
 import environ
+import json
+
 # Initialise environment variables
 env = environ.Env()
 environ.Env.read_env()
@@ -25,30 +27,73 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-=gcv$fk2#*$6l4@88lth1_a9$h-5f+x4&2)og_&vdmo1!%$n$h'
+SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = str(os.environ.get('DEBUG')) == '1'
 
-ALLOWED_HOSTS = ['127.0.0.1', '192.168.0.108', 'beb6-186-14-65-43.ngrok.io']
 
-CSRF_TRUSTED_ORIGINS = ['http://127.0.0.1','http://192.168.0.107','https://dcbe-186-14-65-43.ngrok.io']
+if DEBUG:
+
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': 'allsell_db',
+            'USER' : 'postgres',
+            'PASSWORD' : '123456',
+            'HOST' : 'localhost',
+            'PORT' : '5420',
+            }
+        }
+    ALLOWED_HOSTS= json.loads(os.environ['ALLOWED_HOST'])
+    CSRF_TRUSTED_ORIGINS= json.loads(os.environ['CSRF_TRUSTED_ORIGINS'])
+
+    STATICFILES_DIRS = [os.path.join(BASE_DIR, 'allsellapp/static')]
+
+
+
+
+
+# IF DEBUG MODE IS OFF
+
+else:
+    pass
+    # DATABASES = {
+    #     'default': {
+    #         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+    #         'NAME': os.environ.get('POSTGRESQL_DATABASE'),
+    #         'USER' : os.environ.get('POSTGRESQL_USER'),
+    #         'PASSWORD' : os.environ.get('POSTGRESQL_PASSWORD'),
+    #         'HOST' : os.environ.get('POSTGRESQL_HOST'),
+    #         'PORT' : os.environ.get('POSTGRESQL_PORT'),
+    #         }
+    #     }
+
+    # ALLOWED_HOSTS=json.loads(os.environ['ALLOWED_HOST'])
+    # CSRF_TRUSTED_ORIGINS=json.loads(os.environ['CSRF_TRUSTED_ORIGINS'])
+    # STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
 
 # Application definition
 
 INSTALLED_APPS = [
-    'allsellapp.apps.AllsellappConfig',
-    'users_allsell.apps.UsersAllsellConfig',
-    'products.apps.ProductsConfig',
-    'custom_filters.apps.CustomFiltersConfig',
-    'cart.apps.CartConfig',
-    'crispy_forms',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'allsellapp.apps.AllsellappConfig',
+    'users_allsell.apps.UsersAllsellConfig',
+    'products.apps.ProductsConfig',
+    'custom_filters.apps.CustomFiltersConfig',
+    'cart.apps.CartConfig',
+    'api.apps.ApiConfig',
+
+    'crispy_forms',
+    'crispy_bootstrap4',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -87,12 +132,12 @@ WSGI_APPLICATION = 'AllSell_proj.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 
 
 
