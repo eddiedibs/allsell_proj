@@ -1,3 +1,5 @@
+import uuid
+
 from django.db import models
 from django.contrib.auth.models import User
 from django.shortcuts import reverse
@@ -50,22 +52,23 @@ class ProductModel(models.Model):
     ('$', "US Dollars ($)"), 
     ]
 
-
-
+    id = models.UUIDField(
+        primary_key=True,
+        default=uuid.uuid4,
+        editable=False)
     slug = models.SlugField(unique=True, blank=True, default=None)
-    prod_name = models.CharField(max_length=40)
-    prod_desc = models.TextField(max_length=500)
+    product_name = models.CharField(max_length=40)
+    product_description = models.TextField(max_length=500)
     currency = models.CharField(max_length=5, choices=currencies, default="$")
-    prod_price = models.DecimalField(default=0.0, max_digits=10, decimal_places=2)
-    prod_discount_price = models.FloatField(blank=True, null=True)
-    prod_img = models.ImageField(default='product_default.jpg', upload_to='product_pics')
+    product_price = models.DecimalField(default=0.0, max_digits=10, decimal_places=2)
+    product_discount_price = models.FloatField(blank=True, null=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     categories = models.ForeignKey(ProductCategory, related_name='Category', blank=True, null=True, default=None, on_delete=models.CASCADE) #this
     stock = models.IntegerField(default=0)
 
 
     def __str__(self):
-        return f'{self.prod_name} by {self.user.username}'
+        return f'{self.product_name}'
 
     @property
     def in_stock(self):
@@ -74,10 +77,8 @@ class ProductModel(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.slug:
-            self.slug = slugify(self.prod_name)
+            self.slug = slugify(self.product_name)
         return super().save(*args, **kwargs)
-
-
 
 
     def get_absolute_url(self):
@@ -87,19 +88,22 @@ class ProductModel(models.Model):
 
 
 
-
-
-
 class ProductImg(models.Model):
-    prod_img_title = models.CharField(max_length=40)
-    prod_img = models.ImageField(default='product_default.jpg', upload_to='product_pics')
-    is_carousel_active = models.CharField(max_length=10)
-    item = models.ForeignKey(ProductModel, null=True, blank=True, on_delete=models.CASCADE)
+    product_img = models.ImageField(default='product_default.jpg', upload_to='product_pics')
+    is_carousel_active = models.CharField(max_length=10, null=True, blank=True)
+    product = models.ForeignKey(ProductModel, null=True, blank=True, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f'{self.prod_img_title} from {self.item}'
+        return f'{self.product}'
 
 
+    def save(self, *args, **kwargs):
+        product_img_length = ProductImg.objects.filter(product=self.product).count()
+        if product_img_length < 1:
+            self.is_carousel_active = "active"
+        else:
+            self.is_carousel_active = "not_active"
+        return super().save(*args, **kwargs)
 
 
 
@@ -107,10 +111,10 @@ class ProductImg(models.Model):
 
 
 class OrderProduct(models.Model):
-    item = models.ForeignKey(ProductModel, on_delete=models.CASCADE)
+    product = models.ForeignKey(ProductModel, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.prod_name
+        return self.product_name
 
 
 

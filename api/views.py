@@ -25,18 +25,18 @@ class ProductsCreateView(APIView):
 
         serializer = self.serializer_class(data=request.data)
         if serializer.is_valid():
-            product_name = serializer.data.get("prod_name")
-            prod_desc = serializer.data.get("prod_desc")
+            product_name = serializer.data.get("product_name")
+            product_description = serializer.data.get("product_description")
             currency = serializer.data.get("currency")
-            prod_price = serializer.data.get("prod_price")
+            product_price = serializer.data.get("product_price")
             user = serializer.data.get("user")
             retrieved_user = User.objects.filter(id=user).first()
         
 
-            product = ProductModel(prod_name=product_name, 
-                                prod_desc=prod_desc,
+            product = ProductModel(product_name=product_name, 
+                                product_description=product_description,
                                 currency=currency,
-                                prod_price=prod_price,
+                                product_price=product_price,
                                 user=retrieved_user,
                                 )
             product.save()

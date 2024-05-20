@@ -29,7 +29,7 @@
             <div class="carousel-inner">
               {% for product_img in products.productimg_set.all  %}
                 <div class="carousel-item {{ product_img.is_carousel_active }}">
-                  <img src="{{ product_img.prod_img.url }}" class="d-block w-100" alt="...">
+                  <img src="{{ product_img.product_img.url }}" class="d-block w-100" alt="...">
                 </div>
               {% endfor  %}
               <div class="carousel-indicators">
@@ -77,21 +77,21 @@
             </div>
 
             <p class="lead">
-              {% if products.prod_discount_price %}
+              {% if products.product_discount_price %}
                   <span class="mr-1">
-                    <del>${{ products.prod_price }}</del>
+                    <del>${{ products.product_price }}</del>
                   </span>
-                <span>${{ products.prod_discount_price }}</span>
+                <span>${{ products.product_discount_price }}</span>
               {% else %}
 
-                <h6>{{ products.prod_name }}</h6>
-                <h4 class="fw-bold">{{ products.prod_price }}{{ products.currency }}</h4>
+                <h6>{{ products.product_name }}</h6>
+                <h4 class="fw-bold">{{ products.product_price }}{{ products.currency }}</h4>
               {% endif %}
             </p>
 
             <p class="lead font-weight-bold">Description</p>
 
-            <p>{{ products.prod_desc }} Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit tenetur deleniti rem modi reiciendis provident libero sint quam sit et possimus incidunt voluptas assumenda, repellendus laborum dolorem recusandae. Commodi, aut.</p>
+            <p>{{ products.product_description }}</p>
 
             {% comment %} <form class="d-flex justify-content-left">
               <!-- Default input -->

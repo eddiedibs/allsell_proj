@@ -20,7 +20,7 @@
 
                 {% for banner in banners.bannerimgs_set.all %}
                     <div class='banner-img-flex-slide'>
-                        <img src="{{ banner.prod_img.url }}" alt="">
+                        <img src="{{ banner.product_img.url }}" alt="">
 
                     </div>
                 {% endfor %}
@@ -66,17 +66,17 @@
         <a class='anchor-links product-link' href="{{ product.get_absolute_url }}">
             <div class='product-item  product-shadow-container'>
                 <div class='product-item-img-container'>
-                    <img src="{{ product.prod_img.url }}" alt="">
+                    <img src="{{ product.productimg_set.first.product_img.url }}" alt="">
                 </div>
                 
                 <div class='product-item-info-container'>
-                    <h4 class='main-heading product-item-title'> {{ product.prod_name }}</h4>
-                    {% if product.prod_discount_price %}
-                        <span class="sec-heading product-item-price">{{ product.prod_discount_price }}{{ product.currency }}</span>
+                    <h4 class='main-heading product-item-title'> {{ product.product_name }}</h4>
+                    {% if product.product_discount_price %}
+                        <span class="sec-heading product-item-price">{{ product.product_discount_price }}{{ product.currency }}</span>
                     {% else %}
-                        <span class="sec-heading product-item-price">{{ product.prod_price }}{{ product.currency }}</span>
+                        <span class="sec-heading product-item-price">{{ product.product_price }}{{ product.currency }}</span>
                     {% endif %}
-                    <p class='sec-paragraph product-description'> {{ product.prod_desc }}</p>
+                    <p class='sec-paragraph product-description'> {{ product.product_description }}</p>
                 </div>
 
             </div>

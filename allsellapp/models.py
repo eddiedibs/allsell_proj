@@ -36,10 +36,10 @@ class HomeBanner(models.Model):
 
 
 class BannerImgs(models.Model):
-    prod_img = models.ImageField(default='product_default.jpg', upload_to='product_pics')
+    product_img = models.ImageField(default='product_default.jpg', upload_to='product_pics')
     banner_item = models.ForeignKey(HomeBanner, null=True, blank=True, on_delete=models.CASCADE)
     
 
     def __str__(self):
-        return f"Home Banner {self.prod_img.file.name.split('/')[-1]}"
+        return f"Home Banner {self.product_img.file.name.split('/')[-1]}"
 
