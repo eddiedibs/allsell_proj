@@ -1,5 +1,6 @@
 .env
 venv/
+reset_migrations.py
 __pycache__/
 *.png
 *.jpg

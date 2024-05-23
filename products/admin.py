@@ -1,11 +1,13 @@
 from django.contrib import admin
-from products.models import ProductModel, ProductImg, ProductCategory, Order, Address
+from products.models import *
 from django.urls import reverse
 from django.utils.http import urlencode
 from django.utils.html import format_html
 
+admin.site.register(Customer)
 admin.site.register(ProductCategory)
 admin.site.register(Order)
+admin.site.register(OrderProduct)
 admin.site.register(Address)
 
 

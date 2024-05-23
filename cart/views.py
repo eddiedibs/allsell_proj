@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views.generic import DetailView, ListView, TemplateView
-from products.models import ProductModel
+from products.models import ProductModel, Order
 from allsellapp.models import HomeBanner
 
 
@@ -10,30 +10,16 @@ from allsellapp.models import HomeBanner
 class CartTemplateView(TemplateView):
     template_name = 'cart.html'
 
-    # def get_context_data(self, **kwargs):
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        if self.request.user.is_authenticated:
+            customer = self.request.user.customer
+            order, created = Order.objects.get_or_create(customer=customer, ordered=False)
+            items = order.orderproduct_set.all()
+            context["items"] = items
+            context["order"] = order
+        else:
+            context["items"] = []
 
-    #     products = self.model[0].objects.all()
-    #     banners = self.model[1].objects.all().filter(banner_title='Clothing and Automobile Promo').first()
-
-    #     all_data = {
-    #         'products': products,
-    #         'banners': banners,
-    #     }
-
-    #     return all_data
-
-
-    # def get(self, request):
-        
-    #     return render(request, self.template_name, context=self.get_context_data())
-
-
-# def home(request):
-#     context = {
-#         'products': ProductModel.objects.all(),
-#         'banners': Home_banner.objects.all().filter(banner_title='Clothing and Automobile Promo').first(),
-#     }
-
-
-#     return render(request, 'allsellapp/home.html', context)
+        return context
 

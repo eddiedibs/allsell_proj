@@ -64,7 +64,7 @@ class ProductModel(models.Model):
     product_discount = models.IntegerField(default=0, blank=True, null=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     categories = models.ForeignKey(ProductCategory, related_name='Category', blank=True, null=True, default=None, on_delete=models.CASCADE) #this
-    stock = models.IntegerField(default=0)
+    stock = models.IntegerField(default=1)
 
 
     def __str__(self):
@@ -123,16 +123,22 @@ class ProductImg(models.Model):
 
 
 
-class OrderProduct(models.Model):
-    product = models.ForeignKey(ProductModel, on_delete=models.CASCADE)
+class Customer(models.Model):
+    user = models.OneToOneField(User, blank=True, null=True, on_delete=models.CASCADE)
+    name = models.CharField(max_length=200, null=True)
+    email = models.EmailField(max_length=200, unique=True, null=True)
 
     def __str__(self):
-        return self.product_name
+        return f'{self.email}'
 
 
 
 class Order(models.Model):
-    user = models.ForeignKey(User, blank=True, null=True, on_delete=models.CASCADE)
+    id = models.UUIDField(
+        primary_key=True,
+        default=uuid.uuid4,
+        editable=False)
+    customer = models.ForeignKey(Customer, blank=True, null=True, on_delete=models.CASCADE)
     start_date = models.DateTimeField(auto_now_add=True)
     ordered_date = models.DateTimeField(blank=True, null=True)
     ordered = models.BooleanField(default=False)
@@ -145,9 +151,23 @@ class Order(models.Model):
     def __str__(self):
         return self.reference_number
 
+
+
     @property
     def reference_number(self):
-        return f"ORDER-{self.pk}"
+        return f"ORDER-{self.id}"
+
+    @property
+    def get_cart_total(self):
+        orderproducts = self.orderproduct_set.all()
+        total = sum([product.total_amount for product in orderproducts ])
+        return total
+
+    @property
+    def get_cart_amount_of_items(self):
+        orderproducts = self.orderproduct_set.all()
+        total = sum([product.quantity for product in orderproducts ])
+        return total
 
     # def get_raw_subtotal(self):
     #     total = 0
@@ -168,4 +188,23 @@ class Order(models.Model):
     # def get_total(self):
     #     total = self.get_raw_total()
     #     return "{:.2f}".format(total / 100)
+
+class OrderProduct(models.Model):
+    product = models.ForeignKey(ProductModel, blank=True, null=True, on_delete=models.SET_NULL)
+    order = models.ForeignKey(Order, blank=True, null=True, on_delete=models.SET_NULL)
+    quantity = models.IntegerField(default=1)
+
+    def __str__(self):
+        return self.product.product_name
+
+    @property
+    def currency(self):
+        return self.product.first().currency
+    @property
+    def total_amount(self):
+        if self.product.discount_price:
+            total = self.product.discount_price * self.quantity
+        else:
+            total = self.product.product_price * self.quantity
+        return total
 
