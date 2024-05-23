@@ -63,30 +63,33 @@
     <div class='products-gridbox-container'>
         
         {% for product in products %}
-        <a class='anchor-links product-link' href="{{ product.get_absolute_url }}">
-            <div class='product-item position-relative product-shadow-container'>
-                {% if product.discount_price %}
-                <h4 class="position-absolute top-50 badge bg-secondary">{{product.product_discount}}% off</h4>
+        <div class='product-item position-relative product-shadow-container'>
+            {% if product.discount_price %}
+            <h4 class="position-absolute top-50 badge bg-secondary">{{product.product_discount}}% off</h4>
+            {% endif %}
+            <div class='product-item-img-container'>
+                <img src="{{ product.productimg_set.first.product_img.url }}" alt="">
+            </div>
+            
+            <div class='product-item-info-container'>
+                <h4 class='main-heading product-item-title my-3'> {{ product.product_name }}</h4>
+                <p class='sec-paragraph mx-4 product-description'> {{ product.product_description }}</p>
+                {% if product.product_discount %}
+                    <div class="d-flex flex-row ms-4">
+                        <del class="fs-5">${{ product.product_price|remove_trailing_zero }}</del>
+                        <span class="fs-4 d-flex flex-row ms-2 fw-bold product-item-price">{{ product.discount_price|remove_trailing_zero }}{{ product.currency }}</span>
+                    </div>
+                {% else %}
+                    <span class="fs-4 d-flex flex-row ms-4 fw-bold product-item-price">{{ product.product_price|remove_trailing_zero }}{{ product.currency }}</span>
                 {% endif %}
-                <div class='product-item-img-container'>
-                    <img src="{{ product.productimg_set.first.product_img.url }}" alt="">
-                </div>
-                
-                <div class='product-item-info-container'>
-                    <h4 class='main-heading product-item-title my-3'> {{ product.product_name }}</h4>
-                    <p class='sec-paragraph mx-4 product-description'> {{ product.product_description }}</p>
-                    {% if product.product_discount %}
-                        <div class="d-flex flex-row ms-4">
-                            <del>${{ product.product_price|remove_trailing_zero }}</del>
-                            <span class="sec-heading d-flex flex-row ms-2 fw-bold product-item-price">{{ product.discount_price|remove_trailing_zero }}{{ product.currency }}</span>
-                        </div>
-                    {% else %}
-                        <span class="sec-heading d-flex flex-row ms-4 fw-bold product-item-price">{{ product.product_price|remove_trailing_zero }}{{ product.currency }}</span>
-                    {% endif %}
+                <div class="d-flex gap-1 ms-4 mt-4">
+                    <a class="btn btn-outline-primary" href="{{ product.get_absolute_url }}">Add to cart</a>
+                    <a class="btn btn-outline-dark" href="{{ product.get_absolute_url }}">View</a>
                 </div>
 
             </div>
-        </a>
+
+        </div>
         {% endfor %}
 
         
