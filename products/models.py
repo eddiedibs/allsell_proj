@@ -60,8 +60,8 @@ class ProductModel(models.Model):
     product_name = models.CharField(max_length=40)
     product_description = models.TextField(max_length=500)
     currency = models.CharField(max_length=5, choices=currencies, default="$")
-    product_price = models.DecimalField(default=0.0, max_digits=10, decimal_places=2)
-    product_discount_price = models.FloatField(blank=True, null=True)
+    product_price = models.FloatField(default=0.00)
+    product_discount = models.IntegerField(default=0, blank=True, null=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     categories = models.ForeignKey(ProductCategory, related_name='Category', blank=True, null=True, default=None, on_delete=models.CASCADE) #this
     stock = models.IntegerField(default=0)
@@ -73,6 +73,19 @@ class ProductModel(models.Model):
     @property
     def in_stock(self):
         return self.stock > 0
+
+    @property
+    def discount_price(self):
+        if self.product_discount:
+            discount = self.product_price * (self.product_discount / 100)
+            discount_price =  self.product_price - discount
+            decimal_point_index = str(discount_price).find('.')
+            
+            decimal_places_count = len(str(discount_price)) - decimal_point_index - 1
+            
+            if decimal_places_count >= 3:
+                discount_price = round(discount_price, 2)
+            return discount_price
 
 
     def save(self, *args, **kwargs):
