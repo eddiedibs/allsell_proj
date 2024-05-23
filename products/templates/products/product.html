@@ -77,11 +77,11 @@
             </div>
 
             <p class="lead">
-              {% if products.product_discount_price %}
+              {% if products.product_discount %}
                   <span class="mr-1">
-                    <del>${{ products.product_price }}</del>
+                    <del class="fs-4">${{ products.product_price }}</del>
                   </span>
-                <span>${{ products.product_discount_price }}</span>
+                <span class="fs-3 fw-bold">${{ products.product_discount }}</span>
               {% else %}
 
                 <h6>{{ products.product_name }}</h6>
