@@ -6,7 +6,7 @@ from django.shortcuts import reverse
 from PIL import Image
 from .categories_and_colortags import categories, color_tags
 from django.utils.text import slugify
-
+from djmoney.models.fields import MoneyField
 
 
 
@@ -48,10 +48,6 @@ class ProductCategory(models.Model):
 
 
 class ProductModel(models.Model):
-    currencies = [
-    ('$', "US Dollars ($)"), 
-    ]
-
     id = models.UUIDField(
         primary_key=True,
         default=uuid.uuid4,
@@ -59,8 +55,7 @@ class ProductModel(models.Model):
     slug = models.SlugField(unique=True, blank=True, default=None)
     product_name = models.CharField(max_length=40)
     product_description = models.TextField(max_length=500)
-    currency = models.CharField(max_length=5, choices=currencies, default="$")
-    product_price = models.FloatField(default=0.00)
+    product_price = MoneyField(max_digits=14, default=0.00, decimal_places=2, default_currency='USD')
     product_discount = models.IntegerField(default=0, blank=True, null=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     categories = models.ForeignKey(ProductCategory, related_name='Category', blank=True, null=True, default=None, on_delete=models.CASCADE) #this

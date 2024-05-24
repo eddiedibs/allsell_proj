@@ -76,7 +76,7 @@
                 <p class='sec-paragraph mx-4 product-description'> {{ product.product_description }}</p>
                 {% if product.product_discount %}
                     <div class="d-flex flex-row ms-4">
-                        <del class="fs-5">${{ product.product_price|remove_trailing_zero }}</del>
+                        <del class="fs-5">{{ product.product_price|remove_trailing_zero }}</del>
                         <span class="fs-4 d-flex flex-row ms-2 fw-bold product-item-price">{{ product.discount_price|remove_trailing_zero }}{{ product.currency }}</span>
                     </div>
                 {% else %}

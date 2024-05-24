@@ -79,9 +79,9 @@
             <p class="lead">
               {% if products.product_discount %}
                   <span class="mr-1">
-                    <del class="fs-4">${{ products.product_price }}</del>
+                    <del class="fs-4">{{ products.product_price }}</del>
                   </span>
-                <span class="fs-3 fw-bold">${{ products.product_discount }}</span>
+                <span class="fs-3 fw-bold">{{ products.discount_price }}</span>
               {% else %}
 
                 <h6>{{ products.product_name }}</h6>

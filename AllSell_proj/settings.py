@@ -50,6 +50,8 @@ if DEBUG:
 
     STATICFILES_DIRS = [os.path.join(BASE_DIR, 'allsellapp/static')]
 
+    OPEN_EXCHANGE_RATES_APP_ID = os.environ.get('OPEN_EXCHANGE_RATES_APP_ID')
+    OPEN_EXCHANGE_RATES_URL = os.environ.get('OPEN_EXCHANGE_RATES_URL')
 
 
 
@@ -94,6 +96,8 @@ INSTALLED_APPS = [
     'crispy_forms',
     'crispy_bootstrap4',
     'rest_framework',
+    'djmoney',
+    'djmoney.contrib.exchange',
 ]
 
 MIDDLEWARE = [
@@ -206,3 +210,5 @@ LOGIN_URL = 'login_view'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+EXCHANGE_BACKEND = 'djmoney.contrib.exchange.backends.OpenExchangeRatesBackend'
