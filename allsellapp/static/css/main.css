@@ -344,7 +344,7 @@ ol, ul {
     justify-content: center;
 }
 
-
+.nav-bar-login button,
 .nav-bar-login a{
     font-family: var(--ff-mont);
     text-decoration: none;
@@ -352,7 +352,7 @@ ol, ul {
     transition-duration: 100ms;
 }
 
-
+.nav-bar-login button:hover,
 .nav-bar-login a:hover{
     color: var(--navbar-font-color--active);
 }
@@ -1144,6 +1144,42 @@ ol, ul {
 
 }
 
+.text-font{
+    font-family: var(--ff-mont);
+    font-weight: 700;
+    letter-spacing: .156rem;
+    font-size: 1.125rem;
+}
+.text-price{
+    padding: 0 .625rem;
+    font-family: var(--ff-mont);
+    font-style: normal;
+    font-size: .75rem;
+    font-weight: 700;
+    line-height: .813rem;
+    letter-spacing: 1.6px;
+}
+.text-descriptions{
+    font-family: var(--ff-mont);
+    font-style: normal;
+    font-size: .75rem;
+    font-weight: 400;
+    line-height: 1.125rem;
+    margin: .313rem 0 .938rem;
+    padding: 0 .625rem;
+}
+.button-color{
+    color: #4e4e4e ;
+    border-color: #4e4e4e ;
+}
+.button-order{
+    font-family: var(--ff-mont);
+    font-style: normal;
+    font-size: .75rem;
+    font-weight: 700;
+    background-color: hsl(90, 40%, 50%);
+    color: white;
+}
 
 /* 
 =====================================================================================================

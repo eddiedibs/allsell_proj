@@ -371,18 +371,92 @@ function messageMotion (){
 
 
 
+/*
+===============================================================
+                  6. Add and Remove from cart
+
+            Function Adds and removes items from cart
+
+
+===============================================================
+*/
 
 
 
+function cartFunctionality(){
+  var updateAnchors = document.getElementsByClassName("update-cart")
+
+
+  for (i=0; i < updateAnchors.length; i++){
+    updateAnchors[i].addEventListener("click", function(){
+        var productId = this.dataset.product
+        var action = this.dataset.action
+
+        if (user != "anonymousUser"){
+          updateUserOrder(productId, action)
+        }
+        
+    })
+  }
 
 
 
+}
+
+function updateUserOrder(productId, action){
+  var url = '/api/update_item'
+  fetch(url, {
+    method: "POST",
+    headers: {
+      'Content-Type': 'application/json',
+      'X-CSRFToken': csrftoken,
+    },
+    body: JSON.stringify({'productId': productId, 'action': action})
+  })
+  .then((response) => {
+    return response.json();
+  })
+  .then((data) => {
+
+    if (window.location.pathname != "/"){
+      var productItem = document.querySelector(`[data-product="prod-${data[1].product}"]`);
+      var cartItemPrice = productItem.querySelector(".product-item-price")
+      var cartItemNoDiscountPrice = productItem.querySelector(".product-item-del-price")
+    }
+
+    var cartItemCounters = document.querySelectorAll('.cart-items')
+    var cartItemsTotal = document.querySelectorAll('.cart-total')
+
+
+    cartItemCounters.forEach((item) =>{
+      item.textContent = data[0].get_cart_amount_of_items;
+
+    })
+
+    if (data[1].quantity === 0){
+      productItem.remove();
+    }
+
+    if (data[1].total_amount != cartItemPrice){
+      cartItemPrice.textContent = data[1].total_amount
+    }
+    if (data[1].total_amount_without_discount != cartItemNoDiscountPrice){
+      cartItemNoDiscountPrice.textContent = data[1].total_amount_without_discount
+    }
+    cartItemsTotal.forEach((item) => {
+      if (data[0].get_cart_total != item){
+        item.textContent = data[0].get_cart_total
+      }
+    })
+
+  })
+}
 
 
 
 /*
 ===============================================================
-                        6. mainApp 
+                        7. mainApp 
 
     Function that activates all of them in one main function
 
@@ -393,6 +467,7 @@ function mainApp(){
     navMotion();
     bannerMotion();
     messageMotion();
+    cartFunctionality();
 
 
 }

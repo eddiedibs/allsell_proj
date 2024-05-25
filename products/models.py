@@ -7,7 +7,7 @@ from PIL import Image
 from .categories_and_colortags import categories, color_tags
 from django.utils.text import slugify
 from djmoney.models.fields import MoneyField
-
+from .utils import get_currency_symbol
 
 
 class Address(models.Model):
@@ -126,6 +126,9 @@ class Customer(models.Model):
     def __str__(self):
         return f'{self.email}'
 
+    @property
+    def get_customer_order(self):
+        return self.order_set.filter(customer=self).first().get_cart_amount_of_items
 
 
 class Order(models.Model):
@@ -155,8 +158,9 @@ class Order(models.Model):
     @property
     def get_cart_total(self):
         orderproducts = self.orderproduct_set.all()
-        total = sum([product.total_amount for product in orderproducts ])
-        return total
+        total = sum([float(product.total_amount[1:-2]) for product in orderproducts ])
+        currency = str(orderproducts.first().total_amount)[0]
+        return currency + str(total)
 
     @property
     def get_cart_amount_of_items(self):
@@ -164,42 +168,25 @@ class Order(models.Model):
         total = sum([product.quantity for product in orderproducts ])
         return total
 
-    # def get_raw_subtotal(self):
-    #     total = 0
-    #     for order_item in self.items.all():
-    #         total += order_item.get_raw_total_item_price()
-    #     return total
-
-    # def get_subtotal(self):
-    #     subtotal = self.get_raw_subtotal()
-    #     return "{:.2f}".format(subtotal / 100)
-
-    # def get_raw_total(self):
-    #     subtotal = self.get_raw_subtotal()
-    #     # add tax, add delivery, subtract discounts
-    #     # total = subtotal - discounts + tax + delivery
-    #     return subtotal
-
-    # def get_total(self):
-    #     total = self.get_raw_total()
-    #     return "{:.2f}".format(total / 100)
 
 class OrderProduct(models.Model):
     product = models.ForeignKey(ProductModel, blank=True, null=True, on_delete=models.SET_NULL)
     order = models.ForeignKey(Order, blank=True, null=True, on_delete=models.SET_NULL)
-    quantity = models.IntegerField(default=1)
+    quantity = models.IntegerField(default=0)
 
     def __str__(self):
         return self.product.product_name
 
+
     @property
-    def currency(self):
-        return self.product.first().currency
+    def total_amount_without_discount(self):
+        return str(self.product.product_price * self.quantity)
+
     @property
     def total_amount(self):
         if self.product.discount_price:
             total = self.product.discount_price * self.quantity
         else:
             total = self.product.product_price * self.quantity
-        return total
-
+        return get_currency_symbol(total.currency.code) + "{:.2f}".format(total.amount)
+        

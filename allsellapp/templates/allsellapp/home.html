@@ -83,7 +83,11 @@
                     <span class="fs-4 d-flex flex-row ms-4 fw-bold product-item-price">{{ product.product_price|remove_trailing_zero }}{{ product.currency }}</span>
                 {% endif %}
                 <div class="d-flex gap-1 ms-4 mt-4">
-                    <a class="btn btn-outline-primary" href="{{ product.get_absolute_url }}">Add to cart</a>
+                    {% if user.is_authenticated %}
+                    <button data-product="{{product.id}}" data-action="add" class="btn btn-outline-primary update-cart">Add to cart</button>
+                    {% else %}
+                    <a class="btn btn-outline-primary" href="{% url 'register_view' %}">Add to cart</a>
+                    {% endif %}
                     <a class="btn btn-outline-dark" href="{{ product.get_absolute_url }}">View</a>
                 </div>
 
