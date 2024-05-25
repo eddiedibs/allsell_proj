@@ -404,6 +404,8 @@ function cartFunctionality(){
 }
 
 function updateUserOrder(productId, action){
+  var inStockQuantity = document.querySelector(".item-stock");
+
   var url = '/api/update_item'
   fetch(url, {
     method: "POST",
@@ -417,15 +419,28 @@ function updateUserOrder(productId, action){
     return response.json();
   })
   .then((data) => {
-
-    if (window.location.pathname != "/"){
+    var cartItemCounters = document.querySelectorAll('.cart-items')
+    var cartItemsTotal = document.querySelectorAll('.cart-total')
+    if (window.location.pathname == "/cart/"){
       var productItem = document.querySelector(`[data-product="prod-${data[1].product}"]`);
       var cartItemPrice = productItem.querySelector(".product-item-price")
       var cartItemNoDiscountPrice = productItem.querySelector(".product-item-del-price")
+      // var stepUpBtn = document.querySelector('.btn-quantity-up');
+      if (data[1].total_amount != cartItemPrice){
+        cartItemPrice.textContent = data[1].total_amount
+      }
+      cartItemsTotal.forEach((item) => {
+        if (data[0].get_cart_total != item){
+          item.textContent = data[0].get_cart_total
+        }
+      })
+      if (data[1].total_amount_without_discount != cartItemNoDiscountPrice){
+        cartItemNoDiscountPrice.textContent = data[1].total_amount_without_discount
+      }
+
     }
 
-    var cartItemCounters = document.querySelectorAll('.cart-items')
-    var cartItemsTotal = document.querySelectorAll('.cart-total')
+
 
 
     cartItemCounters.forEach((item) =>{
@@ -437,17 +452,7 @@ function updateUserOrder(productId, action){
       productItem.remove();
     }
 
-    if (data[1].total_amount != cartItemPrice){
-      cartItemPrice.textContent = data[1].total_amount
-    }
-    if (data[1].total_amount_without_discount != cartItemNoDiscountPrice){
-      cartItemNoDiscountPrice.textContent = data[1].total_amount_without_discount
-    }
-    cartItemsTotal.forEach((item) => {
-      if (data[0].get_cart_total != item){
-        item.textContent = data[0].get_cart_total
-      }
-    })
+
 
   })
 }

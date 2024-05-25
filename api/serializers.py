@@ -8,7 +8,7 @@ class ListProductSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = ProductModel
-        fields = ("product_name","product_description","currency","product_price","user")
+        fields = ("product_name","product_description","product_price","user")
 
 class ListOrderSerializer(serializers.ModelSerializer):
 
@@ -20,4 +20,4 @@ class ListOrderProductSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = OrderProduct
-        fields = ("product","quantity","order", "total_amount", "total_amount_without_discount")
+        fields = ("product","quantity","order", "total_amount", "total_amount_without_discount", "is_amount_in_stock", "amount_in_stock")

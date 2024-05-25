@@ -65,7 +65,7 @@ class UpdateItemView(generics.UpdateAPIView):
             product = ProductModel.objects.get(id=productId)
             order, created = Order.objects.get_or_create(customer=customer, ordered=False)
             orderItem, created = OrderProduct.objects.get_or_create(order=order, product=product)
-            if action == "add":
+            if action == "add" and orderItem.is_amount_in_stock:
                 orderItem.quantity = (orderItem.quantity + 1)
             elif action == "remove":
                 orderItem.quantity = (orderItem.quantity - 1)

@@ -159,13 +159,15 @@ class Order(models.Model):
     def get_cart_total(self):
         orderproducts = self.orderproduct_set.all()
         total = sum([float(product.total_amount[1:-2]) for product in orderproducts ])
+        if orderproducts.first() == None and total == 0:
+            return ""
         currency = str(orderproducts.first().total_amount)[0]
         return currency + str(total)
 
     @property
     def get_cart_amount_of_items(self):
         orderproducts = self.orderproduct_set.all()
-        total = sum([product.quantity for product in orderproducts ])
+        total = sum([order_product.quantity for order_product in orderproducts])
         return total
 
 
@@ -177,6 +179,15 @@ class OrderProduct(models.Model):
     def __str__(self):
         return self.product.product_name
 
+
+
+    @property
+    def is_amount_in_stock(self):
+        return self.quantity < self.product.stock
+
+    @property
+    def amount_in_stock(self):
+        return self.product.stock
 
     @property
     def total_amount_without_discount(self):
