@@ -121,7 +121,6 @@ function bannerMotion(){
 
 
           }
-              // console.log("FIRED")
 
           // Banner slide function
           window.onload = function () {
@@ -383,7 +382,7 @@ function messageMotion (){
 
 function checkStockQuantity(){
     // Select all product containers
-    const productContainers = document.querySelectorAll('.product-container');
+    const productQuantityContainers = document.querySelectorAll('.product-quantity-container');
     // Function to check and disable/enable the add button
     function checkAndDisableButton(container) {
         const quantityInput = container.querySelector('.quantity-input');
@@ -398,7 +397,7 @@ function checkStockQuantity(){
     }
 
     // Loop through each product container
-    productContainers.forEach(function(container) {
+    productQuantityContainers.forEach(function(container) {
         // Attach change event listener to the quantity input
         const quantityInput = container.querySelector('.quantity-input');
         quantityInput.addEventListener('change', function() {
@@ -454,6 +453,7 @@ function updateUserOrder(productId, action){
     if (window.location.pathname == "/cart/"){
       var productItem = document.querySelector(`[data-product="prod-${data[1].product}"]`);
       var cartItemPrice = productItem.querySelector(".product-item-price")
+      var checkoutBtn = document.querySelector(".checkout-btn")
       var cartItemNoDiscountPrice = productItem.querySelector(".product-item-del-price")
       // var stepUpBtn = document.querySelector('.btn-quantity-up');
       if (data[1].total_amount != cartItemPrice){
@@ -469,7 +469,15 @@ function updateUserOrder(productId, action){
       }
       checkStockQuantity()
 
-    }
+      if (data[1].quantity === 0){
+        productItem.remove();
+      }
+
+      if (data[0].get_cart_amount_of_items === 0){
+        checkoutBtn.disabled = true;
+      }
+
+    } 
 
 
 
@@ -479,9 +487,7 @@ function updateUserOrder(productId, action){
 
     })
 
-    if (data[1].quantity === 0){
-      productItem.remove();
-    }
+
 
 
 

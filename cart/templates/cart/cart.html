@@ -49,7 +49,7 @@
     
                     <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
                     <!-- Quantity -->
-                    <div class="product-container d-flex mb-4" style="max-width: 300px" data-stock="{{item.product.stock}}">
+                    <div class="product-quantity-container d-flex mb-4" style="max-width: 300px" data-stock="{{item.product.stock}}">
                       <!-- Quantity Down Button -->
                       <button data-product="{{item.product.id}}" data-action="remove" class="btn btn-primary px-3 me-2 btn-quantity-down update-cart"
                       onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
@@ -84,11 +84,11 @@
 
                     <!-- Price -->
                     </div>
-                </div>
+                    <hr class="my-4" />
+                  </div>
 
               <!-- Single item -->
   
-              <hr class="my-4" />
               {% endfor %}
   
             </div>
@@ -126,12 +126,12 @@
               <ul class="list-group list-group-flush">
                 <li
                   class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
-                  Products
+                  Subtotal
                   <span class="cart-total">{{order.get_cart_total}}</span>
                 </li>
                 <li class="list-group-item d-flex justify-content-between align-items-center px-0">
                   Shipping
-                  <span>Gratis</span>
+                  <span>Free</span>
                 </li>
                 <li
                 <li class="list-group-item d-flex justify-content-between align-items-center px-0">
@@ -150,7 +150,7 @@
                 </li>
               </ul>
   
-              <a href="{% url 'checkout_view' %}" type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-lg btn-block">
+              <a href="{% url 'checkout_view' %}" type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-lg checkout-btn">
                 Go to checkout
               </a>
             </div>

@@ -4,7 +4,7 @@
 
 {% block content %}
 
-  <main class="mt-5 pt-4">
+  <main>
     <div class="container dark-grey-text mt-5">
       <div class="bg-light py-3">
         <div class="container">
@@ -21,7 +21,7 @@
       <div class="row wow fadeIn">
 
         <!--Grid column-->
-        <div class="product-item-detail-container">
+        <div class="product-item-detail-container d-flex align-items-center justify-content-center">
           
           
           <div id="carouselExampleIndicators" class="p-4 col-md-6 mb-4 carousel slide" data-bs-ride="carousel">
@@ -88,7 +88,9 @@
                 <h4 class="fw-bold">{{ products.product_price }}{{ products.currency }}</h4>
               {% endif %}
             </p>
-
+            <div class="mb-4">
+              <span class="item-stock" data-stock="{{products.stock}}">In Stock: {{products.stock}}</span>
+            </div>
             <p class="lead font-weight-bold">Description</p>
 
             <p>{{ products.product_description }}</p>
@@ -102,13 +104,10 @@
               </button>
 
             </form> {% endcomment %}
-            <a data-product="{{products.id}}" data-action="add" class="btn btn-primary btn-md my-0 p update-cart">
+            <button data-product="{{products.id}}" data-action="add" class="btn btn-primary btn-md my-0 p update-cart">
               Add to cart
               <i class="fas fa-shopping-cart ml-1"></i>
-            </a>
-            <a data-product="{{products.id}}" data-action="remove" class="btn btn-danger btn-md my-0 p update-cart">
-              Remove from cart
-            </a>
+            </button>
 
           </div>
           <!--Content-->

@@ -1,4 +1,8 @@
 import uuid
+import locale
+
+# Set the locale to English (United States)
+locale.setlocale(locale.LC_ALL, 'en_US.UTF-8')
 
 from django.db import models
 from django.contrib.auth.models import User
@@ -8,7 +12,6 @@ from .categories_and_colortags import categories, color_tags
 from django.utils.text import slugify
 from djmoney.models.fields import MoneyField
 from .utils import get_currency_symbol
-
 
 class Address(models.Model):
     ADDRESS_CHOICES = (
@@ -158,11 +161,11 @@ class Order(models.Model):
     @property
     def get_cart_total(self):
         orderproducts = self.orderproduct_set.all()
-        total = sum([float(product.total_amount[1:-2]) for product in orderproducts ])
+        total = sum([locale.atof(product.total_amount[1:])  for product in orderproducts ])
         if orderproducts.first() == None and total == 0:
             return ""
         currency = str(orderproducts.first().total_amount)[0]
-        return currency + str(total)
+        return currency + f'{total:,.2f}'
 
     @property
     def get_cart_amount_of_items(self):
@@ -199,5 +202,5 @@ class OrderProduct(models.Model):
             total = self.product.discount_price * self.quantity
         else:
             total = self.product.product_price * self.quantity
-        return get_currency_symbol(total.currency.code) + "{:.2f}".format(total.amount)
+        return get_currency_symbol(total.currency.code) + f'{total.amount:,.2f}'
         
