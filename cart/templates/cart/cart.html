@@ -49,22 +49,25 @@
     
                     <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
                     <!-- Quantity -->
-                    <div class="d-flex mb-4" style="max-width: 300px">
-                        <button data-product="{{item.product.id}}" data-action="remove" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary px-3 me-2 btn-quantity-down update-cart"
-                        onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
-                        <i class="fas fa-minus"></i>
-                        </button>
-    
-                        <div data-mdb-input-init class="form-outline">
-                        <input id="form1" min="0" name="quantity" value="{{item.quantity}}" type="number" class="form-control" />
-                        <label class="form-label" for="form1">Quantity</label>
-                        </div>
-    
-                        <button data-product="{{item.product.id}}" data-action="add" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary px-3 ms-2 btn-quantity-up update-cart"
+                    <div class="product-container d-flex mb-4" style="max-width: 300px" data-stock="{{item.product.stock}}">
+                      <!-- Quantity Down Button -->
+                      <button data-product="{{item.product.id}}" data-action="remove" class="btn btn-primary px-3 me-2 btn-quantity-down update-cart"
+                      onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
+                          <i class="fas fa-minus"></i>
+                      </button>
+                  
+                      <!-- Quantity Input -->
+                      <div class="form-outline">
+                          <input min="0" name="quantity" value="{{item.quantity}}" type="number" class="form-control quantity-input" />
+                          <label class="form-label" for="form1">Quantity</label>
+                      </div>
+                  
+                      <!-- Quantity Up Button -->
+                      <button data-product="{{item.product.id}}" data-action="add" class="btn btn-primary px-3 ms-2 btn-quantity-up update-cart"
                         onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
-                        <i class="fas fa-plus"></i>
-                        </button>
-                    </div>
+                          <i class="fas fa-plus"></i>
+                      </button>
+                  </div>
                     <!-- Quantity -->
     
                     <!-- Price -->

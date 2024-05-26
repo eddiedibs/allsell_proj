@@ -381,12 +381,42 @@ function messageMotion (){
 ===============================================================
 */
 
+function checkStockQuantity(){
+    // Select all product containers
+    const productContainers = document.querySelectorAll('.product-container');
+    // Function to check and disable/enable the add button
+    function checkAndDisableButton(container) {
+        const quantityInput = container.querySelector('.quantity-input');
+        const addButton = container.querySelector('.btn-quantity-up');
+        const stockValue = parseInt(container.dataset.stock);
 
+        if (parseInt(quantityInput.value) >= stockValue) {
+            addButton.disabled = true;
+        } else {
+            addButton.disabled = false;
+        }
+    }
+
+    // Loop through each product container
+    productContainers.forEach(function(container) {
+        // Attach change event listener to the quantity input
+        const quantityInput = container.querySelector('.quantity-input');
+        quantityInput.addEventListener('change', function() {
+            checkAndDisableButton(container);
+        });
+
+        // Initial check
+        checkAndDisableButton(container);
+    });
+  }
 
 function cartFunctionality(){
   var updateAnchors = document.getElementsByClassName("update-cart")
-
-
+  if (window.location.pathname == "/cart/"){
+  document.addEventListener('DOMContentLoaded', function() {
+    checkStockQuantity()
+    });
+  }
   for (i=0; i < updateAnchors.length; i++){
     updateAnchors[i].addEventListener("click", function(){
         var productId = this.dataset.product
@@ -434,9 +464,10 @@ function updateUserOrder(productId, action){
           item.textContent = data[0].get_cart_total
         }
       })
-      if (data[1].total_amount_without_discount != cartItemNoDiscountPrice){
+      if (cartItemNoDiscountPrice && data[1].total_amount_without_discount != cartItemNoDiscountPrice){
         cartItemNoDiscountPrice.textContent = data[1].total_amount_without_discount
       }
+      checkStockQuantity()
 
     }
 
