@@ -20,12 +20,13 @@ class Address(models.Model):
     )
 
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    address_line_1 = models.CharField(max_length=150)
-    address_line_2 = models.CharField(max_length=150)
+    user_first_name = models.CharField(default="First name", max_length=100)
+    user_last_name = models.CharField(default="Last name", max_length=100)
+    address_line_1 = models.CharField(max_length=200)
+    address_line_2 = models.CharField(max_length=200)
     city = models.CharField(max_length=100)
     zip_code = models.CharField(max_length=20)
     address_type = models.CharField(max_length=1, choices=ADDRESS_CHOICES)
-    default = models.BooleanField(default=False)
 
     def __str__(self):
         return f"{self.address_line_1}, {self.address_line_2}, {self.city}, {self.zip_code}"
@@ -123,11 +124,21 @@ class ProductImg(models.Model):
 
 class Customer(models.Model):
     user = models.OneToOneField(User, blank=True, null=True, on_delete=models.CASCADE)
-    name = models.CharField(max_length=200, null=True)
-    email = models.EmailField(max_length=200, unique=True, null=True)
 
     def __str__(self):
-        return f'{self.email}'
+        return f'{self.user.email}'
+
+    @property
+    def first_name(self):
+        return self.user.first_name
+
+    @property
+    def last_name(self):
+        return self.user.last_name
+
+    @property
+    def email(self):
+        return self.user.email
 
     @property
     def get_customer_order(self):

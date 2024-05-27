@@ -1,37 +1,56 @@
 from django import forms
 from products.models import Address as AddressModel
 
-class AppointmentForm(forms.ModelForm):
+class AddressForm(forms.ModelForm):
+    
     
     class Meta:
         model = AddressModel
-        fields = ['first_name', 'last_name', 'email', 'address', 'phone_number']
+        fields = ['user_first_name','user_last_name','address_line_1', 'address_line_2', 'city', 'zip_code']
         labels = {
-            'first_name': "First name",
-            'last_name': "Last name",
-            'email': "Select a email",
-            'address': "Select an address.",
-            'phone_number': "Select a phone number.",
+            'user_first_name': "First name",
+            'user_last_name': "Last name",
+            'address_line_1': "First Address",
+            'address_line_2': "Second Address",
+            'city': "City",
+            'zip_code': "Zip code",
         }
         widgets = {
-            'first_name': forms.DateInput(attrs={
-                'type': 'date',
-                'class': "form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-            }),
-            'last_name': forms.DateInput(attrs={
-                'type': 'date',
-                'class': "form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-            }),
-            'email': forms.Select(attrs={
+             'user_first_name': forms.TextInput(attrs={
                 'type': 'text',
-                'class': "form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                'disabled': 'true',
+                'class': "form-control block w-full px-3 my-3"
             }),
-            'address': forms.SelectMultiple(attrs={
+            'user_last_name': forms.TextInput(attrs={
                 'type': 'text',
-                'class': "form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                'disabled': 'true',
+                'class': "form-control block w-full px-3 my-3"
+            }),           
+            'address_line_1': forms.TextInput(attrs={
+                'type': 'text',
+                'class': "form-control block w-full px-3 my-3"
             }),
-            'phone_number': forms.SelectMultiple(attrs={
+            'address_line_2': forms.TextInput(attrs={
                 'type': 'text',
-                'class': "form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                'class': "form-control block w-full px-3 my-3"
+            }),
+            'city': forms.TextInput(attrs={
+                'type': 'text',
+                'class': "form-control block w-full px-3 my-3"
+            }),
+            'zip_code': forms.TextInput(attrs={
+                'type': 'text',
+                'class': "form-control block w-full px-3 my-3"
             }),
         }
+
+    def save(self, commit=True):
+        address = super(AddressForm, self).save(commit=False)
+        address.address_line_1 = self.cleaned_data['address_line_1']
+        address.address_line_2 = self.cleaned_data['address_line_2']
+        address.city = self.cleaned_data['city']
+        address.zip_code = self.cleaned_data['zip_code']
+
+        if commit:
+                address.save()
+                return address

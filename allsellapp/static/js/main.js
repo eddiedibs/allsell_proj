@@ -335,6 +335,7 @@ function bannerMotion(){
 ===============================================================
 */
 
+
 function messageMotion (){
   const successMessage = document.querySelector('.message-success-container');
 
@@ -412,8 +413,18 @@ function checkStockQuantity(){
 function cartFunctionality(){
   var updateAnchors = document.getElementsByClassName("update-cart")
   if (window.location.pathname == "/cart/"){
-  document.addEventListener('DOMContentLoaded', function() {
-    checkStockQuantity()
+    var checkoutBtn = document.querySelector(".checkout-btn")
+    var cartItemCounter = document.querySelector('.cart-items')
+    document.addEventListener('DOMContentLoaded', function() {
+      checkStockQuantity()
+
+      if (cartItemCounter.textContent == 0){
+        checkoutBtn.href = "javascript:void(0);";
+
+        // Optionally, you can also disable the button visually
+        checkoutBtn.style.backgroundColor = '#ccc'; // Change background color to gray
+        checkoutBtn.disabled = true; // Disables the button
+      }
     });
   }
   for (i=0; i < updateAnchors.length; i++){
@@ -433,8 +444,6 @@ function cartFunctionality(){
 }
 
 function updateUserOrder(productId, action){
-  var inStockQuantity = document.querySelector(".item-stock");
-
   var url = '/api/update_item'
   fetch(url, {
     method: "POST",
@@ -455,7 +464,6 @@ function updateUserOrder(productId, action){
       var cartItemPrice = productItem.querySelector(".product-item-price")
       var checkoutBtn = document.querySelector(".checkout-btn")
       var cartItemNoDiscountPrice = productItem.querySelector(".product-item-del-price")
-      // var stepUpBtn = document.querySelector('.btn-quantity-up');
       if (data[1].total_amount != cartItemPrice){
         cartItemPrice.textContent = data[1].total_amount
       }
@@ -474,7 +482,11 @@ function updateUserOrder(productId, action){
       }
 
       if (data[0].get_cart_amount_of_items === 0){
-        checkoutBtn.disabled = true;
+        checkoutBtn.href = "javascript:void(0);";
+
+        // Optionally, you can also disable the button visually
+        checkoutBtn.style.backgroundColor = '#ccc'; // Change background color to gray
+        checkoutBtn.disabled = true; // Disables the button
       }
 
     } 
@@ -494,6 +506,25 @@ function updateUserOrder(productId, action){
   })
 }
 
+// ########################################################
+
+//                     7. checkCaptcha()
+
+// ########################################################
+
+
+function checkCaptcha(){
+  if (window.location.pathname == "/checkout/"){
+    window.onload = function() {
+      var recaptcha = document.forms["checkout-address-form"]["g-recaptcha-response"];
+      recaptcha.required = true;
+      recaptcha.oninvalid = function(e) {
+        // do something
+        alert("Please complete the captcha.");
+      }
+    }
+  }
+}
 
 
 /*
@@ -509,6 +540,7 @@ function mainApp(){
     navMotion();
     bannerMotion();
     messageMotion();
+    checkCaptcha()
     cartFunctionality();
 
 

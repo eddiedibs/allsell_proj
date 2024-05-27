@@ -110,13 +110,14 @@
 
 html{
     overflow-x: hidden;
+    height: 100vh !important;
 
 }
 
 body{
-    background-color: var(--bckgrnd-color);
-
+    height: 100% !important;
 }
+
 
 p {
     margin-top: 0;
@@ -1181,8 +1182,9 @@ ol, ul {
     color: white;
 }
 
-
-
+#cart-section{
+    height: max-content !important;
+}
 /* 
 =====================================================================================================
 

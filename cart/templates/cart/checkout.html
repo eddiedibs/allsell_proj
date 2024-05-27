@@ -107,54 +107,37 @@
               <h5 class="mb-0 text-font text-uppercase">Delivery address</h5>
             </div>
             <div class="card-body">
-              <form>
-  
-                <div class="row mb-4">
-                  <div class="col">
-                    <div data-mdb-input-init class="form-outline">
-                      <input type="text" id="form11Example1" class="form-control" />
-                      <label class="form-label" for="form11Example1">First name</label>
-                    </div>
+              <form id='checkout-address-form' method='POST'>
+                {% csrf_token %}
+                <div class="d-flex flex-row justify-content-evenly">
+                  <div class="d-flex flex-column justify-content-evenly w-100">
+                    {{forms.user_first_name.label}}
+                    {{ forms.user_first_name}}
                   </div>
-                  <div class="col">
-                    <div data-mdb-input-init class="form-outline">
-                      <input type="text" id="form11Example2" class="form-control" />
-                      <label class="form-label" for="form11Example2">Last name</label>
-                    </div>
+                  <div class="d-flex flex-column justify-content-evenly w-100">
+                    {{forms.user_last_name.label}}
+                    {{ forms.user_last_name}}
                   </div>
                 </div>
-  
-                <!-- Text input -->
-                <div data-mdb-input-init class="form-outline mb-4">
-                  <input type="text" id="form11Example4" class="form-control" />
-                  <label class="form-label" for="form11Example4">Address</label>
+                {{forms.address_line_1.label}}
+                {{ forms.address_line_1}}
+                {{forms.address_line_2.label}}
+                {{ forms.address_line_2}}  
+                {{forms.city.label}}
+                {{ forms.city}}  
+                {{forms.zip_code.label}}
+                {{ forms.zip_code}}  
+                <script src='https://www.google.com/recaptcha/api.js'></script>
+                <div class="g-recaptcha my-4" data-sitekey="6LcBZV0fAAAAAPpmrTrX0oJz9PD8A7OX3RodspuZ"></div>
+                
+                <div class="text-center">
+                  <button  type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-dark col-md-10">Place order</button>
                 </div>
-  
-                <!-- Email input -->
-                <div data-mdb-input-init class="form-outline mb-4">
-                  <input type="email" id="form11Example5" class="form-control" />
-                  <label class="form-label" for="form11Example5">Email</label>
-                </div>
-  
-                <!-- Number input -->
-                <div data-mdb-input-init class="form-outline mb-4">
-                  <input type="number" id="form11Example6" class="form-control" />
-                  <label class="form-label" for="form11Example6">Phone</label>
-                </div>
-  
-                <!-- Message input -->
-                <div data-mdb-input-init class="form-outline mb-4">
-                  <textarea class="form-control" id="form11Example7" rows="4"></textarea>
-                  <label class="form-label" for="form11Example7">Additional information</label>
-                </div>
-  
-              </form>
+            </form>
             </div>
   
           </div>
-          <div class="text-center">
-            <button  type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-dark col-md-10">Place order</button>
-          </div>
+
   
         </div>
   

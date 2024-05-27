@@ -1,12 +1,16 @@
+import json
+
 from django.shortcuts import render
 from rest_framework import generics, status
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from rest_framework.decorators import api_view
 from django.http import JsonResponse
+from django.contrib import messages
+
 from products.models import *
 from users_allsell.models import User
 from .serializers import ListProductSerializer, ListOrderSerializer, ListOrderProductSerializer
-import json
 
 
 class ProductsListView(generics.ListAPIView):
@@ -77,11 +81,13 @@ class UpdateItemView(generics.UpdateAPIView):
             if orderItem.quantity <= 0:
                 orderItem.delete()
 
-            context = [ListOrderSerializer(order).data, ListOrderProductSerializer(orderItem).data]
+            context = [ListOrderSerializer(order).data, ListOrderProductSerializer(orderItem).data, {"message": f"Item was added to the cart!"}]
+
 
             return Response(context, status=status.HTTP_201_CREATED)
         else:
             return Response({'Bad Request': 'Something went wrong...'}, status=status.HTTP_400_BAD_REQUEST)
+
 
 
 class ProductsDestroyView(generics.DestroyAPIView):
