@@ -50,6 +50,7 @@ class CheckoutTemplateView(CartContextMixin, TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         initial_data = {
+            'user': self.request.user,
             'user_first_name': self.request.user.first_name,
             'user_last_name': self.request.user.last_name,
             # Include other fields you want to pre-populate here
@@ -64,10 +65,9 @@ class CheckoutTemplateView(CartContextMixin, TemplateView):
         if request.method == 'POST':
             form = AddressForm(request.POST)
             if form.is_valid():
-                form = AddressForm(initial=initial_data)
-                context["form"] = form
-                return context
-
+                form.save()
+                messages.success(request, 'Information sent')
+                return redirect(reverse_lazy('home_view'))
             else:
                 messages.error(request, 'There was an error with your request.')
                 return redirect(reverse_lazy('checkout_view'))
