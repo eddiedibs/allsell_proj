@@ -337,7 +337,7 @@ function bannerMotion(){
 
 
 function messageMotion (){
-  const successMessage = document.querySelector('.message-success-container');
+  const successMessage = document.querySelector('.message-box-container');
 
   if (successMessage == null){
     return
@@ -355,7 +355,7 @@ function messageMotion (){
   
   
     function messageOpacityZero(){
-      successMessage.classList.add('message-success--active')
+      successMessage.classList.add('message-content--active')
       setTimeout(messageDisappear, 1500)
       
   

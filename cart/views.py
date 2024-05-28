@@ -33,6 +33,10 @@ class CartContextMixin(ContextMixin):
 class CartTemplateView(CartContextMixin, TemplateView):
     template_name = 'cart.html'
 
+class PaymentTemplateView(CartContextMixin, TemplateView):
+    template_name = 'payment.html'
+
+
 
 @method_decorator(csrf_protect, name='dispatch')
 @method_decorator(sensitive_post_parameters(), name='dispatch')
@@ -67,7 +71,7 @@ class CheckoutTemplateView(CartContextMixin, TemplateView):
             if form.is_valid():
                 form.save()
                 messages.success(request, 'Information sent')
-                return redirect(reverse_lazy('home_view'))
+                return redirect(reverse_lazy('payment_view'))
             else:
                 messages.error(request, 'There was an error with your request.')
                 return redirect(reverse_lazy('checkout_view'))

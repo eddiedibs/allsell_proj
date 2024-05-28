@@ -75,7 +75,8 @@
     --nav-color: #0c2032;
     --navbar-font-color--active: white;
     --btn-color: #0cbadd;
-    --success-msg-text-color: #81A48C;
+    --msg-text-color: rgb(105, 105, 105);
+    --error-msg-backgrd-color: #ebcdcd;
     --success-msg-backgrd-color: #CDEBD6;
     --bckgrnd-color: #F7F7F7;
     --drop-down-bc-color: rgba(22, 22, 22, 0.945);
@@ -678,10 +679,9 @@ ol, ul {
 
 
 
-
-.message-success{
+.message-content{
     font-family: var(--ff-mont);
-    color: var(--success-msg-text-color);
+    color: var(--msg-text-color);
 } 
 
 
@@ -887,17 +887,21 @@ ol, ul {
 }
 
 
-.message-success-container{
+.message-box-container{
     z-index: 1;
     opacity: 1;
     position: absolute;
     transform: translateX(160%);
     transition-duration: 1000ms;
     box-shadow: 2px 2px 15px rgb(80, 80, 80);
-    background-color: var(--success-msg-backgrd-color);
 }
 
-
+.message-box-container-success{
+    background-color: var(--success-msg-backgrd-color) !important;
+}
+.message-box-container-error{
+    background-color: var(--error-msg-backgrd-color) !important;
+}
 
 
 
@@ -1267,7 +1271,7 @@ ol, ul {
 }
 
 
-.message-success--active{
+.message-content--active{
     opacity: 0;
 
 

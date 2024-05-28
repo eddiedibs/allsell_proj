@@ -8,6 +8,8 @@ class AddressForm(forms.ModelForm):
         model = AddressModel
         fields = ['user','user_first_name','user_last_name','address_line_1', 'address_line_2', 'city', 'zip_code']
         labels = {
+            'user_first_name': "First name",
+            'user_last_name': "Last name",
             'address_line_1': "First Address",
             'address_line_2': "Second Address",
             'city': "City",

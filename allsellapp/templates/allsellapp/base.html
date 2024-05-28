@@ -153,15 +153,15 @@
     </section>
     {% if messages %}
         <div class='message-container'>
-            <div class='shadow-container message-success-container'>
-            
-                {% for message in messages %}
-                <div class='message-success registration-message'>
-                    {{ message }}
-                </div>
-                {% endfor %}
+            {% for message in messages %}
+                <div class="shadow-container message-box-container {% if 'success' in message.tags %}message-box-container-success{% elif 'error' in message.tags %}message-box-container-error{% endif %}">
+                
+                    <div class='message-content registration-message'>
+                        {{ message }}
+                    </div>
 
-            </div>
+                </div>
+            {% endfor %}
         </div>
     {% endif %}
 
