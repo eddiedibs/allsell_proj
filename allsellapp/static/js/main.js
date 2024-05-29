@@ -350,7 +350,7 @@ function messageMotion (){
     });
   
     function messageDisappear(){
-      successMessage.style.animation = `successMessageMotionDisappear 1s`
+      successMessage.style.animation = `successMessageMotionDisappear 0.5s`
     }
   
   
@@ -367,6 +367,66 @@ function messageMotion (){
 
 
 
+}
+
+/*
+===============================================================
+                    4. processPayment
+
+              Function that processes payment
+
+===============================================================
+*/
+async function callInternalProcessPayment(url, data){
+  try {
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRFToken': csrftoken,
+      },
+      body: JSON.stringify(data)
+    });
+    const responseData = await response.json();
+    return responseData;
+  } catch (error) {
+    console.error('Error:', error);
+    throw error;
+  }
+}
+
+
+async function processPayment(){
+  if (window.location.pathname == "/payment/"){
+    var totalAmount = document.querySelector('#paypal-button-container').dataset.totalAmount;
+    var orderId = document.querySelector('#paypal-button-container').dataset.orderId;
+    var parsedAmount = parseFloat(totalAmount).toFixed(2);
+    responseData = await callInternalProcessPayment("/api/validate_payment_amount", {'totalAmount': parsedAmount, "order_id": orderId});
+    responseAmount = responseData["get_cart_total_as_float"]
+    responseOrderId = responseData["order_id"]
+    paypal.Buttons({
+        style: {
+            color: "blue",
+            shape: "rect",
+        },
+        createOrder: function(data, actions) {
+            return actions.order.create({
+                purchase_units: [{
+                    amount: {
+                        value: responseAmount
+                    }
+                }]
+            });
+        },
+        onApprove: function(data, actions) {
+            return actions.order.capture().then(async function(details) {
+              // alert("Transaction completed by " + details.payer.name.given_name + '!');
+              var successData = await callInternalProcessPayment("/api/process_payment", {"details": details.payer, "order_id":orderId})
+              window.location.href = successData["redirect"]
+            });
+        }
+    }).render("#paypal-button-container");
+  }
 }
 
 
@@ -542,6 +602,7 @@ function mainApp(){
     messageMotion();
     checkCaptcha()
     cartFunctionality();
+    processPayment();
 
 
 }

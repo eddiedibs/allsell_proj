@@ -14,7 +14,7 @@ class ListOrderSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Order
-        fields = ("customer", "get_cart_amount_of_items", "get_cart_total")
+        fields = ("id", "customer", "get_cart_amount_of_items", "get_cart_total", "get_cart_total_as_float")
 
 class ListOrderProductSerializer(serializers.ModelSerializer):
 

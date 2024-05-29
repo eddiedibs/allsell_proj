@@ -13,14 +13,15 @@ from django.views.decorators.debug import sensitive_post_parameters
 from products.models import ProductModel, Order, OrderProduct
 from allsellapp.models import HomeBanner
 from cart.forms import AddressForm
+from .utils import get_or_create_order
+
 
 
 class CartContextMixin(ContextMixin):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         if self.request.user.is_authenticated:
-            customer = self.request.user.customer
-            order, created = Order.objects.get_or_create(customer=customer, ordered=False)
+            order = get_or_create_order(self.request, is_completed=False)
             items = order.orderproduct_set.all()
             context["items"] = items
             context["order"] = order
@@ -33,10 +34,18 @@ class CartContextMixin(ContextMixin):
 class CartTemplateView(CartContextMixin, TemplateView):
     template_name = 'cart.html'
 
+
+@method_decorator(csrf_protect, name='dispatch')
+@method_decorator(sensitive_post_parameters(), name='dispatch')
+@method_decorator(never_cache, name='dispatch')
 class PaymentTemplateView(CartContextMixin, TemplateView):
     template_name = 'payment.html'
 
-
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            messages.error(request, 'Please sign-in to proceed to make payments')
+            return redirect(reverse_lazy('login_view'))
+        return super().dispatch(request, *args, **kwargs)
 
 @method_decorator(csrf_protect, name='dispatch')
 @method_decorator(sensitive_post_parameters(), name='dispatch')
@@ -65,12 +74,14 @@ class CheckoutTemplateView(CartContextMixin, TemplateView):
 
 
     def post(self, request):
-
         if request.method == 'POST':
             form = AddressForm(request.POST)
             if form.is_valid():
-                form.save()
-                messages.success(request, 'Information sent')
+                address = form.save()
+                customer = self.request.user.customer
+                order = get_or_create_order(self.request, is_completed=False)
+                order.billing_address = address
+                order.save()
                 return redirect(reverse_lazy('payment_view'))
             else:
                 messages.error(request, 'There was an error with your request.')
@@ -78,3 +89,25 @@ class CheckoutTemplateView(CartContextMixin, TemplateView):
             
         else:
             return AddressForm()
+
+
+@method_decorator(csrf_protect, name='dispatch')
+@method_decorator(sensitive_post_parameters(), name='dispatch')
+@method_decorator(never_cache, name='dispatch')
+class OrderDetailsTemplateView(TemplateView):
+    template_name = 'order_details.html'
+
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            messages.error(request, 'You need to be signed-in')
+            return redirect(reverse_lazy('login_view'))
+        return super().dispatch(request, *args, **kwargs)
+
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        order = get_or_create_order(self.request, is_completed=True)
+        items = order.orderproduct_set.all()
+        context["items"] = items
+        context["order"] = order
+        return context

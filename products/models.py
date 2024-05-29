@@ -142,7 +142,7 @@ class Customer(models.Model):
 
     @property
     def get_customer_order(self):
-        return self.order_set.filter(customer=self).first().get_cart_amount_of_items
+        return self.order_set.filter(customer=self, completed=False).first().get_cart_amount_of_items
 
 
 class Order(models.Model):
@@ -152,13 +152,11 @@ class Order(models.Model):
         editable=False)
     customer = models.ForeignKey(Customer, blank=True, null=True, on_delete=models.CASCADE)
     start_date = models.DateTimeField(auto_now_add=True)
-    ordered_date = models.DateTimeField(blank=True, null=True)
-    ordered = models.BooleanField(default=False)
+    completed_date = models.DateTimeField(blank=True, null=True)
+    completed = models.BooleanField(default=False)
 
-    billing_address = models.ForeignKey(
-        Address, related_name='billing_address', blank=True, null=True, on_delete=models.SET_NULL)
-    shipping_address = models.ForeignKey(
-        Address, related_name='shipping_address', blank=True, null=True, on_delete=models.SET_NULL)
+    billing_address = models.ForeignKey(Address, related_name='billing_address', blank=True, null=True, on_delete=models.SET_NULL)
+    shipping_address = models.ForeignKey(Address, related_name='shipping_address', blank=True, null=True, on_delete=models.SET_NULL)
 
     def __str__(self):
         return self.reference_number
@@ -177,6 +175,13 @@ class Order(models.Model):
             return ""
         currency = str(orderproducts.first().total_amount)[0]
         return currency + f'{total:,.2f}'
+
+    @property
+    def get_cart_total_as_float(self):
+        orderproducts = self.orderproduct_set.all()
+        total = sum([locale.atof(product.total_amount[1:])  for product in orderproducts ])
+        return total
+
 
     @property
     def get_cart_amount_of_items(self):

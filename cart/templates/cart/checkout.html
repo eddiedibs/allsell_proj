@@ -70,7 +70,7 @@
                     </div>
                     <div class="col-md-6 ms-3">
                     {% if item.product.product_discount %}
-                        <del>{{item.product.product_price}}</del>
+                        <del>{{item.total_amount_without_discount}}</del>
                         <span class="mb-0 text-price">{{item.total_amount}}</span>
                     {% else %}
                         <span class="mb-0 text-price">{{item.total_amount}}</span>
