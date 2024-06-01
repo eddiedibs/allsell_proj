@@ -1,17 +1,20 @@
 import uuid
 import locale
-
+from datetime import datetime
 # Set the locale to English (United States)
 locale.setlocale(locale.LC_ALL, 'en_US.UTF-8')
 
 from django.db import models
 from django.contrib.auth.models import User
 from django.shortcuts import reverse
-from PIL import Image
-from .categories_and_colortags import categories, color_tags
 from django.utils.text import slugify
 from djmoney.models.fields import MoneyField
+from django.utils.timezone import make_aware
+
+from PIL import Image
+
 from .utils import get_currency_symbol
+from .categories_and_colortags import categories, color_tags
 
 class Address(models.Model):
     ADDRESS_CHOICES = (
@@ -162,6 +165,12 @@ class Order(models.Model):
         return self.reference_number
 
 
+    def get_absolute_url(self):
+        return reverse("order_details_view", kwargs={"pk": str(self.id)}) 
+
+
+
+
 
     @property
     def reference_number(self):
@@ -175,6 +184,14 @@ class Order(models.Model):
             return ""
         currency = str(orderproducts.first().total_amount)[0]
         return currency + f'{total:,.2f}'
+
+    
+    @property
+    def get_cart_items(self):
+        orderproducts = self.orderproduct_set.all()
+        cart_items = [ item.product.product_name for item in orderproducts ]
+        cart_items = ', '.join(cart_items)
+        return cart_items
 
     @property
     def get_cart_total_as_float(self):

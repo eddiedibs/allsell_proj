@@ -45,7 +45,7 @@ if DEBUG:
             'PORT' : '5420',
             }
         }
-    ALLOWED_HOSTS= json.loads(os.environ['ALLOWED_HOST'])
+    ALLOWED_HOSTS = json.loads(os.environ['ALLOWED_HOST'])
     CSRF_TRUSTED_ORIGINS= json.loads(os.environ['CSRF_TRUSTED_ORIGINS'])
 
     STATICFILES_DIRS = [os.path.join(BASE_DIR, 'allsellapp/static')]

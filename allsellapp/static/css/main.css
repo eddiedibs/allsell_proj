@@ -1102,7 +1102,7 @@ ol, ul {
     grid-gap: 1rem !important;
     align-items: center;
     justify-content: center;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
 }
 
 .product-item{

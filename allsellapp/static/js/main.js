@@ -148,8 +148,8 @@ function bannerMotion(){
               };
               let CONSTANTS = {
                 ACTIVE_CLASS_NAME: "active",
-                TIMER: 5000,
-                TRANSITION: "all .6s ease-out"
+                TIMER: 8000,
+                TRANSITION: "all 1.5s ease-out"
               };
               function addConstant(key, value) {
                 CONSTANTS[key] = value;
@@ -481,7 +481,6 @@ function cartFunctionality(){
       if (cartItemCounter.textContent == 0){
         checkoutBtn.href = "javascript:void(0);";
 
-        // Optionally, you can also disable the button visually
         checkoutBtn.style.backgroundColor = '#ccc'; // Change background color to gray
         checkoutBtn.disabled = true; // Disables the button
       }
@@ -544,7 +543,6 @@ function updateUserOrder(productId, action){
       if (data[0].get_cart_amount_of_items === 0){
         checkoutBtn.href = "javascript:void(0);";
 
-        // Optionally, you can also disable the button visually
         checkoutBtn.style.backgroundColor = '#ccc'; // Change background color to gray
         checkoutBtn.disabled = true; // Disables the button
       }

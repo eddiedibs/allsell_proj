@@ -13,7 +13,7 @@ class HomeListView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['products'] = ProductModel.objects.all()
-        context['banners'] = HomeBanner.objects.all().filter(banner_title='Clothing and Automobile Promo').first()
+        context['banners'] = HomeBanner.objects.all().filter(banner_title='test 1').first()
 
         return context
 

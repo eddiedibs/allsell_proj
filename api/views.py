@@ -70,7 +70,7 @@ class UpdateItemView(generics.UpdateAPIView):
 
             customer = request.user.customer
             product = ProductModel.objects.get(id=productId)
-            order = get_or_create_order(self.request, False)
+            order = get_or_create_order(self, False)
             orderItem, created = OrderProduct.objects.get_or_create(order=order, product=product)
             if action == "add" and orderItem.is_amount_in_stock:
                 orderItem.quantity = (orderItem.quantity + 1)
@@ -104,7 +104,7 @@ class ValidatePaymentView(APIView):
             if self.request.user.is_authenticated and serializer.is_valid():
                 data = request.data
                 customer = request.user.customer
-                order = get_or_create_order(self.request, False)
+                order = get_or_create_order(self, False)
 
                 if order.get_cart_total_as_float != float(data["totalAmount"]):
                     return Response({'Bad Request': 'Something went wrong...'}, status=status.HTTP_400_BAD_REQUEST)
@@ -129,11 +129,17 @@ class ProcessPaymentView(APIView):
             if self.request.user.is_authenticated and serializer.is_valid():
                 data = request.data
                 customer = request.user.customer
-                order = get_or_create_order(self.request, False)
+                order = get_or_create_order(self, False)
+                bought_products = OrderProduct.objects.filter(order=order)
+                f = lambda order_item: order_item.product.stock - order_item.quantity
+                for order_item in bought_products:
+                    order_item.product.stock = f(order_item)
+                    order_item.product.save()
                 order.completed = True
                 order.completed_date = timezone.now()
                 order.save()
-                return Response({"order_id": order.id, "redirect": reverse_lazy('order_details_view')}, status=status.HTTP_200_OK)
+                # del request.session['order_id']
+                return Response({"order_id": order.id, "redirect": order.get_absolute_url() }, status=status.HTTP_200_OK)
             else:
                 return Response({'Bad Request': 'Something went wrong...'}, status=status.HTTP_400_BAD_REQUEST)
 
