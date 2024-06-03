@@ -145,16 +145,6 @@ SECURE_CROSS_ORIGIN_OPENER_POLICY='same-origin-allow-popups'
 
 
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'postgres',
-#         'USER' : env('POSTGRESQL_USER'),
-#         'PASSWORD' : env('POSTGRESQL_PASSWORD'),
-#         'HOST' : 'allsell-db-1.cz0cewlmdo4i.us-east-1.rds.amazonaws.com',
-#         'PORT' : env('POSTGRESQL_PORT'),
-#     }
-# }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
