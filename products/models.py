@@ -10,6 +10,7 @@ from django.shortcuts import reverse
 from django.utils.text import slugify
 from djmoney.models.fields import MoneyField
 from django.utils.timezone import make_aware
+from django.core.exceptions import ValidationError
 
 from PIL import Image
 
@@ -145,7 +146,7 @@ class Customer(models.Model):
 
     @property
     def get_customer_order(self):
-        return self.order_set.filter(customer=self, completed=False).first().get_cart_amount_of_items
+        return self.order_set.get(customer=self, completed=False).get_cart_amount_of_items
 
 
 class Order(models.Model):
@@ -169,9 +170,6 @@ class Order(models.Model):
         return reverse("order_details_view", kwargs={"pk": str(self.id)}) 
 
 
-
-
-
     @property
     def reference_number(self):
         return f"ORDER-{self.id}"
@@ -179,7 +177,7 @@ class Order(models.Model):
     @property
     def get_cart_total(self):
         orderproducts = self.orderproduct_set.all()
-        total = sum([locale.atof(product.total_amount[1:])  for product in orderproducts ])
+        total = sum([locale.atof(product.total_amount[1:]) for product in orderproducts])
         if orderproducts.first() == None and total == 0:
             return ""
         currency = str(orderproducts.first().total_amount)[0]

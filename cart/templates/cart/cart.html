@@ -78,7 +78,7 @@
                       </p>
                     {% else %}
                       <p class="text-start text-md-center">
-                        <strong class="product-item-price">{{item.total_amount}}</strong>
+                        <span class="fs-4 d-flex flex-row ms-2 fw-bold product-item-price">{{ item.total_amount }}</span>
                       </p>
                     {% endif %}
 
@@ -91,12 +91,6 @@
   
               {% endfor %}
   
-            </div>
-          </div>
-          <div class="card mb-4">
-            <div class="card-body">
-              <p><strong>Expected shipping delivery</strong></p>
-              <p class="mb-0">12.10.2020 - 14.10.2020</p>
             </div>
           </div>
           <div class="card mb-4 mb-lg-0">

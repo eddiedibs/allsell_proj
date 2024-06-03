@@ -84,7 +84,7 @@ class UpdateItemView(generics.UpdateAPIView):
             if orderItem.quantity <= 0:
                 orderItem.delete()
 
-            context = [ListOrderSerializer(order).data, ListOrderProductSerializer(orderItem).data, {"message": f"Item was added to the cart!"}]
+            context = [ListOrderSerializer(order).data, ListOrderProductSerializer(orderItem).data]
 
 
             return Response(context, status=status.HTTP_201_CREATED)
@@ -106,7 +106,7 @@ class ValidatePaymentView(APIView):
                 customer = request.user.customer
                 order = get_or_create_order(self, False)
 
-                if order.get_cart_total_as_float != float(data["totalAmount"]):
+                if order.get_cart_total_as_float != float(data["totalAmount"]) or str(order.id) != data["orderId"]:
                     return Response({'Bad Request': 'Something went wrong...'}, status=status.HTTP_400_BAD_REQUEST)
 
                 return Response(ListOrderSerializer(order).data, status=status.HTTP_200_OK)
@@ -138,8 +138,8 @@ class ProcessPaymentView(APIView):
                 order.completed = True
                 order.completed_date = timezone.now()
                 order.save()
-                # del request.session['order_id']
-                return Response({"order_id": order.id, "redirect": order.get_absolute_url() }, status=status.HTTP_200_OK)
+                # del request.session['orderId']
+                return Response({"orderId": order.id, "redirect": order.get_absolute_url() }, status=status.HTTP_200_OK)
             else:
                 return Response({'Bad Request': 'Something went wrong...'}, status=status.HTTP_400_BAD_REQUEST)
 

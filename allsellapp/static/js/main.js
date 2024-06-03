@@ -31,19 +31,19 @@
 */
 
 function navMotion(){
-    const categoryDropdownButton = document.querySelector('#nav-bar-dropdown a:first-child');
-    const profileBtn = document.querySelector('.profile-link-container');
-    const categoryDropdownListContainer = document.querySelector('#category-dropdown-list-container');
+    // const categoryDropdownButton = document.querySelector('#nav-bar-dropdown a:first-child');
+    // const categoryDropdownListContainer = document.querySelector('#category-dropdown-list-container');
     const profileDropdownListContainer = document.querySelector('#profile-dropdown-list-container');
+    const profileBtn = document.querySelector('.profile-link-container');
     
 
 
     
 
-    categoryDropdownButton.addEventListener('click', function() {
-        categoryDropdownListContainer.toggleAttribute('hidden');    
+    // categoryDropdownButton.addEventListener('click', function() {
+    //     categoryDropdownListContainer.toggleAttribute('hidden');    
         
-      });
+    //   });
 
 
       if (profileBtn == null){
@@ -56,17 +56,6 @@ function navMotion(){
         });
       }
      
-
-
-
-
-
-
-
-
-
-
-
 
 
 }
@@ -148,7 +137,7 @@ function bannerMotion(){
               };
               let CONSTANTS = {
                 ACTIVE_CLASS_NAME: "active",
-                TIMER: 8000,
+                TIMER: 5000,
                 TRANSITION: "all 1.5s ease-out"
               };
               function addConstant(key, value) {
@@ -401,9 +390,8 @@ async function processPayment(){
     var totalAmount = document.querySelector('#paypal-button-container').dataset.totalAmount;
     var orderId = document.querySelector('#paypal-button-container').dataset.orderId;
     var parsedAmount = parseFloat(totalAmount).toFixed(2);
-    responseData = await callInternalProcessPayment("/api/validate_payment_amount", {'totalAmount': parsedAmount, "order_id": orderId});
+    responseData = await callInternalProcessPayment("/api/validate_payment_amount", {'totalAmount': parsedAmount, "orderId": orderId});
     responseAmount = responseData["get_cart_total_as_float"]
-    responseOrderId = responseData["order_id"]
     paypal.Buttons({
         style: {
             color: "blue",
@@ -421,7 +409,7 @@ async function processPayment(){
         onApprove: function(data, actions) {
             return actions.order.capture().then(async function(details) {
               // alert("Transaction completed by " + details.payer.name.given_name + '!');
-              var successData = await callInternalProcessPayment("/api/process_payment", {"details": details.payer, "order_id":orderId})
+              var successData = await callInternalProcessPayment("/api/process_payment", {"details": details.payer, "orderId":orderId})
               window.location.href = successData["redirect"]
             });
         }

@@ -83,7 +83,7 @@ class CheckoutTemplateView(BaseProtectedTemplateView, CartContextMixin, Template
                 address = form.save()
                 customer = self.request.user.customer
                 order = get_or_create_order(self, is_completed=False)
-                order.billing_address = address
+                order.shipping_address = address
                 order.save()
                 return redirect(reverse_lazy('payment_view'))
             else:
